@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/styles'
 import theme from './config/theme'
-import { Typography } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
@@ -10,13 +10,16 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptBR}>
-        <div className='App'>
+        <div className='container mx-auto'>
           <Typography variant='h3' component='h1' gutterBottom>
             Olá mundo!
           </Typography>
           <Typography variante='p' component='p' gutterBottom>
             Demo
           </Typography>
+          <Button variant='contained' color='primary' className='mb-16'>
+            Clique aqui
+          </Button>
           <div className='mb-32 text-justify'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum efficitur accumsan. Phasellus
             convallis laoreet congue. Nam commodo enim a ultrices porttitor. Suspendisse eget tellus urna. Proin
