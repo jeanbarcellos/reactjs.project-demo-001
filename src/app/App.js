@@ -1,7 +1,7 @@
-import React from 'react';
-import { ThemeProvider } from '@material-ui/styles';
-import theme from './config/theme';
-import { Typography } from '@material-ui/core';
+import React from 'react'
+import { ThemeProvider } from '@material-ui/styles'
+import theme from './config/theme'
+import { Typography } from '@material-ui/core'
 
 const App = () => {
   return (
