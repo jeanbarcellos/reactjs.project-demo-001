@@ -5,13 +5,23 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import DemoPage from './pages/DemoPage'
+import { create } from 'jss'
+import { StylesProvider, jssPreset } from '@material-ui/core/styles'
+
+const jss = create({
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: document.getElementById('jss-insertion-point')
+})
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptBR}>
-        <DemoPage />
-      </MuiPickersUtilsProvider>
+      <StylesProvider jss={jss}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptBR}>
+          <DemoPage />
+        </MuiPickersUtilsProvider>
+      </StylesProvider>
     </ThemeProvider>
   )
 }
