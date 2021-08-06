@@ -6,7 +6,7 @@ import DateFnsUtils from '@date-io/date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { create } from 'jss'
 import { StylesProvider, jssPreset } from '@material-ui/core/styles'
-import Layout from './layout/Layout'
+import Layout from './layout'
 
 const jss = create({
   ...jssPreset(),
