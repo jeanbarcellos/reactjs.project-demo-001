@@ -16,6 +16,24 @@ const DemoPage = () => {
         Clique aqui
       </Button>
 
+      <div className='mb-16'>
+        <Button variant='contained' className='mr-4'>
+          Default
+        </Button>
+        <Button variant='contained' color='primary' className='mr-4'>
+          Primary
+        </Button>
+        <Button variant='contained' color='secondary' className='mr-4'>
+          Secondary
+        </Button>
+        <Button variant='contained' disabled className='mr-4'>
+          Disabled
+        </Button>
+        <Button variant='contained' color='primary' href='#contained-buttons'>
+          Link
+        </Button>
+      </div>
+
       <div className='mb-32 text-justify'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum efficitur accumsan. Phasellus convallis
         laoreet congue. Nam commodo enim a ultrices porttitor. Suspendisse eget tellus urna. Proin lobortis et odio non
