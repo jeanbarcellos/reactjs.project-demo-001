@@ -4,9 +4,9 @@ import theme from './config/theme'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
-import DemoPage from './pages/DemoPage'
 import { create } from 'jss'
 import { StylesProvider, jssPreset } from '@material-ui/core/styles'
+import Layout from './layout/Layout'
 
 const jss = create({
   ...jssPreset(),
@@ -19,7 +19,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptBR}>
-          <DemoPage />
+          <Layout />
         </MuiPickersUtilsProvider>
       </StylesProvider>
     </ThemeProvider>
