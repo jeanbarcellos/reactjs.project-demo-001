@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/styles'
-import theme from './config/theme'
+import themeConfig from './config/themeConfig'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
@@ -16,7 +16,7 @@ const jss = create({
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeConfig}>
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptBR}>
           <Layout />

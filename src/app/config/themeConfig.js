@@ -1,7 +1,7 @@
 import { createTheme } from '@material-ui/core/styles'
 import { orange } from '@material-ui/core/colors'
 
-const theme = createTheme({
+const themeConfig = createTheme({
   palette: {
     type: 'light'
   },
@@ -23,4 +23,4 @@ const theme = createTheme({
   }
 })
 
-export default theme
+export default themeConfig
