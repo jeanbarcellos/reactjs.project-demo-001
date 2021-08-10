@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Container from '@material-ui/core/Container'
 import Main from './Main'
 import Navigation from './Navigation'
 import Footer from './Footer'
@@ -16,10 +15,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto'
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(6)
   }
 }))
 
@@ -42,9 +37,7 @@ const DashboardPage = () => {
       <Navigation open={open} handleDrawerClose={handleDrawerClose} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='lg' className={classes.container}>
-          <Main />
-        </Container>
+        <Main />
         <Footer />
       </main>
     </div>

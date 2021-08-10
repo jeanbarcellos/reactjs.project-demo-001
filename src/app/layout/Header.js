@@ -8,11 +8,11 @@ import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
 import MenuIcon from '@material-ui/icons/Menu'
 import NotificationsIcon from '@material-ui/icons/Notifications'
-import layoutConfig from '../config/layoutConfig'
+import layoutConfig from 'app/config/layoutConfig'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
+    paddingRight: layoutConfig.toolbar.paddingRight // keep right padding when drawer closed
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
     })
   },
   appBarShift: {
-    marginLeft: layoutConfig.drawerWidth,
-    width: `calc(100% - ${layoutConfig.drawerWidth}px)`,
+    marginLeft: layoutConfig.drawer.width,
+    width: `calc(100% - ${layoutConfig.drawer.width}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen

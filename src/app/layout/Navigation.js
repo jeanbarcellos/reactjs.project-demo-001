@@ -11,8 +11,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import Icon from '@material-ui/core/Icon'
-import layoutConfig from '../config/layoutConfig'
-import navigationConfig from '../config/navigationConfig'
+import layoutConfig from 'app/config/layoutConfig'
+import navigationConfig from 'app/config/navigationConfig'
+import Logo from './Logo'
 
 export const navSavedReports = [
   {
@@ -34,19 +35,19 @@ export const navSavedReports = [
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
+    paddingRight: layoutConfig.toolbar.paddingRight
   },
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    // justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar
   },
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
-    width: layoutConfig.drawerWidth,
+    width: layoutConfig.drawer.width,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -78,10 +79,14 @@ const Navigation = props => {
       }}
       open={open}
     >
-      <div className={classes.toolbarIcon}>
-        <IconButton onClick={handleDrawerClose}>
-          <ChevronLeftIcon />
-        </IconButton>
+      <div className='flex justify-between'>
+        <Logo className='h-48 mt-4 ml-8' />
+
+        <div className={classes.toolbarIcon}>
+          <IconButton onClick={handleDrawerClose}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
       </div>
       <Divider />
       <List>

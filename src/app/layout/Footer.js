@@ -1,12 +1,12 @@
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core'
-import layoutConfig from '../config/layoutConfig'
+import layoutConfig from 'app/config/layoutConfig'
 
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
-    width: `calc(100% - ${layoutConfig.drawerWidth}px)`,
+    width: `calc(100% - ${layoutConfig.drawer.width}px)`,
     // height: '40px',
     background: '#FFFFFF',
     bottom: 0,
