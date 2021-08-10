@@ -2,27 +2,32 @@ const navigationConfig = [
   {
     id: 'dashboard',
     icon: 'dashboard',
-    text: 'Dashboard'
+    text: 'Dashboard',
+    url: '/dashboard'
   },
   {
     id: 'orders',
     icon: 'shopping_cart',
-    text: 'Orders'
+    text: 'Orders',
+    url: '/orders'
   },
   {
     id: 'customers',
     icon: 'people',
-    text: 'Customers'
+    text: 'Customers',
+    url: '/customers'
   },
   {
     id: 'reports',
     icon: 'bar_chart',
-    text: 'Reports'
+    text: 'Reports',
+    url: '/reports'
   },
   {
     id: 'integrations',
     icon: 'layers',
-    text: 'Integrations'
+    text: 'Integrations',
+    url: '/integrations'
   }
 ]
 

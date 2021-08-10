@@ -7,6 +7,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { create } from 'jss'
 import { StylesProvider, jssPreset } from '@material-ui/core/styles'
 import Layout from './layout'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const jss = create({
   ...jssPreset(),
@@ -19,7 +20,9 @@ const App = () => {
     <ThemeProvider theme={themeConfig}>
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptBR}>
-          <Layout />
+          <Router>
+            <Layout />
+          </Router>
         </MuiPickersUtilsProvider>
       </StylesProvider>
     </ThemeProvider>
