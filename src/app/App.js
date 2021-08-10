@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/styles'
-import themeConfig from './config/themeConfig'
+import themeConfig from 'app/config/themeConfig'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
