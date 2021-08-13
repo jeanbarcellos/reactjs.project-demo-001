@@ -13,47 +13,49 @@ import Tooltip from '@material-ui/core/Tooltip'
 import PageTile from 'core/Page/PageTile'
 import { Button, TextField } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { categoryAdded } from './categoriesSlice'
+import { categoryAdded, categoryUpdated, categoryDeleted } from './categoriesSlice'
 import Utils from 'core/utils'
+
+const defaultFormState = {
+  id: null,
+  name: '',
+  createdAt: '',
+  updatedAt: ''
+}
 
 const CategoriesPage = props => {
   const dispatch = useDispatch()
   const categories = useSelector(state => state.categories.entities)
 
-  const [form, setForm] = useState({
-    id: '',
-    name: '',
-    createdAt: '',
-    updatedAt: ''
-  })
-
+  const [form, setForm] = useState(defaultFormState)
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleCreate = ev => {
-    console.log('handleCreate')
-  }
-
-  const handleShow = category => ev => {
-    console.log('handleShow', category)
-  }
-
   const handleEdit = category => ev => {
-    console.log('handleEdit', category)
+    console.log('edit', category)
+    setForm(category)
   }
 
   const handleDelete = category => ev => {
-    console.log('handleDelete', category)
+    console.log('delete', category)
+    dispatch(categoryDeleted(category))
   }
 
-  const onAdd = ev => {
-    dispatch(
-      categoryAdded({
+  const onSave = () => {
+    if (form.id === null) {
+      const date = new Date().toISOString()
+      const data = {
         ...form,
         id: Utils.generateID(),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      })
-    )
+        createdAt: date,
+        updatedAt: date
+      }
+
+      dispatch(categoryAdded(data))
+    } else {
+      dispatch(categoryUpdated({ ...form }))
+    }
+
+    setForm(defaultFormState)
   }
 
   return (
@@ -65,29 +67,23 @@ const CategoriesPage = props => {
       content={
         <div>
           <div className='mb-24'>
-            <Button
-              size='small'
-              startIcon={<Icon>add</Icon>}
-              variant='contained'
-              color='secondary'
-              onClick={handleCreate}
-            >
-              New category
-            </Button>
-          </div>
-
-          <div className='mb-24'>
             <div className='flex -mx-12'>
               <TextField
                 className='mx-12 w-4/12'
                 variant='outlined'
-                label='Nome'
+                label='Name'
                 name='name'
                 value={form.name}
                 onChange={handleChange}
               />
-              <Button size='small' startIcon={<Icon>add</Icon>} variant='contained' color='secondary' onClick={onAdd}>
-                Add
+              <Button
+                startIcon={<Icon>add</Icon>}
+                variant='contained'
+                color='secondary'
+                onClick={onSave}
+                disabled={!form.name}
+              >
+                Save
               </Button>
             </div>
           </div>
@@ -113,18 +109,11 @@ const CategoriesPage = props => {
                     <TableCell align='left'>{row.createdAt}</TableCell>
                     <TableCell align='left'>{row.updatedAt}</TableCell>
                     <TableCell align='left' className='w-0 whitespace-nowrap'>
-                      <Tooltip title='Details'>
-                        <IconButton color='secondary' onClick={handleShow(row)}>
-                          <Icon>visibility</Icon>
-                        </IconButton>
-                      </Tooltip>
-
                       <Tooltip title='Edit'>
                         <IconButton color='secondary' onClick={handleEdit(row)}>
                           <Icon>edit</Icon>
                         </IconButton>
                       </Tooltip>
-
                       <Tooltip title='Delete'>
                         <IconButton color='secondary' onClick={handleDelete(row)}>
                           <Icon>delete</Icon>
