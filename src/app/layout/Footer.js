@@ -12,7 +12,8 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     borderTop: '1px solid rgba(0, 0, 0, 0.12)',
     textAlign: 'center',
-    padding: '5px'
+    padding: '5px',
+    height: `${layoutConfig.footer.height}px`
   }
 }))
 

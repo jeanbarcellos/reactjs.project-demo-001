@@ -6,6 +6,10 @@ const layoutConfig = {
   toolbar: {
     // keep right padding when drawer closed
     paddingRight: 24
+  },
+
+  footer: {
+    height: 29
   }
 }
 

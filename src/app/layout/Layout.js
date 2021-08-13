@@ -7,6 +7,7 @@ import Header from './Header'
 import routesConfig from 'app/config/routesConfig'
 import { renderRoutes } from 'react-router-config'
 import { Suspense } from 'react'
+import layoutConfig from 'app/config/layoutConfig'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +17,8 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     height: '100vh',
-    overflow: 'auto'
+    overflow: 'auto',
+    paddingBottom: `${layoutConfig.footer.height}px`
   }
 }))
 
