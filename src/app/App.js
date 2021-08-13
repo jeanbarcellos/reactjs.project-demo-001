@@ -11,6 +11,10 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import store from './store'
 import { Provider } from 'react-redux'
 
+store.subscribe(() => {
+  console.log('Redux state:', store.getState())
+})
+
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
