@@ -10,7 +10,13 @@ const initialState = {
 const categoriesSlice = createSlice({
   name: reducerName,
   initialState: initialState,
-  reducers: {}
+  reducers: {
+    categoryAdded(state, action) {
+      state.entities.push(action.payload)
+    }
+  }
 })
+
+export const { categoryAdded } = categoriesSlice.actions
 
 export default categoriesSlice.reducer

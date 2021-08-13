@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -11,11 +11,23 @@ import IconButton from '@material-ui/core/IconButton'
 import Page from 'core/Page/Page'
 import Tooltip from '@material-ui/core/Tooltip'
 import PageTile from 'core/Page/PageTile'
-import { Button } from '@material-ui/core'
-import { useSelector } from 'react-redux'
+import { Button, TextField } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import { categoryAdded } from './categoriesSlice'
+import Utils from 'core/utils'
 
 const CategoriesPage = props => {
+  const dispatch = useDispatch()
   const categories = useSelector(state => state.categories.entities)
+
+  const [form, setForm] = useState({
+    id: '',
+    name: '',
+    createdAt: '2021-08-12T21:45:15Z',
+    updatedAt: '2021-08-12T21:45:15Z'
+  })
+
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleCreate = ev => {
     console.log('handleCreate')
@@ -31,6 +43,15 @@ const CategoriesPage = props => {
 
   const handleDelete = category => ev => {
     console.log('handleDelete', category)
+  }
+
+  const onAdd = ev => {
+    dispatch(
+      categoryAdded({
+        ...form,
+        id: Utils.generateID()
+      })
+    )
   }
 
   return (
@@ -53,6 +74,22 @@ const CategoriesPage = props => {
             </Button>
           </div>
 
+          <div className='mb-24'>
+            <div className='flex -mx-12'>
+              <TextField
+                className='mx-12 w-4/12'
+                variant='outlined'
+                label='Nome'
+                name='name'
+                value={form.name}
+                onChange={handleChange}
+              />
+              <Button size='small' startIcon={<Icon>add</Icon>} variant='contained' color='secondary' onClick={onAdd}>
+                Add
+              </Button>
+            </div>
+          </div>
+
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -66,7 +103,7 @@ const CategoriesPage = props => {
               </TableHead>
               <TableBody>
                 {categories.map(row => (
-                  <TableRow key={row.name}>
+                  <TableRow key={row.id}>
                     <TableCell align='left' className='w-48'>
                       {row.id}
                     </TableCell>
