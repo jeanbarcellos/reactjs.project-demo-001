@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Page from 'core/Page/Page'
 import Tooltip from '@material-ui/core/Tooltip'
 import PageTile from 'core/Page/PageTile'
-import categoriesDb from 'app/@fake-bd/categoriesDb'
+import categoriesDb from 'app/@fake-db/categoriesDb'
 import { Button } from '@material-ui/core'
 
 const CategoriesPage = props => {
