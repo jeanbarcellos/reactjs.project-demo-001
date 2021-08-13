@@ -40,6 +40,12 @@ const navigationConfig = [
     icon: 'layers',
     text: 'Integrations',
     url: '/integrations'
+  },
+  {
+    id: 'redux',
+    icon: 'layers',
+    text: 'Redux test',
+    url: '/counter'
   }
 ]
 

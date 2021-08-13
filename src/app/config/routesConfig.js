@@ -48,6 +48,11 @@ const routesConfig = [
     exact: true
   },
   {
+    path: '/counter',
+    component: React.lazy(() => import('app/pages/counter/CounterPage')),
+    exact: true
+  },
+  {
     component: () => <Redirect to='/error/404' />
   }
 ]
