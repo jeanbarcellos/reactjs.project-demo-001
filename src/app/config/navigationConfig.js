@@ -6,6 +6,18 @@ const navigationConfig = [
     url: '/dashboard'
   },
   {
+    id: 'categories',
+    icon: 'turned_in',
+    text: 'Categories',
+    url: '/categories'
+  },
+  {
+    id: 'products',
+    icon: 'photo_library',
+    text: 'Products',
+    url: '/products'
+  },
+  {
     id: 'orders',
     icon: 'shopping_cart',
     text: 'Orders',

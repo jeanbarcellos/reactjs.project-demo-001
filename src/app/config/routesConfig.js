@@ -13,6 +13,16 @@ const routesConfig = [
     exact: true
   },
   {
+    path: '/categories',
+    component: React.lazy(() => import('app/pages/categories/CategoriesPage')),
+    exact: true
+  },
+  {
+    path: '/products',
+    component: React.lazy(() => import('app/pages/products/ProductsPage')),
+    exact: true
+  },
+  {
     path: '/orders',
     component: React.lazy(() => import('app/pages/orders/OrdersPage')),
     exact: true
