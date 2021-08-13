@@ -11,10 +11,12 @@ import IconButton from '@material-ui/core/IconButton'
 import Page from 'core/Page/Page'
 import Tooltip from '@material-ui/core/Tooltip'
 import PageTile from 'core/Page/PageTile'
-import categoriesDb from 'app/@fake-db/categoriesDb'
 import { Button } from '@material-ui/core'
+import { useSelector } from 'react-redux'
 
 const CategoriesPage = props => {
+  const categories = useSelector(state => state.categories.entities)
+
   const handleCreate = ev => {
     console.log('handleCreate')
   }
@@ -63,7 +65,7 @@ const CategoriesPage = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {categoriesDb.categories.map(row => (
+                {categories.map(row => (
                   <TableRow key={row.name}>
                     <TableCell align='left' className='w-48'>
                       {row.id}
