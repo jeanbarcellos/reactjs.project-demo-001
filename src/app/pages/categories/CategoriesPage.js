@@ -23,8 +23,8 @@ const CategoriesPage = props => {
   const [form, setForm] = useState({
     id: '',
     name: '',
-    createdAt: '2021-08-12T21:45:15Z',
-    updatedAt: '2021-08-12T21:45:15Z'
+    createdAt: '',
+    updatedAt: ''
   })
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
@@ -49,7 +49,9 @@ const CategoriesPage = props => {
     dispatch(
       categoryAdded({
         ...form,
-        id: Utils.generateID()
+        id: Utils.generateID(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       })
     )
   }
