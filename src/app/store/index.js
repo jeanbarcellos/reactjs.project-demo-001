@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
-import { combineReducers } from '@reduxjs/toolkit'
-
+import { applyMiddleware, combineReducers } from '@reduxjs/toolkit'
+import logger from './middlewares/logger'
 import appReducers from './app'
 
 // Defina os Redutores que sempre estarão presentes na aplicação
@@ -15,8 +15,10 @@ const createReducer = asyncReducers => {
   })
 }
 
-export function configureStore(initialState) {
-  const store = createStore(createReducer(), initialState)
+const middlewares = [logger]
+
+export function initializeStore(initialState) {
+  const store = createStore(createReducer(), initialState, applyMiddleware(...middlewares))
 
   // Adicione um dicionário para acompanhar os redutores assíncronos registrados
   store.asyncReducers = {}
@@ -32,4 +34,4 @@ export function configureStore(initialState) {
   return store
 }
 
-export default configureStore({})
+export default initializeStore({})
