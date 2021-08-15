@@ -9,6 +9,8 @@ import Badge from '@material-ui/core/Badge'
 import MenuIcon from '@material-ui/icons/Menu'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import layoutConfig from 'app/config/layoutConfig'
+import { useDispatch, useSelector } from 'react-redux'
+import { navbarOpen, selectNavbarOpen } from 'app/store/app/navbarSlice'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -41,8 +43,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Header = props => {
-  const { open, handleDrawerOpen } = props
   const classes = useStyles()
+  const dispatch = useDispatch()
+
+  const open = useSelector(selectNavbarOpen)
+
+  const handleDrawerOpen = () => dispatch(navbarOpen())
 
   return (
     <AppBar position='absolute' className={clsx(classes.appBar, open && classes.appBarShift)}>

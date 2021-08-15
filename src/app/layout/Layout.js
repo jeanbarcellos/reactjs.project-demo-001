@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Navigation from './Navigation'
@@ -8,6 +8,8 @@ import routesConfig from 'app/config/routesConfig'
 import { renderRoutes } from 'react-router-config'
 import { Suspense } from 'react'
 import layoutConfig from 'app/config/layoutConfig'
+import { useDispatch, useSelector } from 'react-redux'
+import { navbarClose, selectNavbarOpen } from 'app/store/app/navbarSlice'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,20 +26,18 @@ const useStyles = makeStyles(theme => ({
 
 const DashboardPage = () => {
   const classes = useStyles()
-  const [open, setOpen] = useState(true)
+  const dispatch = useDispatch()
 
-  const handleDrawerOpen = () => {
-    setOpen(true)
-  }
+  const open = useSelector(selectNavbarOpen)
 
   const handleDrawerClose = () => {
-    setOpen(false)
+    dispatch(navbarClose())
   }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+      <Header />
       <Navigation open={open} handleDrawerClose={handleDrawerClose} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
