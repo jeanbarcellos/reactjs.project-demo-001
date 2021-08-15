@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import thunkMiddleware from 'redux-thunk'
 import appReducers from './app'
 import logger from './middlewares/logger'
 import monitorReducerEnhancer from './enhancers/monitorReducer'
@@ -14,7 +15,7 @@ const createReducer = asyncReducers => {
   })
 }
 
-const middlewares = [logger]
+const middlewares = [thunkMiddleware, logger]
 
 const enhancers = [monitorReducerEnhancer]
 
