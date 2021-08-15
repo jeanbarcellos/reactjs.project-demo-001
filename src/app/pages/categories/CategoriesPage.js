@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -13,7 +13,13 @@ import Tooltip from '@material-ui/core/Tooltip'
 import PageTile from 'core/Page/PageTile'
 import { Button, TextField } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { categoryAdded, categoryUpdated, categoryDeleted, selectAllCategories } from './categoriesSlice'
+import {
+  categoryAdded,
+  categoryUpdated,
+  categoryDeleted,
+  selectAllCategories,
+  fetchCategories
+} from './categoriesSlice'
 import withReducer from 'app/store/withReducer'
 import reducers from './store'
 import config from './config'
@@ -31,6 +37,10 @@ const CategoriesPage = props => {
 
   const [form, setForm] = useState(defaultFormState)
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  }, [dispatch])
 
   const handleEdit = category => ev => {
     setForm(category)

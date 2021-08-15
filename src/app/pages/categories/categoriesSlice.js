@@ -1,15 +1,26 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import Utils from 'core/utils'
 import config from './config'
+import categoriesDb from 'app/@fake-db/categoriesDb'
 
 const reducerName = `${config.reducerKey}/categories`
 
 const categoriesAdapter = createEntityAdapter()
 
 // Initial State
+
 const initialState = categoriesAdapter.getInitialState({})
 
+// Thunk functions
+
+export const fetchCategories = createAsyncThunk(`${reducerName}/fetchCategories`, async () => {
+  // Lógica e buscar no banco de dados ..
+
+  return categoriesDb.categories
+})
+
 // Reducer
+
 const categoriesSlice = createSlice({
   name: reducerName,
   initialState: initialState,
@@ -38,10 +49,14 @@ const categoriesSlice = createSlice({
 
       categoriesAdapter.removeOne(state, id)
     }
+  },
+  extraReducers: {
+    [fetchCategories.fulfilled]: categoriesAdapter.setAll
   }
 })
 
 // Actions
+
 export const { categoryAdded, categoryUpdated, categoryDeleted } = categoriesSlice.actions
 
 // Selectors
