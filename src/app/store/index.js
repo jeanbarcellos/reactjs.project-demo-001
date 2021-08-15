@@ -1,7 +1,7 @@
-import { createStore } from 'redux'
-import { applyMiddleware, combineReducers } from '@reduxjs/toolkit'
-import logger from './middlewares/logger'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import appReducers from './app'
+import logger from './middlewares/logger'
+import monitorReducerEnhancer from './enhancers/monitorReducer'
 
 // Defina os Redutores que sempre estarão presentes na aplicação
 const staticReducers = {
@@ -17,13 +17,19 @@ const createReducer = asyncReducers => {
 
 const middlewares = [logger]
 
+const enhancers = [monitorReducerEnhancer]
+
 export function initializeStore(initialState) {
-  const store = createStore(createReducer(), initialState, applyMiddleware(...middlewares))
+  const store = configureStore({
+    reducer: createReducer(),
+    middleware: middlewares,
+    enhancers: enhancers,
+    devTools: process.env.NODE_ENV === 'development'
+  })
 
   // Adicione um dicionário para acompanhar os redutores assíncronos registrados
   store.asyncReducers = {}
 
-  // Crie uma função de redutor de injeção
   // Esta função adiciona o redutor assíncrono e cria um novo redutor combinado
   store.injectReducer = (key, asyncReducer) => {
     store.asyncReducers[key] = asyncReducer
