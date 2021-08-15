@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { increment, decrement, incrementByAmount, incrementAsync } from './counterSlice'
 import styles from './Counter.module.css'
-import { reducerKey } from './store'
+import config from './config'
 
 export const Counter = () => {
-  const count = useSelector(state => state[reducerKey].counter.value)
+  const count = useSelector(state => state[config.reducerKey].counter.value)
   const dispatch = useDispatch()
 
   const [incrementAmount, setIncrementAmount] = useState('2')

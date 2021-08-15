@@ -3,7 +3,8 @@ import Page from 'core/Page/Page'
 import PageTile from 'core/Page/PageTile'
 import { Counter } from './Counter'
 import withReducer from 'app/store/withReducer'
-import reducers, { reducerKey } from './store'
+import reducers from './store'
+import config from './config'
 
 const CounterPage = props => {
   return (
@@ -21,4 +22,4 @@ const CounterPage = props => {
   )
 }
 
-export default withReducer(reducerKey, reducers)(CounterPage)
+export default withReducer(config.reducerKey, reducers)(CounterPage)
