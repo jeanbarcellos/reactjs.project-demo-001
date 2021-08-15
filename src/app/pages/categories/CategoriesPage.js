@@ -13,10 +13,10 @@ import Tooltip from '@material-ui/core/Tooltip'
 import PageTile from 'core/Page/PageTile'
 import { Button, TextField } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { categoryAdded, categoryUpdated, categoryDeleted } from './categoriesSlice'
-import Utils from 'core/utils'
+import { categoryAdded, categoryUpdated, categoryDeleted, selectAllCategories } from './categoriesSlice'
 import withReducer from 'app/store/withReducer'
-import reducers, { reducerKey } from './store'
+import reducers from './store'
+import config from './config'
 
 const defaultFormState = {
   id: null,
@@ -27,35 +27,21 @@ const defaultFormState = {
 
 const CategoriesPage = props => {
   const dispatch = useDispatch()
-  const categories = useSelector(state => state[reducerKey].categories.entities)
+  const categories = useSelector(selectAllCategories)
 
   const [form, setForm] = useState(defaultFormState)
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleEdit = category => ev => {
-    console.log('edit', category)
     setForm(category)
   }
 
   const handleDelete = category => ev => {
-    console.log('delete', category)
     dispatch(categoryDeleted(category))
   }
 
   const onSave = () => {
-    if (form.id === null) {
-      const date = new Date().toISOString()
-      const data = {
-        ...form,
-        id: Utils.generateID(),
-        createdAt: date,
-        updatedAt: date
-      }
-
-      dispatch(categoryAdded(data))
-    } else {
-      dispatch(categoryUpdated({ ...form }))
-    }
+    form.id === null ? dispatch(categoryAdded(form)) : dispatch(categoryUpdated(form))
 
     setForm(defaultFormState)
   }
@@ -102,6 +88,11 @@ const CategoriesPage = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
+                {categories.length === 0 && (
+                  <TableCell align='left' colSpan='5' className='text-center color-alert text-red'>
+                    Não há categorias no momento
+                  </TableCell>
+                )}
                 {categories.map(row => (
                   <TableRow key={row.id}>
                     <TableCell align='left' className='w-48'>
@@ -133,4 +124,4 @@ const CategoriesPage = props => {
   )
 }
 
-export default withReducer(reducerKey, reducers)(CategoriesPage)
+export default withReducer(config.reducerKey, reducers)(CategoriesPage)
