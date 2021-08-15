@@ -9,7 +9,7 @@ import { renderRoutes } from 'react-router-config'
 import { Suspense } from 'react'
 import layoutConfig from 'app/config/layoutConfig'
 import { useDispatch, useSelector } from 'react-redux'
-import { navbarClose, selectNavbarOpen } from 'app/store/app/navbarSlice'
+import { navbarClosed, selectNavbarOpen } from 'app/store/app/navbarSlice'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +31,7 @@ const DashboardPage = () => {
   const open = useSelector(selectNavbarOpen)
 
   const handleDrawerClose = () => {
-    dispatch(navbarClose())
+    dispatch(navbarClosed())
   }
 
   return (

@@ -10,13 +10,13 @@ const navbarSlice = createSlice({
   name: reducerName,
   initialState: initialState,
   reducers: {
-    navbarOpen: (state, action) => {
+    navbarOpened: (state, action) => {
       state.open = true
     },
-    navbarClose: (state, action) => {
+    navbarClosed: (state, action) => {
       state.open = false
     },
-    navbarToggle: (state, action) => {
+    navbarToggled: (state, action) => {
       state.open = !state.open
     }
   }
@@ -24,6 +24,6 @@ const navbarSlice = createSlice({
 
 export const selectNavbarOpen = state => state.app.navbar.open
 
-export const { navbarOpen, navbarClose, navbarToggle } = navbarSlice.actions
+export const { navbarOpened, navbarClosed, navbarToggled } = navbarSlice.actions
 
 export default navbarSlice.reducer
