@@ -15,6 +15,8 @@ import { Button, TextField } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { categoryAdded, categoryUpdated, categoryDeleted } from './categoriesSlice'
 import Utils from 'core/utils'
+import withReducer from 'app/store/withReducer'
+import reducers, { reducerKey } from './store'
 
 const defaultFormState = {
   id: null,
@@ -25,7 +27,7 @@ const defaultFormState = {
 
 const CategoriesPage = props => {
   const dispatch = useDispatch()
-  const categories = useSelector(state => state.categories.entities)
+  const categories = useSelector(state => state[reducerKey].categories.entities)
 
   const [form, setForm] = useState(defaultFormState)
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
@@ -131,4 +133,4 @@ const CategoriesPage = props => {
   )
 }
 
-export default CategoriesPage
+export default withReducer(reducerKey, reducers)(CategoriesPage)

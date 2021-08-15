@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { increment, decrement, incrementByAmount, incrementAsync } from './counterSlice'
 import styles from './Counter.module.css'
+import { reducerKey } from './store'
 
 export const Counter = () => {
-  const count = useSelector(state => state.counter.value)
+  const count = useSelector(state => state[reducerKey].counter.value)
   const dispatch = useDispatch()
 
   const [incrementAmount, setIncrementAmount] = useState('2')
@@ -12,21 +13,13 @@ export const Counter = () => {
   return (
     <div>
       <div className={styles.row}>
-        <button
-          className={styles.button}
-          aria-label='Increment value'
-          onClick={() => dispatch(increment())}
-        >
+        <button className={styles.button} aria-label='Increment value' onClick={() => dispatch(increment())}>
           Increment
         </button>
 
         <span className={styles.value}>{count}</span>
 
-        <button
-          className={styles.button}
-          aria-label='Decrement value'
-          onClick={() => dispatch(decrement())}
-        >
+        <button className={styles.button} aria-label='Decrement value' onClick={() => dispatch(decrement())}>
           Decrement
         </button>
       </div>
@@ -38,17 +31,11 @@ export const Counter = () => {
           value={incrementAmount}
           onChange={e => setIncrementAmount(e.target.value)}
         />
-        <button
-          className={styles.button}
-          onClick={() =>dispatch(incrementByAmount(Number(incrementAmount) || 0))}
-        >
+        <button className={styles.button} onClick={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}>
           Add Amount
         </button>
 
-        <button
-          className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
-        >
+        <button className={styles.asyncButton} onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}>
           Add Async
         </button>
       </div>
