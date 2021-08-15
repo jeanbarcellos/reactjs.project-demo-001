@@ -1,8 +1,8 @@
 import React from 'react'
-import store from 'app/store'
+import { injectReducer } from 'app/store'
 
 const withReducer = (key, reducer) => WrappedComponent => {
-  store.injectReducer(key, reducer)
+  injectReducer(key, reducer)
 
   return props => <WrappedComponent {...props} />
 }
