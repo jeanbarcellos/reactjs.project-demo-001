@@ -1,15 +1,21 @@
-# ReactJS - Projeto Demo
+_Repositório apenas para estudo_
+
+# Projeto Demo 001 (Frontend em Javascript/ReactJS)
 
 Implementação de um projeto do zero em ReactJS
 
-...
+## Objetivo
 
-## Tecnologias/Pacotes implementadas
+Implementar um sistema do zero utilizando ReactJS e adicionando recursos e bibliotecas durante o desenvolvimento, com a finalidade de revisar o que foi aprendido em meses de trabalho e estudos.
+
+## Tecnologias/pacotes utilizados
 
 - Material-UI
 - Tailwind CSS
 - JSS
 - React Router
+- Redux
+- Lodash
 
 ## Extras
 
