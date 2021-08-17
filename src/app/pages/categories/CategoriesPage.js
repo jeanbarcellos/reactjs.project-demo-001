@@ -13,32 +13,28 @@ import Tooltip from '@material-ui/core/Tooltip'
 import PageTile from 'core/Page/PageTile'
 import { Button, TextField } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  categoryAdded,
-  categoryUpdated,
-  categoryDeleted,
-  selectAllCategories,
-  fetchCategories
-} from './categoriesSlice'
 import withReducer from 'app/store/withReducer'
 import reducers from './store'
+import {
+  selectAllCategories,
+  fetchCategories,
+  resetCategories,
+  insertCategory,
+  updateCategory,
+  deleteCategory
+} from './categoriesSlice'
 import config from './config'
-
-const defaultFormState = {
-  id: null,
-  name: '',
-  createdAt: '',
-  updatedAt: ''
-}
+import CategoryModel from './CategoryModel'
 
 const CategoriesPage = props => {
   const dispatch = useDispatch()
   const categories = useSelector(selectAllCategories)
 
-  const [form, setForm] = useState(defaultFormState)
+  const [form, setForm] = useState(CategoryModel())
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
   useEffect(() => {
+    dispatch(resetCategories())
     dispatch(fetchCategories())
   }, [dispatch])
 
@@ -47,13 +43,13 @@ const CategoriesPage = props => {
   }
 
   const handleDelete = category => ev => {
-    dispatch(categoryDeleted(category))
+    dispatch(deleteCategory(category))
   }
 
   const onSave = () => {
-    form.id === null ? dispatch(categoryAdded(form)) : dispatch(categoryUpdated(form))
+    form.id === null ? dispatch(insertCategory(form)) : dispatch(updateCategory(form))
 
-    setForm(defaultFormState)
+    setForm(CategoryModel())
   }
 
   return (
