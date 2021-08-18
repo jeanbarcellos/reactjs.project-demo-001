@@ -95,9 +95,11 @@ const CategoriesPage = props => {
               </TableHead>
               <TableBody>
                 {categories.length === 0 && (
-                  <TableCell align='left' colSpan='5' className='text-center color-alert text-red'>
-                    Não há categorias no momento
-                  </TableCell>
+                  <TableRow>
+                    <TableCell align='left' colSpan='5' className='text-center color-alert text-red'>
+                      Não há categorias no momento
+                    </TableCell>
+                  </TableRow>
                 )}
                 {categories.map(row => (
                   <TableRow key={row.id}>

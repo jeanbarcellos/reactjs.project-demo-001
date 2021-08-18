@@ -21,10 +21,10 @@ const Footer = () => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <Typography variant='div' color='textSecondary' align='center'>
+      <Typography variant='body1' color='textSecondary' align='center'>
         {'Copyright © '}
-        <Link color='inherit' href='https://material-ui.com/'>
-          Your Website
+        <Link color='inherit' href='https://jeanbarcellos.com.br/'>
+          Jean Barcellos
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
