@@ -10,6 +10,8 @@ import { Suspense } from 'react'
 import layoutConfig from 'app/config/layoutConfig'
 import { useDispatch, useSelector } from 'react-redux'
 import { navbarClosed, selectNavbarOpen } from 'app/store/app/navbarSlice'
+import AppDialog from 'core/Dialog/AppDialog'
+import AppLoadingDialog from 'core/Dialog/AppLoadingDialog'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,16 +37,21 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Header />
-      <Navigation open={open} handleDrawerClose={handleDrawerClose} />
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Suspense fallback={<div>Loading...</div>}>{renderRoutes(routesConfig)}</Suspense>
-        <Footer />
-      </main>
-    </div>
+    <>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Header />
+        <Navigation open={open} handleDrawerClose={handleDrawerClose} />
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Suspense fallback={<div>Loading...</div>}>{renderRoutes(routesConfig)}</Suspense>
+          <Footer />
+        </main>
+      </div>
+
+      <AppDialog />
+      <AppLoadingDialog />
+    </>
   )
 }
 
