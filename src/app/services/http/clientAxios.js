@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const ClientAxios = async (endpoint, body = null, customConfig = {}) => {
+const clientAxios = async (endpoint, body = null, customConfig = {}) => {
   const requestConfig = {
     ...customConfig,
     method: customConfig.method,
@@ -48,4 +48,4 @@ const errorObject = (code, message, errors, headers) => {
   }
 }
 
-export default ClientAxios
+export default clientAxios

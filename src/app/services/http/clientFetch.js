@@ -1,4 +1,4 @@
-const ClientFetch = async (endpoint, body = null, customConfig = {}) => {
+const clientFetch = async (endpoint, body = null, customConfig = {}) => {
   const localConfig = {
     ...customConfig,
     body: body ? JSON.stringify(body) : null
@@ -24,4 +24,4 @@ const ClientFetch = async (endpoint, body = null, customConfig = {}) => {
   }
 }
 
-export default ClientFetch
+export default clientFetch
