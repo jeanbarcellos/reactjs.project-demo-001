@@ -1,8 +1,8 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import config from './config'
-import { Client } from 'core/Http/Client'
 import { closedLoadingDialog, openedLoadingDialog } from 'app/store/app/dialogSlice'
 import { showErrorMessage, showSuccessMessage } from 'app/store/app/messageSlice'
+import * as Api from 'app/api/categoriesApi'
 
 const reducerName = `${config.reducerKey}/categories`
 
@@ -18,7 +18,7 @@ export const fetchCategories = createAsyncThunk(`${reducerName}/fetchCategories`
   try {
     dispatch(openedLoadingDialog())
 
-    const response = await Client.get(`/categories`)
+    const response = await Api.getCategories()
 
     dispatch(showSuccessMessage('Categorias carregadas com sucesso!'))
 
@@ -35,7 +35,7 @@ export const insertCategory = createAsyncThunk(`${reducerName}/insertCategory`, 
   try {
     dispatch(openedLoadingDialog())
 
-    const response = await Client.post(`/categories`, category)
+    const response = await Api.insertCategory(category)
 
     dispatch(showSuccessMessage('Categoria adicionada com sucesso!'))
 
@@ -52,7 +52,7 @@ export const updateCategory = createAsyncThunk(`${reducerName}/updateCategory`, 
   try {
     dispatch(openedLoadingDialog())
 
-    const response = await Client.put(`/categories/${category.id}`, category)
+    const response = await Api.updateCategory(category)
 
     dispatch(showSuccessMessage('Categoria editada com sucesso!'))
 
@@ -69,7 +69,7 @@ export const deleteCategory = createAsyncThunk(`${reducerName}/deleteCategory`, 
   try {
     dispatch(openedLoadingDialog())
 
-    await Client.delete(`/categories/${category.id}`)
+    await Api.deleteCategory(category.id)
 
     dispatch(showSuccessMessage('Categoria excluída com sucesso!'))
 
