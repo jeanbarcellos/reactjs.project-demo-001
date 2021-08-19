@@ -2,7 +2,7 @@
 // https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
 
 import config from 'app/config'
-import ClientAxios from './ClientAxios'
+import ClientFetch from './ClientFetch'
 
 export async function Client(endpoint, { body, ...customConfig } = {}) {
   const path = config.api.baseUrl + endpoint
@@ -12,11 +12,14 @@ export async function Client(endpoint, { body, ...customConfig } = {}) {
   }
 
   const requestConfig = {
-    headers,
-    ...customConfig
+    ...customConfig,
+    headers: {
+      ...headers,
+      ...customConfig.headers
+    },
   }
 
-  return ClientAxios(path, body, requestConfig)
+  return ClientFetch(path, body, requestConfig)
 
   // ***************************************************************************
 }
