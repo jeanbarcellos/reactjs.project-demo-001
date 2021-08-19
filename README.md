@@ -22,3 +22,8 @@ Implementar um sistema do zero utilizando ReactJS e adicionando recursos e bibli
 - CSS injection order
 
   https://material-ui.com/styles/advanced/#css-injection-order
+
+## TO-DO
+
+- Validação de formulário
+- Manipulação de datas
