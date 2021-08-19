@@ -38,13 +38,13 @@ const navigationConfig = [
   {
     id: 'integrations',
     icon: 'layers',
-    text: 'Integrations',
-    url: '/integrations'
+    text: 'Examples & Tests',
+    url: '/examples'
   },
   {
     id: 'counter',
     icon: 'hourglass_empty',
-    text: 'Counter',
+    text: 'Counter App',
     url: '/counter'
   }
 ]

@@ -38,8 +38,8 @@ const routesConfig = [
     exact: true
   },
   {
-    path: '/integrations',
-    component: React.lazy(() => import('app/pages/integrations')),
+    path: '/examples',
+    component: React.lazy(() => import('app/pages/examples')),
     exact: true
   },
   {
