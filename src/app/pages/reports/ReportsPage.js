@@ -1,6 +1,6 @@
 import React from 'react'
-import PageTile from 'core/Page/PageTile'
-import PageContentDemo from 'core/Page/PageContentDemo'
+import PageTile from 'core/components/Page/PageTile'
+import PageContentDemo from 'core/components/Page/PageContentDemo'
 
 const ReportsPage = () => {
   return (

@@ -10,9 +10,9 @@ import { Suspense } from 'react'
 import layoutConfig from 'app/config/layoutConfig'
 import { useDispatch, useSelector } from 'react-redux'
 import { closedNavbar, selectNavbarOpen } from 'app/store/app/navbarSlice'
-import AppDialog from 'core/Dialog/AppDialog'
-import AppLoadingDialog from 'core/Dialog/AppLoadingDialog'
-import Loading from 'core/Loading'
+import AppDialog from 'core/components/Dialog/AppDialog'
+import AppLoadingDialog from 'core/components/Dialog/AppLoadingDialog'
+import Loading from 'core/components/Loading'
 
 const useStyles = makeStyles(theme => ({
   root: {
