@@ -8,8 +8,6 @@ const ClientAxios = async (endpoint, body = null, customConfig = {}) => {
     data: body
   }
 
-  console.log('requestConfig', requestConfig)
-
   return axios(requestConfig)
     .then(response => Promise.resolve(resolveResponse(response)))
     .catch(error => Promise.reject(resolveError(error)))
@@ -36,7 +34,7 @@ const resolveError = error => {
     )
   }
 
-  return errorObject(500, error.message)
+  return errorObject(500)
 }
 
 const errorObject = (code, message, errors, headers) => {
