@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { closedNavbar, selectNavbarOpen } from 'app/store/app/navbarSlice'
 import AppDialog from 'core/components/Dialog/AppDialog'
 import AppLoadingDialog from 'core/components/Dialog/AppLoadingDialog'
+import AppMessage from 'core/components/Message/AppMessage'
 import Loading from 'core/components/Loading'
 
 const useStyles = makeStyles(theme => ({
@@ -51,6 +52,8 @@ const DashboardPage = () => {
           <div className={classes.appBarSpacer} />
           <AppDialog />
           <AppLoadingDialog />
+          <AppMessage />
+
           <Suspense fallback={<Loading />}>{renderRoutes(routesConfig)}</Suspense>
           <Footer id='layout-footer ' />
         </main>
