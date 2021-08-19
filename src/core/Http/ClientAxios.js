@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const ClientAxios = async (path, body, customConfig = {}) => {
+const ClientAxios = async (endpoint, body = null, customConfig = {}) => {
   const requestConfig = {
+    ...customConfig,
     method: customConfig.method,
-    url: path,
-    data: body,
-    ...customConfig
+    url: endpoint,
+    data: body
   }
 
   console.log('requestConfig', requestConfig)
