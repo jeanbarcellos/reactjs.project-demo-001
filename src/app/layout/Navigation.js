@@ -10,29 +10,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import ListSubheader from '@material-ui/core/ListSubheader'
 import Icon from '@material-ui/core/Icon'
 import layoutConfig from 'app/config/layoutConfig'
 import navigationConfig from 'app/config/navigationConfig'
 import Logo from './Logo'
-
-export const navSavedReports = [
-  {
-    id: 6,
-    icon: 'assignment',
-    text: 'Current month'
-  },
-  {
-    id: 7,
-    icon: 'assignment',
-    text: 'Last quarter'
-  },
-  {
-    id: 8,
-    icon: 'assignment',
-    text: 'Year-end sale'
-  }
-]
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
