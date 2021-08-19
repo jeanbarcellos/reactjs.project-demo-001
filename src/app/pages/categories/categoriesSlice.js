@@ -1,5 +1,4 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit'
-import Utils from 'core/utils'
 import config from './config'
 import { Client } from 'core/Http/Client'
 import { closedLoadingDialog, openedLoadingDialog } from 'app/store/app/dialogSlice'
@@ -78,45 +77,13 @@ const categoriesSlice = createSlice({
   reducers: {
     resetCategories(state, action) {
       categoriesAdapter.removeAll(state)
-    },
-    categoryAdded(state, action) {
-      const date = new Date().toISOString()
-      const entity = {
-        ...action.payload,
-        id: Utils.generateID(),
-        createdAt: date,
-        updatedAt: date
-      }
-
-      categoriesAdapter.addOne(state, entity)
-    },
-    categoryUpdated(state, action) {
-      const entity = {
-        ...action.payload,
-        updatedAt: new Date().toISOString()
-      }
-
-      categoriesAdapter.upsertOne(state, entity)
-    },
-    categoryDeleted(state, action) {
-      const { id } = action.payload
-
-      categoriesAdapter.removeOne(state, id)
     }
   },
   extraReducers: {
-    [fetchCategories.pending]: (state, action) => {},
     [fetchCategories.fulfilled]: categoriesAdapter.setAll,
-    [fetchCategories.rejected]: (state, action) => {},
-    [insertCategory.pending]: (state, action) => {},
     [insertCategory.fulfilled]: categoriesAdapter.addOne,
-    [insertCategory.rejected]: (state, action) => {},
-    [updateCategory.pending]: (state, action) => {},
     [updateCategory.fulfilled]: categoriesAdapter.upsertOne,
-    [updateCategory.rejected]: (state, action) => {},
-    [deleteCategory.pending]: (state, action) => {},
-    [deleteCategory.fulfilled]: categoriesAdapter.removeOne,
-    [deleteCategory.rejected]: (state, action) => {}
+    [deleteCategory.fulfilled]: categoriesAdapter.removeOne
   }
 })
 
