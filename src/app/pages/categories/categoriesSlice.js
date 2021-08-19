@@ -2,6 +2,7 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import Utils from 'core/utils'
 import config from './config'
 import { Client } from 'core/Http/Client'
+import { closedLoadingDialog, openedLoadingDialog } from 'app/store/app/dialogSlice'
 
 const reducerName = `${config.reducerKey}/categories`
 
@@ -13,24 +14,60 @@ const initialState = categoriesAdapter.getInitialState({})
 
 // Thunk functions
 
-export const fetchCategories = createAsyncThunk(`${reducerName}/fetchCategories`, async () => {
-  const response = await Client.get(`/categories`)
-  return response
+export const fetchCategories = createAsyncThunk(`${reducerName}/fetchCategories`, async (args, { dispatch }) => {
+  try {
+    dispatch(openedLoadingDialog())
+
+    const response = await Client.get(`/categories`)
+
+    return response.data
+  } catch (error) {
+    throw error
+  } finally {
+    dispatch(closedLoadingDialog())
+  }
 })
 
 export const insertCategory = createAsyncThunk(`${reducerName}/insertCategory`, async (category, { dispatch }) => {
-  const response = await Client.post(`/categories`, category)
-  return response
+  try {
+    dispatch(openedLoadingDialog())
+
+    const response = await Client.post(`/categories`, category)
+
+    return response.data
+  } catch (error) {
+    throw error
+  } finally {
+    dispatch(closedLoadingDialog())
+  }
 })
 
 export const updateCategory = createAsyncThunk(`${reducerName}/updateCategory`, async (category, { dispatch }) => {
-  const response = await Client.put(`/categories/${category.id}`, category)
-  return response
+  try {
+    dispatch(openedLoadingDialog())
+
+    const response = await Client.put(`/categories/${category.id}`, category)
+
+    return response.data
+  } catch (error) {
+    throw error
+  } finally {
+    dispatch(closedLoadingDialog())
+  }
 })
 
 export const deleteCategory = createAsyncThunk(`${reducerName}/deleteCategory`, async (category, { dispatch }) => {
-  await Client.delete(`/categories/${category.id}`)
-  return category.id
+  try {
+    dispatch(openedLoadingDialog())
+
+    await Client.delete(`/categories/${category.id}`)
+
+    return category.id
+  } catch (error) {
+    throw error
+  } finally {
+    dispatch(closedLoadingDialog())
+  }
 })
 
 // Reducer
@@ -70,12 +107,16 @@ const categoriesSlice = createSlice({
   extraReducers: {
     [fetchCategories.pending]: (state, action) => {},
     [fetchCategories.fulfilled]: categoriesAdapter.setAll,
-    [insertCategory.rejected]: (state, action) => {},
+    [fetchCategories.rejected]: (state, action) => {},
+    [insertCategory.pending]: (state, action) => {},
     [insertCategory.fulfilled]: categoriesAdapter.addOne,
-    [updateCategory.rejected]: (state, action) => {},
+    [insertCategory.rejected]: (state, action) => {},
+    [updateCategory.pending]: (state, action) => {},
     [updateCategory.fulfilled]: categoriesAdapter.upsertOne,
-    [deleteCategory.rejected]: (state, action) => {},
-    [deleteCategory.fulfilled]: categoriesAdapter.removeOne
+    [updateCategory.rejected]: (state, action) => {},
+    [deleteCategory.pending]: (state, action) => {},
+    [deleteCategory.fulfilled]: categoriesAdapter.removeOne,
+    [deleteCategory.rejected]: (state, action) => {}
   }
 })
 
