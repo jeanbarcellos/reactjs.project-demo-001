@@ -74,6 +74,7 @@ const Navigation = props => {
 
   return (
     <Drawer
+      id={props.id}
       variant='permanent'
       classes={{
         paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)

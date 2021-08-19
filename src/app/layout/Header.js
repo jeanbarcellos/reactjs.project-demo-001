@@ -51,7 +51,7 @@ const Header = props => {
   const handleDrawerOpen = () => dispatch(navbarOpened())
 
   return (
-    <AppBar position='absolute' className={clsx(classes.appBar, open && classes.appBarShift)}>
+    <AppBar id={props.id} position='absolute' className={clsx(classes.appBar, open && classes.appBarShift)}>
       <Toolbar className={classes.toolbar}>
         <IconButton
           edge='start'

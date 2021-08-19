@@ -7,20 +7,19 @@ const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
     width: `calc(100% - ${layoutConfig.drawer.width}px)`,
-    // height: '40px',
+    height: `${layoutConfig.footer.height}px`,
     background: '#FFFFFF',
     bottom: 0,
     borderTop: '1px solid rgba(0, 0, 0, 0.12)',
     textAlign: 'center',
-    padding: '5px',
-    height: `${layoutConfig.footer.height}px`
+    padding: '5px'
   }
 }))
 
-const Footer = () => {
+const Footer = props => {
   const classes = useStyles()
   return (
-    <div className={classes.root}>
+    <div id={props.id} className={classes.root}>
       <Typography variant='body1' color='textSecondary' align='center'>
         {'Copyright © '}
         <Link color='inherit' href='https://jeanbarcellos.com.br/'>
