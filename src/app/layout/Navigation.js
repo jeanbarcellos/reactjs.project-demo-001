@@ -101,18 +101,6 @@ const Navigation = props => {
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
-        <ListSubheader inset>Saved reports</ListSubheader>
-        {navSavedReports.map(item => (
-          <ListItem button key={item.id}>
-            <ListItemIcon>
-              <Icon>{item.icon}</Icon>
-            </ListItemIcon>
-            <ListItemText primary={item.text} />
-          </ListItem>
-        ))}
-      </List>
     </Drawer>
   )
 }
