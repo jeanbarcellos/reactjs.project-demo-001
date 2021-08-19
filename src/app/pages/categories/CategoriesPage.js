@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -24,27 +24,24 @@ import {
   deleteCategory
 } from './categoriesSlice'
 import config from './config'
+import useForm from 'core/hooks/useForm'
 import CategoryModel from './CategoryModel'
 
 const CategoriesPage = props => {
   const dispatch = useDispatch()
+
   const categories = useSelector(selectAllCategories)
 
-  const [form, setForm] = useState(CategoryModel())
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
+  const { form, setForm, handleChange } = useForm(CategoryModel())
 
   useEffect(() => {
     dispatch(resetCategories())
     dispatch(fetchCategories())
   }, [dispatch])
 
-  const handleEdit = category => ev => {
-    setForm(category)
-  }
+  const handleEdit = category => ev => setForm(category)
 
-  const handleDelete = category => ev => {
-    dispatch(deleteCategory(category))
-  }
+  const handleDelete = category => ev => dispatch(deleteCategory(category))
 
   const onSave = () => {
     form.id === null ? dispatch(insertCategory(form)) : dispatch(updateCategory(form))
