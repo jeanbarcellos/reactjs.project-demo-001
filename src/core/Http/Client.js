@@ -2,42 +2,26 @@
 // https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
 
 import config from 'app/config'
+import ClientAxios from './ClientAxios'
 
 export async function Client(endpoint, { body, ...customConfig } = {}) {
-  const headers = { 'Content-Type': 'application/json' }
-
-  const localConfig = {
-    method: body ? 'POST' : 'GET',
-    ...customConfig,
-    headers: {
-      ...headers,
-      ...customConfig.headers
-    }
-  }
-
-  if (body) {
-    localConfig.body = JSON.stringify(body)
-  }
-
   const path = config.api.baseUrl + endpoint
-  console.log('path', path)
-
-  let data
-  try {
-    const response = await window.fetch(path, localConfig)
-
-    data = await response.json()
-    if (response.ok) {
-      return data
-    }
-    throw new Error(response.statusText)
-  } catch (err) {
-    return Promise.reject(err.message ? err.message : data)
+  const headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
   }
+
+  const requestConfig = {
+    headers,
+    ...customConfig
+  }
+
+  return ClientAxios(path, body, requestConfig)
+
+  // ***************************************************************************
 }
 
 Client.get = function (endpoint, customConfig = {}) {
-  console.log('Client.get', endpoint)
   return Client(endpoint, { ...customConfig, method: 'GET' })
 }
 
