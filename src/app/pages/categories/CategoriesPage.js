@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -25,8 +25,11 @@ import {
 } from './categoriesSlice'
 import config from './config'
 import useForm from 'core/hooks/useForm'
-import CategoryModel from './CategoryModel'
 import { toStringDateTime } from 'core/utils/date'
+import CategoryModel from './CategoryModel'
+import DeleteDialog from 'core/components/Dialog/DeleteDialog'
+
+const initialStateDeleteDialog = { open: false, data: null }
 
 const CategoriesPage = props => {
   const dispatch = useDispatch()
@@ -35,6 +38,8 @@ const CategoriesPage = props => {
 
   const { form, setForm, handleChange } = useForm(CategoryModel())
 
+  const [deleteDialog, setDeleteDialog] = useState(initialStateDeleteDialog)
+
   useEffect(() => {
     dispatch(resetCategories())
     dispatch(fetchCategories())
@@ -42,7 +47,12 @@ const CategoriesPage = props => {
 
   const handleEdit = category => ev => setForm(category)
 
-  const handleDelete = category => ev => dispatch(deleteCategory(category))
+  const handleDelete = category => ev => setDeleteDialog({ open: true, data: category })
+
+  const onDelete = () => {
+    dispatch(deleteCategory(deleteDialog.data))
+    setDeleteDialog(initialStateDeleteDialog)
+  }
 
   const onSave = () => {
     form.id === null ? dispatch(insertCategory(form)) : dispatch(updateCategory(form))
@@ -124,6 +134,15 @@ const CategoriesPage = props => {
               </TableBody>
             </Table>
           </TableContainer>
+
+          <DeleteDialog
+            open={deleteDialog.open}
+            onClose={() => setDeleteDialog(initialStateDeleteDialog)}
+            onSubmit={onDelete}
+            description={`Esta ação excluirá permanentemente a categoria ${
+              deleteDialog.data ? '"' + deleteDialog.data.name + '"' : ''
+            } do sistema!`}
+          />
         </div>
       }
     />
