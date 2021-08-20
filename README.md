@@ -26,4 +26,3 @@ Implementar um sistema do zero utilizando ReactJS e adicionando recursos e bibli
 ## TO-DO
 
 - Validação de formulário
-- Manipulação de datas
