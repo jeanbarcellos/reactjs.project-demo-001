@@ -26,6 +26,7 @@ import {
 import config from './config'
 import useForm from 'core/hooks/useForm'
 import CategoryModel from './CategoryModel'
+import { toStringDateTime } from 'core/utils/date'
 
 const CategoriesPage = props => {
   const dispatch = useDispatch()
@@ -104,8 +105,8 @@ const CategoriesPage = props => {
                       {row.id}
                     </TableCell>
                     <TableCell align='left'>{row.name}</TableCell>
-                    <TableCell align='left'>{row.createdAt}</TableCell>
-                    <TableCell align='left'>{row.updatedAt}</TableCell>
+                    <TableCell align='left'>{toStringDateTime(row.createdAt)}</TableCell>
+                    <TableCell align='left'>{toStringDateTime(row.updatedAt)}</TableCell>
                     <TableCell align='left' className='w-0 whitespace-nowrap'>
                       <Tooltip title='Edit'>
                         <IconButton color='secondary' onClick={handleEdit(row)}>
