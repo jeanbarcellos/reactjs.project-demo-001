@@ -1,6 +1,6 @@
 import React from 'react'
-import Page from 'components/Page/Page'
-import PageTile from 'components/Page/PageTile'
+import Page from 'components/page/Page'
+import PageTile from 'components/page/PageTile'
 import { Counter } from './Counter'
 import withReducer from 'store/withReducer'
 import reducers from './store'

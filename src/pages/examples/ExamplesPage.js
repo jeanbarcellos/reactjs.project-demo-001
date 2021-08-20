@@ -1,5 +1,5 @@
 import React from 'react'
-import PageTile from 'components/Page/PageTile'
+import PageTile from 'components/page/PageTile'
 import AlertsEx from './AlertsEx'
 import TypographyEx from './TypographyEx'
 
