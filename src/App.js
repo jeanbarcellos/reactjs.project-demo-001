@@ -13,7 +13,6 @@ import { Provider } from 'react-redux'
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
   insertionPoint: document.getElementById('jss-insertion-point')
 })
 
