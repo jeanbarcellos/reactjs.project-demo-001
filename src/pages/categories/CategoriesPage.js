@@ -22,11 +22,11 @@ import {
   insertCategory,
   updateCategory,
   deleteCategory
-} from './categoriesSlice'
+} from './store/categoriesSlice'
 import config from './config'
 import useForm from 'hooks/useForm'
 import { toStringDateTime } from 'utils/date'
-import CategoryModel from './CategoryModel'
+import CategoryModel from './models/CategoryModel'
 import DeleteDialog from 'components/dialog/DeleteDialog'
 
 const initialStateDeleteDialog = { open: false, data: null }

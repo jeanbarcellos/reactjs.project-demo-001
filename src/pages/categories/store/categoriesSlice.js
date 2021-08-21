@@ -1,5 +1,5 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit'
-import config from './config'
+import config from '../config'
 import { closedLoadingDialog, openedLoadingDialog } from 'store/app/dialogSlice'
 import { showErrorMessage, showSuccessMessage } from 'store/app/messageSlice'
 import * as Api from 'api/categoriesApi'
