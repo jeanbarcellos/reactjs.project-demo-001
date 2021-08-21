@@ -1,13 +1,13 @@
 import React from 'react'
 import Dialog from '@material-ui/core/Dialog'
 import { useDispatch, useSelector } from 'react-redux'
-import { closedDialog } from 'store/app/dialogSlice'
+import { closedDialog, selectOpenDialog, selectOptionsDialog } from 'store/app/dialogSlice'
 
 const AppDialog = () => {
   const dispatch = useDispatch()
 
-  const open = useSelector(state => state.app.dialog.generic.open)
-  const options = useSelector(state => state.app.dialog.generic.options)
+  const open = useSelector(selectOpenDialog)
+  const options = useSelector(selectOptionsDialog)
 
   const handleClose = () => {
     dispatch(closedDialog())

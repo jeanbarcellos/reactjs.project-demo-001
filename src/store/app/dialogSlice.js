@@ -34,6 +34,10 @@ const dialogSlice = createSlice({
   }
 })
 
+export const selectOpenDialog = state => state.app.dialog.generic.open
+export const selectOptionsDialog = state => state.app.dialog.generic.open
+export const selectOpenLoadingDialog = state => state.app.dialog.loading.open
+
 export const { openedDialog, closedDialog, openedLoadingDialog, closedLoadingDialog } = dialogSlice.actions
 
 export default dialogSlice.reducer
