@@ -9,7 +9,7 @@ const clientFetch = async (endpoint, body = null, customConfig = {}) => {
   let data
   try {
     const response = await window.fetch(endpoint, localConfig)
-    const data = await response.json()
+    data = await response.json()
     if (response.ok) {
       return successObject(response.status, data, response.headers)
     }

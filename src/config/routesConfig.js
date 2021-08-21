@@ -1,5 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import { default as categoryRoutes } from 'pages/categories/routes'
 
 const routesConfig = [
   {
@@ -12,11 +13,7 @@ const routesConfig = [
     component: React.lazy(() => import('pages/dashboard')),
     exact: true
   },
-  {
-    path: '/categories',
-    component: React.lazy(() => import('pages/categories')),
-    exact: true
-  },
+  ...categoryRoutes,
   {
     path: '/products',
     component: React.lazy(() => import('pages/products')),
