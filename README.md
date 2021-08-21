@@ -26,3 +26,9 @@ Implementar um sistema do zero utilizando ReactJS e adicionando recursos e bibli
 ## TO-DO
 
 - Validação de formulário
+
+## Referências
+
+- [Material-UI](https://material-ui.com/)
+- [Como organizar projetos em React](https://imasters.com.br/front-end/como-organizar-projetos-em-react)
+- [mahenrique94/tst-reactive-architecture](https://github.com/mahenrique94/tst-reactive-architecture)
