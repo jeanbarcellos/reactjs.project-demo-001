@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { errorObject, successObject } from './utils'
 
 const clientAxios = async (endpoint, body = null, customConfig = {}) => {
   const requestConfig = {
@@ -13,16 +14,7 @@ const clientAxios = async (endpoint, body = null, customConfig = {}) => {
     .catch(error => Promise.reject(resolveError(error)))
 }
 
-const resolveResponse = response => {
-  return {
-    success: true,
-    code: response.status || 200,
-    headers: response.headers || null,
-    // ...
-    data: response.data || null,
-    message: response.data.message || null
-  }
-}
+const resolveResponse = response => successObject(response.status, response.data, response.headers)
 
 const resolveError = error => {
   if (error.response) {
@@ -35,17 +27,6 @@ const resolveError = error => {
   }
 
   return errorObject(500)
-}
-
-const errorObject = (code, message, errors, headers) => {
-  return {
-    success: false,
-    code: code || 400,
-    headers: headers || null,
-    // ...
-    message: message || null,
-    errors: errors || []
-  }
 }
 
 export default clientAxios

@@ -1,3 +1,5 @@
+import { errorObject, successObject } from './utils'
+
 const clientFetch = async (endpoint, body = null, customConfig = {}) => {
   const localConfig = {
     ...customConfig,
@@ -9,18 +11,12 @@ const clientFetch = async (endpoint, body = null, customConfig = {}) => {
     const response = await window.fetch(endpoint, localConfig)
     const data = await response.json()
     if (response.ok) {
-      return {
-        success: true,
-        code: response.status,
-        headers: response.headers,
-        data,
-        message: data.message || null
-      }
+      return successObject(response.status, data, response.headers)
     }
 
     throw new Error(response.statusText)
   } catch (err) {
-    return Promise.reject(err.message ? err.message : data)
+    return Promise.reject(errorObject(500, err.message || 'Error'))
   }
 }
 
