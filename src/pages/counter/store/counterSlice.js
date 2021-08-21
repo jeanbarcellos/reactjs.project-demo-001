@@ -31,4 +31,6 @@ export const incrementAsync = amount => dispatch => {
 
 export const { increment, decrement, incrementByAmount } = counterSlide.actions
 
+export const selectCount = state => state[config.reducerKey].counter.value
+
 export default counterSlide.reducer
