@@ -1,11 +1,13 @@
 import { client } from 'services/http/client'
 
-export const getCategories = () => client.get(`/categories`)
+const ENDPOINT = '/categories'
 
-export const getCategory = id => client.get(`/categories/${id}`)
+export const getCategories = () => client.get(`${ENDPOINT}`)
 
-export const insertCategory = category => client.post(`/categories`, category)
+export const getCategory = id => client.get(`${ENDPOINT}/${id}`)
 
-export const updateCategory = category => client.put(`/categories/${category.id}`, category)
+export const insertCategory = category => client.post(`${ENDPOINT}`, category)
 
-export const deleteCategory = category => client.delete(`/categories/${category.id || category}`)
+export const updateCategory = category => client.put(`${ENDPOINT}/${category.id}`, category)
+
+export const deleteCategory = category => client.delete(`${ENDPOINT}/${category.id || category}`)
