@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { default as categoryRoutes } from 'pages/categories/routes'
+import { default as counterRoutes } from 'pages/counter/routes'
 
 const routesConfig = [
   {
@@ -44,11 +45,7 @@ const routesConfig = [
     component: React.lazy(() => import('pages/errors')),
     exact: true
   },
-  {
-    path: '/counter',
-    component: React.lazy(() => import('pages/counter')),
-    exact: true
-  },
+  ...counterRoutes,
   {
     component: () => <Redirect to='/error/404' />
   }

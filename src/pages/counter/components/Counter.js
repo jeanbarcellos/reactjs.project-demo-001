@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, decrement, incrementByAmount, incrementAsync } from './counterSlice'
-import styles from './Counter.module.css'
-import config from './config'
+import { increment, decrement, incrementByAmount, incrementAsync } from '../store/counterSlice'
+import styles from '../styles/Counter.module.css'
+import config from '../config'
 
 export const Counter = () => {
   const count = useSelector(state => state[config.reducerKey].counter.value)
