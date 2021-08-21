@@ -11,7 +11,12 @@ const routes = [
   },
   {
     path: `${ROUTE_URL}/404`,
-    component: React.lazy(() => import('pages/errors')),
+    component: React.lazy(() => import('pages/errors/Error404Page')),
+    exact: true
+  },
+  {
+    path: `${ROUTE_URL}/500`,
+    component: React.lazy(() => import('pages/errors/Error500Page')),
     exact: true
   }
 ]
@@ -19,5 +24,7 @@ const routes = [
 export const indexRoute = () => ROUTE_URL
 
 export const error404Route = () => `${ROUTE_URL}/404`
+
+export const error505Route = () => `${ROUTE_URL}/505`
 
 export default routes
