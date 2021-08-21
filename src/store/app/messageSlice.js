@@ -2,10 +2,17 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const reducerName = 'app/message'
 
+export const severity = {
+  SUCCESS: 'success',
+  ERROR: 'error',
+  INFO: 'info',
+  WARN: 'warning'
+}
+
 const initialState = {
   open: false,
   data: {
-    severity: 'info', // success, error, info, warning
+    severity: severity.INFO,
     options: {
       anchorOrigin: {
         vertical: 'top',
@@ -37,24 +44,24 @@ const messageSlice = createSlice({
         message: action.payload.message || initialState.data.message
       }
     },
+    hideMessage: (state, action) => {
+      state.open = false
+    },
     showSuccessMessage: (state, action) => {
       state.open = true
-      state.data = createDataBySeverity(action, 'success')
+      state.data = createDataBySeverity(action, severity.SUCCESS)
     },
     showErrorMessage: (state, action) => {
       state.open = true
-      state.data = createDataBySeverity(action, 'error')
+      state.data = createDataBySeverity(action, severity.ERROR)
     },
     showInfoMessage: (state, action) => {
       state.open = true
-      state.data = createDataBySeverity(action, 'info')
+      state.data = createDataBySeverity(action, severity.INFO)
     },
     showWarningMessage: (state, action) => {
       state.open = true
-      state.data = createDataBySeverity(action, 'warning')
-    },
-    hideMessage: (state, action) => {
-      state.open = false
+      state.data = createDataBySeverity(action, severity.WARN)
     }
   }
 })
