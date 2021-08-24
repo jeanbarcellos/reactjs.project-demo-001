@@ -1,12 +1,19 @@
 import { format } from 'date-fns'
 
-export const toStringDate = (date, utc = false) => {
+export const dateFormat = {
+  DATE: 'dd/MM/yyyy',
+  TIME: 'HH:mm:ss',
+  DATETIME: 'dd/MM/yyyy HH:mm',
+  DATETIME_WITH_SECS: 'dd/MM/yyyy HH:mm:ss'
+}
+
+export const toStringDate = (date, format = dateFormat.DATE, utc = false) => {
   let parsedDate = date
   if (!(date instanceof Date)) {
     parsedDate = new Date(date)
   }
 
-  return format(parsedDate, 'dd/MM/yyyy')
+  return format(parsedDate, format)
 }
 
 export const toStringTime = (date, utc = false) => {
@@ -15,7 +22,7 @@ export const toStringTime = (date, utc = false) => {
     parsedDate = new Date(date)
   }
 
-  return format(parsedDate, 'HH:MM:SS')
+  return format(parsedDate, dateFormat.TIME)
 }
 
 export const toStringDateTime = (date, utc = false) => {
@@ -24,5 +31,5 @@ export const toStringDateTime = (date, utc = false) => {
     parsedDate = new Date(date)
   }
 
-  return format(parsedDate, 'dd/MM/yyyy HH:MM:SS')
+  return format(parsedDate, dateFormat.DATETIME_WITH_SECS)
 }
