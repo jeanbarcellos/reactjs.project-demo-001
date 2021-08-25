@@ -8,4 +8,4 @@ export const getProduct = id => client.get(`${ENDPOINT}/${id}`)
 
 export const insertProduct = product => client.post(`${ENDPOINT}`, product)
 
-export const deleteProduct = product => client.delete(`${ENDPOINT}/${product.id || product}`)
+export const updateProduct = product => client.put(`${ENDPOINT}/${product.id}`, product)
