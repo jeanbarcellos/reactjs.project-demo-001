@@ -7,6 +7,7 @@ import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import { EnhancedTableHead } from './EnhancedTableHead'
+import _ from 'lodash'
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein }
@@ -36,35 +37,8 @@ const rows = [
   createData('Oreo', 437, 18.0, 63, 4.0)
 ]
 
-const descendingComparator = (a, b, orderBy) => {
-  if (b[orderBy] < a[orderBy]) {
-    return -1
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1
-  }
-  return 0
-}
-
-const getComparator = (order, orderBy) => {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy)
-}
-
-const stableSort = (array, comparator) => {
-  const stabilizedThis = array.map((el, index) => [el, index])
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0])
-    if (order !== 0) return order
-    return a[1] - b[1]
-  })
-  return stabilizedThis.map(el => el[0])
-}
-
 const EnhancedTable = () => {
   const [order, setOrder] = useState({ direction: 'asc', id: 'calories' })
-
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
@@ -83,6 +57,37 @@ const EnhancedTable = () => {
     setPage(0)
   }
 
+  const getFilteredData = rows => {
+    return _.orderBy(
+      rows,
+      [
+        o => {
+          switch (order.id) {
+            case 'id': {
+              return parseInt(o.id, 10)
+            }
+            case 'name': {
+              return o.name
+            }
+            case 'calories': {
+              return o.calories
+            }
+            case 'fat': {
+              return o.fat
+            }
+            case 'carbs': {
+              return o.carbs
+            }
+            default: {
+              return o[order.id]
+            }
+          }
+        }
+      ],
+      [order.direction]
+    ).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  }
+
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
 
   return (
@@ -92,19 +97,17 @@ const EnhancedTable = () => {
           <Table size='medium'>
             <EnhancedTableHead data={header} order={order} onRequestSort={handleRequestSort} />
             <TableBody>
-              {stableSort(rows, getComparator(order.direction, order.id))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(row => {
-                  return (
-                    <TableRow hover key={row.name}>
-                      <TableCell align='left'>{row.name}</TableCell>
-                      <TableCell align='right'>{row.calories}</TableCell>
-                      <TableCell align='right'>{row.fat}</TableCell>
-                      <TableCell align='right'>{row.carbs}</TableCell>
-                      <TableCell align='right'>{row.protein}</TableCell>
-                    </TableRow>
-                  )
-                })}
+              {getFilteredData(rows).map(row => {
+                return (
+                  <TableRow hover key={row.name}>
+                    <TableCell align='left'>{row.name}</TableCell>
+                    <TableCell align='right'>{row.calories}</TableCell>
+                    <TableCell align='right'>{row.fat}</TableCell>
+                    <TableCell align='right'>{row.carbs}</TableCell>
+                    <TableCell align='right'>{row.protein}</TableCell>
+                  </TableRow>
+                )
+              })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
                   <TableCell colSpan={6} />
