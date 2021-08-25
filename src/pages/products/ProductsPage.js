@@ -1,6 +1,9 @@
 import React from 'react'
 import PageTile from 'components/page/PageTile'
 import PageContentDemo from 'components/page/PageContentDemo'
+import withReducer from 'store/withReducer'
+import reducers from './store'
+import config from './config'
 
 const ProductsPage = () => {
   return (
@@ -11,4 +14,4 @@ const ProductsPage = () => {
   )
 }
 
-export default ProductsPage
+export default withReducer(config.reducerKey, reducers)(ProductsPage)
