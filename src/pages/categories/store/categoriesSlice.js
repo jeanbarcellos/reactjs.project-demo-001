@@ -14,7 +14,7 @@ const initialState = categoriesAdapter.getInitialState({})
 
 // Thunk functions
 
-export const fetchCategories = createAsyncThunk(`${reducerName}/fetchCategories`, async (args, { dispatch }) => {
+export const getCategories = createAsyncThunk(`${reducerName}/getCategories`, async (args, { dispatch }) => {
   try {
     dispatch(openedLoadingDialog())
 
@@ -93,7 +93,7 @@ const categoriesSlice = createSlice({
     }
   },
   extraReducers: {
-    [fetchCategories.fulfilled]: categoriesAdapter.setAll,
+    [getCategories.fulfilled]: categoriesAdapter.setAll,
     [insertCategory.fulfilled]: categoriesAdapter.addOne,
     [updateCategory.fulfilled]: categoriesAdapter.upsertOne,
     [deleteCategory.fulfilled]: categoriesAdapter.removeOne

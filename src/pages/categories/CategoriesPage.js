@@ -17,7 +17,7 @@ import withReducer from 'store/withReducer'
 import reducers from './store'
 import {
   selectAllCategories,
-  fetchCategories,
+  getCategories,
   resetCategories,
   insertCategory,
   updateCategory,
@@ -42,7 +42,7 @@ const CategoriesPage = props => {
 
   useEffect(() => {
     dispatch(resetCategories())
-    dispatch(fetchCategories())
+    dispatch(getCategories())
   }, [dispatch])
 
   const handleEdit = category => ev => setForm(category)
