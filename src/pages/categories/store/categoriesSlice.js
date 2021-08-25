@@ -20,11 +20,11 @@ export const getCategories = createAsyncThunk(`${reducerName}/getCategories`, as
 
     const response = await Api.getCategories()
 
-    dispatch(showSuccessMessage('Categorias carregadas com sucesso!'))
+    dispatch(showSuccessMessage('Catetories loaded successfully!'))
 
     return response.data
   } catch (error) {
-    dispatch(showErrorMessage(error.message || 'Erro ao obter categorias!'))
+    dispatch(showErrorMessage(error.message || 'Error loading categories!'))
     throw error
   } finally {
     dispatch(closedLoadingDialog())
@@ -37,11 +37,11 @@ export const insertCategory = createAsyncThunk(`${reducerName}/insertCategory`, 
 
     const response = await Api.insertCategory(category)
 
-    dispatch(showSuccessMessage('Categoria adicionada com sucesso!'))
+    dispatch(showSuccessMessage('Category added successfully!'))
 
     return response.data
   } catch (error) {
-    dispatch(showErrorMessage(error.message || 'Erro ao adicionar categoria!'))
+    dispatch(showErrorMessage(error.message || 'Error adding category!'))
     throw error
   } finally {
     dispatch(closedLoadingDialog())
@@ -54,11 +54,11 @@ export const updateCategory = createAsyncThunk(`${reducerName}/updateCategory`, 
 
     const response = await Api.updateCategory(category)
 
-    dispatch(showSuccessMessage('Categoria editada com sucesso!'))
+    dispatch(showSuccessMessage('Category edited successfully!'))
 
     return response.data
   } catch (error) {
-    dispatch(showErrorMessage(error.message || 'Erro ao editar categoria!'))
+    dispatch(showErrorMessage(error.message || 'Error editing category!'))
     throw error
   } finally {
     dispatch(closedLoadingDialog())
@@ -71,11 +71,11 @@ export const deleteCategory = createAsyncThunk(`${reducerName}/deleteCategory`, 
 
     await Api.deleteCategory(category.id)
 
-    dispatch(showSuccessMessage('Categoria excluída com sucesso!'))
+    dispatch(showSuccessMessage('Category deleted successfully!'))
 
     return category.id
   } catch (error) {
-    dispatch(showErrorMessage(error.message || 'Erro ao excludir categoria!'))
+    dispatch(showErrorMessage(error.message || 'Error deleting category!'))
     throw error
   } finally {
     dispatch(closedLoadingDialog())
