@@ -15,7 +15,7 @@ function createData(name, calories, fat, carbs, protein) {
 
 const header = [
   { id: 'name', align: 'left', disablePadding: false, label: 'Dessert (100g serving)', sort: true },
-  { id: 'calories', align: 'right', disablePadding: false, label: 'Calories', sort: false },
+  { id: 'calories', align: 'right', disablePadding: false, label: 'Calories', sort: true },
   { id: 'fat', align: 'right', disablePadding: false, label: 'Fat (g)', sort: true },
   { id: 'carbs', align: 'right', disablePadding: false, label: 'Carbs (g)', sort: true },
   { id: 'protein', align: 'right', disablePadding: false, label: 'Protein (g)', sort: true }
@@ -39,7 +39,7 @@ const rows = [
 
 const EnhancedTable = () => {
   const { order, page, rowsPerPage, handleRequestSort, handleChangePage, handleChangeRowsPerPage, getFilteredData } =
-    useTable()
+    useTable(0, 5, 'name')
 
   const orderIteratee = o => {
     switch (order.id) {
