@@ -2,6 +2,7 @@ import React from 'react'
 import PageTile from 'components/page/PageTile'
 import AlertsEx from './AlertsEx'
 import TypographyEx from './TypographyEx'
+import TableEx from './TableEx'
 
 const ExamplesPage = () => {
   return (
@@ -9,6 +10,7 @@ const ExamplesPage = () => {
       <PageTile>Examples and Tests</PageTile>
       <AlertsEx className='mb-24' />
       <TypographyEx className='mb-24' />
+      <TableEx />
     </div>
   )
 }
