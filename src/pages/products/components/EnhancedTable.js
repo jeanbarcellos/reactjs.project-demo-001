@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import { EnhancedTableHead } from './EnhancedTableHead'
 import _ from 'lodash'
+import useTable from 'hooks/useTable'
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein }
@@ -38,24 +39,7 @@ const rows = [
 ]
 
 const EnhancedTable = () => {
-  const [order, setOrder] = useState({ direction: 'asc', id: 'calories' })
-  const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(5)
-
-  const handleRequestSort = (event, property) => {
-    const isAsc = order.id === property && order.direction === 'asc'
-
-    setOrder({ direction: isAsc ? 'desc' : 'asc', id: property })
-  }
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage)
-  }
-
-  const handleChangeRowsPerPage = event => {
-    setRowsPerPage(parseInt(event.target.value, 10))
-    setPage(0)
-  }
+  const { order, page, rowsPerPage, handleRequestSort, handleChangePage, handleChangeRowsPerPage } = useTable()
 
   const getFilteredData = rows => {
     return _.orderBy(
