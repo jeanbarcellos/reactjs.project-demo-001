@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import _ from 'lodash'
 
-const useTable = (initialPage = 0, initialRowsPerPage = 5) => {
-  const [order, setOrder] = useState({ direction: 'asc', id: 'calories' })
+const useTable = (
+  initialPage = 0,
+  initialRowsPerPage = 5,
+  initialOrderProperty = null,
+  initialOrderDirection = 'asc'
+) => {
+  const [order, setOrder] = useState({ direction: initialOrderDirection, id: initialOrderProperty })
   const [page, setPage] = useState(initialPage)
   const [rowsPerPage, setRowsPerPage] = useState(initialRowsPerPage)
 
