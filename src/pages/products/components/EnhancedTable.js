@@ -6,8 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { EnhancedTableHead } from './EnhancedTableHead'
-import _ from 'lodash'
+import EnhancedTableHead from './EnhancedTableHead'
 import useTable from 'hooks/useTable'
 
 function createData(name, calories, fat, carbs, protein) {
@@ -39,40 +38,31 @@ const rows = [
 ]
 
 const EnhancedTable = () => {
-  const { order, page, rowsPerPage, handleRequestSort, handleChangePage, handleChangeRowsPerPage } = useTable()
+  const { order, page, rowsPerPage, handleRequestSort, handleChangePage, handleChangeRowsPerPage, getFilteredData } =
+    useTable()
 
-  const getFilteredData = rows => {
-    return _.orderBy(
-      rows,
-      [
-        o => {
-          switch (order.id) {
-            case 'id': {
-              return parseInt(o.id, 10)
-            }
-            case 'name': {
-              return o.name
-            }
-            case 'calories': {
-              return o.calories
-            }
-            case 'fat': {
-              return o.fat
-            }
-            case 'carbs': {
-              return o.carbs
-            }
-            default: {
-              return o[order.id]
-            }
-          }
-        }
-      ],
-      [order.direction]
-    ).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  const orderIteratee = o => {
+    switch (order.id) {
+      case 'id': {
+        return parseInt(o.id, 10)
+      }
+      case 'name': {
+        return o.name
+      }
+      case 'calories': {
+        return o.calories
+      }
+      case 'fat': {
+        return o.fat
+      }
+      case 'carbs': {
+        return o.carbs
+      }
+      default: {
+        return o[order.id]
+      }
+    }
   }
-
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
 
   return (
     <div>
@@ -81,7 +71,7 @@ const EnhancedTable = () => {
           <Table size='medium'>
             <EnhancedTableHead data={header} order={order} onRequestSort={handleRequestSort} />
             <TableBody>
-              {getFilteredData(rows).map(row => {
+              {getFilteredData(rows, orderIteratee).map(row => {
                 return (
                   <TableRow hover key={row.name}>
                     <TableCell align='left'>{row.name}</TableCell>
@@ -92,11 +82,6 @@ const EnhancedTable = () => {
                   </TableRow>
                 )
               })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>

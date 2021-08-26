@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export function EnhancedTableHead(props) {
+const EnhancedTableHead = props => {
   const { data, order, onRequestSort } = props
   const classes = useStyles()
 
@@ -70,3 +70,5 @@ EnhancedTableHead.propTypes = {
   onRequestSort: PropTypes.func.isRequired,
   order: PropTypes.array.isRequired
 }
+
+export default EnhancedTableHead
