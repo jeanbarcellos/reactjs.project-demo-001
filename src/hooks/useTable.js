@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import _ from 'lodash'
 
 const useTable = (initialPage = 0, initialRowsPerPage = 5) => {
   const [order, setOrder] = useState({ direction: 'asc', id: 'calories' })
@@ -20,13 +21,18 @@ const useTable = (initialPage = 0, initialRowsPerPage = 5) => {
     setPage(0)
   }
 
+  const getFilteredData = (rows, iteratee) => {
+    return _.orderBy(rows, [iteratee], [order.direction]).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  }
+
   return {
     order,
     page,
     rowsPerPage,
     handleRequestSort,
     handleChangePage,
-    handleChangeRowsPerPage
+    handleChangeRowsPerPage,
+    getFilteredData
   }
 }
 
