@@ -5,8 +5,13 @@ import TableRow from '@material-ui/core/TableRow'
 import TableSortLabel from '@material-ui/core/TableSortLabel'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core'
+import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
+  root: {},
+  head: {},
+  row: {},
+  cell: {},
   visuallyHidden: {
     border: 0,
     clip: 'rect(0 0 0 0)',
@@ -22,17 +27,18 @@ const useStyles = makeStyles(theme => ({
 
 const EnhancedTableHead = props => {
   const { data, order, onRequestSort } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   const createSortHandler = property => event => {
     onRequestSort(event, property)
   }
 
   return (
-    <TableHead>
-      <TableRow>
+    <TableHead className={classes.head}>
+      <TableRow className={classes.row}>
         {data.map(row => (
           <TableCell
+            className={clsx(classes.cell, row.className)}
             key={row.id}
             align={row.align}
             padding={row.disablePadding ? 'none' : 'normal'}
