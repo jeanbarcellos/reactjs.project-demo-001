@@ -5,7 +5,7 @@ const ROUTE_URL = '/counter'
 const routes = [
   {
     path: ROUTE_URL,
-    component: React.lazy(() => import('modules/counter')),
+    component: React.lazy(() => import('./pages/home')),
     exact: true
   }
 ]

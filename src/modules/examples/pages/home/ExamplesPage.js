@@ -1,8 +1,8 @@
 import React from 'react'
 import PageTile from 'components/page/PageTile'
-import AlertsEx from './AlertsEx'
-import TypographyEx from './TypographyEx'
-import TableEx from './TableEx'
+import AlertsEx from '../../components/AlertsEx'
+import TypographyEx from '../../components/TypographyEx'
+import TableEx from '../../components/TableEx'
 
 const ExamplesPage = () => {
   return (

@@ -5,7 +5,7 @@ const ROUTE_URL = '/examples'
 const routes = [
   {
     path: ROUTE_URL,
-    component: React.lazy(() => import('modules/examples')),
+    component: React.lazy(() => import('./pages/home')),
     exact: true
   }
 ]

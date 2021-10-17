@@ -5,7 +5,7 @@ const ROUTE_URL = '/dashboard'
 const routes = [
   {
     path: ROUTE_URL,
-    component: React.lazy(() => import('modules/dashboard')),
+    component: React.lazy(() => import('./pages/home')),
     exact: true
   }
 ]

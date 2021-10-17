@@ -5,7 +5,7 @@ const ROUTE_URL = '/customers'
 const routes = [
   {
     path: ROUTE_URL,
-    component: React.lazy(() => import('modules/customers')),
+    component: React.lazy(() => import('./pages/list')),
     exact: true
   }
 ]

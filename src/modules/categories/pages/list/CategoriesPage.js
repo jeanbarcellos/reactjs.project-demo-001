@@ -13,7 +13,7 @@ import PageTile from 'components/page/PageTile'
 import { Button, TextField } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import withReducer from 'store/withReducer'
-import reducers from './store'
+import reducers from '../../store'
 import {
   selectAllCategories,
   getCategories,
@@ -21,11 +21,11 @@ import {
   insertCategory,
   updateCategory,
   deleteCategory
-} from './store/categoriesSlice'
-import config from './config'
+} from '../../store/categoriesSlice'
+import config from '../../config'
 import useForm from 'hooks/useForm'
 import { toStringDateTime } from 'utils/date'
-import CategoryModel from './models/CategoryModel'
+import CategoryModel from '../../models/CategoryModel'
 import DeleteDialog from 'components/dialog/DeleteDialog'
 import OrderedTableHead from 'components/table/OrderedTableHead'
 import useTable from 'hooks/useTable'

@@ -5,7 +5,7 @@ const ROUTE_URL = '/orders'
 const routes = [
   {
     path: ROUTE_URL,
-    component: React.lazy(() => import('modules/orders')),
+    component: React.lazy(() => import('./pages/list')),
     exact: true
   }
 ]

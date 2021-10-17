@@ -11,12 +11,12 @@ const routes = [
   },
   {
     path: `${ROUTE_URL}/404`,
-    component: React.lazy(() => import('modules/errors/Error404Page')),
+    component: React.lazy(() => import('./pages/Error404Page')),
     exact: true
   },
   {
     path: `${ROUTE_URL}/500`,
-    component: React.lazy(() => import('modules/errors/Error500Page')),
+    component: React.lazy(() => import('./pages/Error500Page')),
     exact: true
   }
 ]
