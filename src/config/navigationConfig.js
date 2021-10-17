@@ -1,51 +1,60 @@
+import { indexRoute as categoryIndexRoute } from 'modules/categories/routes'
+import { indexRoute as counterIndexRoute } from 'modules/counter/routes'
+import { indexRoute as customresIndexRoute } from 'modules/customers/routes'
+import { indexRoute as dashboardIndexRoute } from 'modules/dashboard/routes'
+import { indexRoute as examplesIndexRoute } from 'modules/examples/routes'
+import { indexRoute as ordersIndexRoute } from 'modules/orders/routes'
+import { indexRoute as productsIndexRoute } from 'modules/products/routes'
+import { indexRoute as reportsIndexRoute } from 'modules/reports/routes'
+
 const navigationConfig = [
   {
     id: 'dashboard',
     icon: 'dashboard',
     text: 'Dashboard',
-    url: '/dashboard'
+    url: dashboardIndexRoute()
   },
   {
     id: 'categories',
     icon: 'turned_in',
     text: 'Categories',
-    url: '/categories'
+    url: categoryIndexRoute()
   },
   {
     id: 'products',
     icon: 'photo_library',
     text: 'Products',
-    url: '/products'
+    url: productsIndexRoute()
   },
   {
     id: 'orders',
     icon: 'shopping_cart',
     text: 'Orders',
-    url: '/orders'
+    url: ordersIndexRoute()
   },
   {
     id: 'customers',
     icon: 'people',
     text: 'Customers',
-    url: '/customers'
+    url: customresIndexRoute()
   },
   {
     id: 'reports',
     icon: 'bar_chart',
     text: 'Reports',
-    url: '/reports'
+    url: reportsIndexRoute()
   },
   {
     id: 'integrations',
     icon: 'layers',
     text: 'Examples & Tests',
-    url: '/examples'
+    url: examplesIndexRoute()
   },
   {
     id: 'counter',
     icon: 'hourglass_empty',
     text: 'Counter App',
-    url: '/counter'
+    url: counterIndexRoute()
   }
 ]
 
