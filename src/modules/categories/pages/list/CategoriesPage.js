@@ -10,7 +10,6 @@ import IconButton from '@material-ui/core/IconButton'
 import Page from 'components/page/Page'
 import Tooltip from '@material-ui/core/Tooltip'
 import PageTile from 'components/page/PageTile'
-import { Button, TextField } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import withReducer from 'store/withReducer'
 import reducers from '../../store'
@@ -29,6 +28,7 @@ import CategoryModel from '../../models/CategoryModel'
 import DeleteDialog from 'components/dialog/DeleteDialog'
 import OrderedTableHead from 'components/table/OrderedTableHead'
 import useTable from 'hooks/useTable'
+import CategoryForm from 'modules/categories/components/CategoryForm'
 
 const header = [
   { id: 'id', label: 'ID' },
@@ -45,7 +45,7 @@ const CategoriesPage = props => {
 
   const categories = useSelector(selectAllCategories)
 
-  const { form, setForm, handleChange } = useForm(CategoryModel())
+  const { form, setForm, handleChange, resetForm } = useForm(CategoryModel())
 
   const { order, handleRequestSort, getFilteredData } = useTable(0, 5, 'name')
 
@@ -80,16 +80,18 @@ const CategoriesPage = props => {
 
   const handleDelete = category => ev => setDeleteDialog({ open: true, data: category })
 
-  const onDelete = () => {
-    dispatch(deleteCategory(deleteDialog.data))
-    setDeleteDialog(initialStateDeleteDialog)
-  }
-
   const onSave = () => {
     form.id === null ? dispatch(insertCategory(form)) : dispatch(updateCategory(form))
 
     setForm(CategoryModel())
   }
+
+  const onDelete = () => {
+    dispatch(deleteCategory(deleteDialog.data))
+    setDeleteDialog(initialStateDeleteDialog)
+  }
+
+  const onCancel = () => resetForm()
 
   return (
     <Page
@@ -101,23 +103,7 @@ const CategoriesPage = props => {
         <div>
           <div className='mb-24'>
             <div className='flex -mx-12'>
-              <TextField
-                className='mx-12 w-4/12'
-                variant='outlined'
-                label='Name'
-                name='name'
-                value={form.name}
-                onChange={handleChange}
-              />
-              <Button
-                startIcon={<Icon>add</Icon>}
-                variant='contained'
-                color='secondary'
-                onClick={onSave}
-                disabled={!form.name}
-              >
-                Save
-              </Button>
+              <CategoryForm form={form} handleChange={handleChange} onSave={onSave} onCancel={onCancel} />
             </div>
           </div>
 
@@ -127,7 +113,7 @@ const CategoriesPage = props => {
               <TableBody>
                 {categories.length === 0 && (
                   <TableRow>
-                    <TableCell align='left' colSpan='5' className='text-center color-alert text-red'>
+                    <TableCell align='left' colSpan={header.length} className='text-center color-alert text-red'>
                       Não há categorias no momento
                     </TableCell>
                   </TableRow>
