@@ -1,20 +1,21 @@
-import { useState } from 'react'
+import { SortEnum } from 'enums'
 import _ from 'lodash'
+import { useState } from 'react'
 
 const useTable = (
   initialPage = 0,
   initialRowsPerPage = 5,
   initialOrderProperty = null,
-  initialOrderDirection = 'asc'
+  initialOrderDirection = SortEnum.ASCENDING
 ) => {
   const [order, setOrder] = useState({ direction: initialOrderDirection, id: initialOrderProperty })
   const [page, setPage] = useState(initialPage)
   const [rowsPerPage, setRowsPerPage] = useState(initialRowsPerPage)
 
   const handleRequestSort = (event, property) => {
-    const isAsc = order.id === property && order.direction === 'asc'
+    const isAsc = order.id === property && order.direction === SortEnum.ASCENDING
 
-    setOrder({ direction: isAsc ? 'desc' : 'asc', id: property })
+    setOrder({ direction: isAsc ? SortEnum.DESCENDING : SortEnum.ASCENDING, id: property })
   }
 
   const handleChangePage = (event, newPage) => {

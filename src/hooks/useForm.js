@@ -12,10 +12,13 @@ const useForm = initialState => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
+  const resetForm = () => setForm({ ...initialState })
+
   return {
     form,
     setForm,
     handleChange,
+    resetForm,
     isValid,
     setIsValid
   }
