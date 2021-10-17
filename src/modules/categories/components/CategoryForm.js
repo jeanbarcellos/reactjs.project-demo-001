@@ -1,13 +1,15 @@
 import { Button, TextField } from '@material-ui/core'
 import Icon from '@material-ui/core/Icon'
+import clsx from 'clsx'
 import React from 'react'
 import CategoryModel from '../models/CategoryModel'
+import PropTypes from 'prop-types'
 
 const CategoryForm = props => {
   const { form, handleChange, onSave, onCancel } = props
 
   return (
-    <>
+    <div className={clsx('flex -mx-12', props.className)}>
       <TextField
         className='mx-12 w-4/12'
         variant='outlined'
@@ -31,8 +33,15 @@ const CategoryForm = props => {
       >
         Cancel
       </Button>
-    </>
+    </div>
   )
+}
+
+CategoryForm.propTypes = {
+  form: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 }
 
 CategoryForm.defaultProps = {
