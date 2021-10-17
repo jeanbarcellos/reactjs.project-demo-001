@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import { default as dashboardRoutes, indexRoute as indexDashboardRoute } from 'modules/dashboard/routes'
+import { default as dashboardRoutes, indexRoute as dashboardIndexRoute } from 'modules/dashboard/routes'
 import { default as categoryRoutes } from 'modules/categories/routes'
 import { default as productsRoutes } from 'modules/products/routes'
 import { default as ordersRoutes } from 'modules/orders/routes'
@@ -14,7 +14,7 @@ import { default as errorsRoutes, error404Route } from 'modules/errors/routes'
 const routesConfig = [
   {
     path: '/',
-    component: () => <Redirect to={indexDashboardRoute()} />,
+    component: () => <Redirect to={dashboardIndexRoute()} />,
     exact: true
   },
   ...dashboardRoutes,
