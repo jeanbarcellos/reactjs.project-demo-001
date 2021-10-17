@@ -1,11 +1,12 @@
-import React from 'react'
+import { makeStyles } from '@material-ui/core'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import TableSortLabel from '@material-ui/core/TableSortLabel'
-import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
+import { SortEnum } from 'enums'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -47,13 +48,13 @@ const OrderedTableHead = props => {
             {row.sort || row.sort === undefined ? (
               <TableSortLabel
                 active={order.id === row.id}
-                direction={order.id === row.id ? order.direction : 'asc'}
+                direction={order.id === row.id ? order.direction : SortEnum.ASCENDING}
                 onClick={createSortHandler(row.id)}
               >
                 {row.label}
                 {order.id === row.id ? (
                   <span className={classes.visuallyHidden}>
-                    {order.direction === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                    {order.direction === SortEnum.DESCENDING ? 'sorted descending' : 'sorted ascending'}
                   </span>
                 ) : null}
               </TableSortLabel>
@@ -74,7 +75,7 @@ OrderedTableHead.defaultProps = {
 OrderedTableHead.propTypes = {
   data: PropTypes.array.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  order: PropTypes.array.isRequired
+  order: PropTypes.object.isRequired
 }
 
 export default OrderedTableHead
