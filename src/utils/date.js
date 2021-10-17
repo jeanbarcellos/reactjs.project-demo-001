@@ -9,6 +9,7 @@ export const dateFormat = {
 
 export const toStringDate = (date, format = dateFormat.DATE, utc = false) => {
   let parsedDate = date
+
   if (!(date instanceof Date)) {
     parsedDate = new Date(date)
   }
@@ -18,6 +19,7 @@ export const toStringDate = (date, format = dateFormat.DATE, utc = false) => {
 
 export const toStringTime = (date, utc = false) => {
   let parsedDate = date
+
   if (!(date instanceof Date)) {
     parsedDate = new Date(date)
   }
@@ -27,6 +29,7 @@ export const toStringTime = (date, utc = false) => {
 
 export const toStringDateTime = (date, utc = false) => {
   let parsedDate = date
+
   if (!(date instanceof Date)) {
     parsedDate = new Date(date)
   }
