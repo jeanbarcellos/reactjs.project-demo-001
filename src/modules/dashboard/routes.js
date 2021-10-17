@@ -1,11 +1,11 @@
 import React from 'react'
 
-const ROUTE_URL = '/orders'
+const ROUTE_URL = '/dashboard'
 
 const routes = [
   {
     path: ROUTE_URL,
-    component: React.lazy(() => import('pages/orders')),
+    component: React.lazy(() => import('modules/dashboard')),
     exact: true
   }
 ]

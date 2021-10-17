@@ -1,15 +1,15 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import { default as dashboardRoutes, indexRoute as indexDashboardRoute } from 'pages/dashboard/routes'
-import { default as categoryRoutes } from 'pages/categories/routes'
-import { default as productsRoutes } from 'pages/products/routes'
-import { default as ordersRoutes } from 'pages/orders/routes'
-import { default as customersRoutes } from 'pages/customers/routes'
-import { default as reportsRoutes } from 'pages/reports/routes'
-import { default as examplesRoutes } from 'pages/examples/routes'
-import { default as counterRoutes } from 'pages/counter/routes'
-import { default as errorsRoutes, error404Route } from 'pages/errors/routes'
+import { default as dashboardRoutes, indexRoute as indexDashboardRoute } from 'modules/dashboard/routes'
+import { default as categoryRoutes } from 'modules/categories/routes'
+import { default as productsRoutes } from 'modules/products/routes'
+import { default as ordersRoutes } from 'modules/orders/routes'
+import { default as customersRoutes } from 'modules/customers/routes'
+import { default as reportsRoutes } from 'modules/reports/routes'
+import { default as examplesRoutes } from 'modules/examples/routes'
+import { default as counterRoutes } from 'modules/counter/routes'
+import { default as errorsRoutes, error404Route } from 'modules/errors/routes'
 
 const routesConfig = [
   {
