@@ -26,8 +26,15 @@ const useTable = (
     setPage(0)
   }
 
-  const getFilteredData = (rows, iteratee) => {
-    return _.orderBy(rows, [iteratee], [order.direction]).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  const getFilteredData = (rows, iteratee = null) => {
+    const start = page * rowsPerPage
+    const end = start + rowsPerPage
+
+    if (iteratee) {
+      return _.orderBy(rows, [iteratee], [order.direction]).slice(start, end)
+    }
+
+    return rows.slice(start, end)
   }
 
   return {
