@@ -1,13 +1,7 @@
 import { format } from 'date-fns'
+import { DateFormatEnum } from 'enums'
 
-export const dateFormat = {
-  DATE: 'dd/MM/yyyy',
-  TIME: 'HH:mm:ss',
-  DATETIME: 'dd/MM/yyyy HH:mm',
-  DATETIME_WITH_SECS: 'dd/MM/yyyy HH:mm:ss'
-}
-
-export const toStringDate = (date, format = dateFormat.DATE, utc = false) => {
+export const toStringDate = (date, format = DateFormatEnum.DATE, utc = false) => {
   let parsedDate = date
 
   if (!(date instanceof Date)) {
@@ -24,7 +18,7 @@ export const toStringTime = (date, utc = false) => {
     parsedDate = new Date(date)
   }
 
-  return format(parsedDate, dateFormat.TIME)
+  return format(parsedDate, DateFormatEnum.TIME)
 }
 
 export const toStringDateTime = (date, utc = false) => {
@@ -34,5 +28,5 @@ export const toStringDateTime = (date, utc = false) => {
     parsedDate = new Date(date)
   }
 
-  return format(parsedDate, dateFormat.DATETIME_WITH_SECS)
+  return format(parsedDate, DateFormatEnum.DATETIME_WITH_SECS)
 }
