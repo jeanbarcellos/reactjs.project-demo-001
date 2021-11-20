@@ -1,6 +1,4 @@
-_Repositório apenas para estudo_
-
-# Projeto Demo 001 (Frontend em Javascript/ReactJS)
+# Projeto 101 (Frontend em Javascript/ReactJS)
 
 Implementação de um projeto do zero em ReactJS
 
