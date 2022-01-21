@@ -55,7 +55,8 @@ const DashboardPage = () => {
           <AppMessage />
 
           <Suspense fallback={<Loading />}>{renderRoutes(routesConfig)}</Suspense>
-          <Footer id='layout-footer ' />
+
+          <Footer id='layout-footer' />
         </main>
       </div>
     </>
