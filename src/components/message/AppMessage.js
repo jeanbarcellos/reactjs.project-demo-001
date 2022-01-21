@@ -1,11 +1,13 @@
 import styled from '@emotion/styled'
-import MuiAlert from '@mui/lab/Alert'
+import MuiAlert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { hideMessage, selectDataMessage, selectOpenMessage } from 'store/app/messageSlice'
 
-const Alert = props => <MuiAlert elevation={6} variant='filled' {...props} />
+const Alert = React.forwardRef((props, ref) => {
+  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />
+})
 
 const Root = styled('div')(({ theme, config }) => ({
   width: '100%',
