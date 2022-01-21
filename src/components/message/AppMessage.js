@@ -1,23 +1,20 @@
+import styled from '@emotion/styled'
+import MuiAlert from '@mui/lab/Alert'
+import Snackbar from '@mui/material/Snackbar'
 import React from 'react'
-import Snackbar from '@material-ui/core/Snackbar'
-import MuiAlert from '@material-ui/lab/Alert'
-import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
-import { hideMessage, selectOpenMessage, selectDataMessage } from 'store/app/messageSlice'
+import { hideMessage, selectDataMessage, selectOpenMessage } from 'store/app/messageSlice'
 
 const Alert = props => <MuiAlert elevation={6} variant='filled' {...props} />
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(1)
-    }
+const Root = styled('div')(({ theme, config }) => ({
+  width: '100%',
+  '& > * + *': {
+    marginTop: theme.spacing(1)
   }
 }))
 
 const AppMessage = () => {
-  const classes = useStyles()
   const dispatch = useDispatch()
 
   const open = useSelector(selectOpenMessage)
@@ -32,13 +29,13 @@ const AppMessage = () => {
   }
 
   return (
-    <div className={classes.root}>
+    <Root>
       <Snackbar {...data.options} open={open} onClose={handleClose}>
         <Alert onClose={handleClose} severity={data.severity}>
           {data.message}
         </Alert>
       </Snackbar>
-    </div>
+    </Root>
   )
 }
 

@@ -1,5 +1,5 @@
+import Dialog from '@mui/material/Dialog'
 import React from 'react'
-import Dialog from '@material-ui/core/Dialog'
 import { useDispatch, useSelector } from 'react-redux'
 import { closedDialog, selectOpenDialog, selectOptionsDialog } from 'store/app/dialogSlice'
 

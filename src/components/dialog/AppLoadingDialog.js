@@ -1,5 +1,5 @@
 import React from 'react'
-import Dialog from '@material-ui/core/Dialog'
+import Dialog from '@mui/material/Dialog'
 import { useSelector } from 'react-redux'
 import Loading from 'components/loading/Loading'
 import { selectOpenLoadingDialog } from 'store/app/dialogSlice'
