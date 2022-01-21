@@ -1,16 +1,20 @@
-import React from 'react'
-import * as PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
+import * as PropTypes from 'prop-types'
+import React from 'react'
+// import { makeStyles } from 'tss-react/mui'
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-  header: {},
-  content: {}
-}))
+// const useStyles = makeStyles()(theme => ({
+//   root: {},
+//   header: {},
+//   content: {}
+// }))
 
 const Page = props => {
-  const classes = useStyles(props)
+  // const classes = useStyles()
+  const { classes } = props
+
+  console.log('props', props)
+  console.log('classes', classes)
 
   return (
     <div id='page-root' className={clsx(classes.root, props.className)}>

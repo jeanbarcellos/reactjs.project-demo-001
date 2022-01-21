@@ -1,14 +1,14 @@
-import { makeStyles } from '@material-ui/core'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import TableSortLabel from '@material-ui/core/TableSortLabel'
+import { makeStyles } from 'tss-react/mui'
+import TableCell from '@mui/material/TableCell'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import TableSortLabel from '@mui/material/TableSortLabel'
 import clsx from 'clsx'
 import { SortEnum } from 'enums'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles()(theme => ({
   root: {},
   head: {},
   row: {},
