@@ -17,7 +17,6 @@
     "autoprefixer": "^9",
     "axios": "^0.21.1",
     "date-fns": "^2.23.0",
-    "jss": "^10.7.1",
     "lodash": "^4.17.21",
     "postcss": "^7",
     "react": "^17.0.2",
@@ -29,6 +28,7 @@
     "react-scripts": "4.0.3",
     "redux-thunk": "^2.3.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "tss-react": "^3.3.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
