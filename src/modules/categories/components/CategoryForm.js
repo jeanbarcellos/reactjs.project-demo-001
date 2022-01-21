@@ -1,5 +1,5 @@
-import { Button, TextField } from '@material-ui/core'
-import Icon from '@material-ui/core/Icon'
+import { Button, TextField } from '@mui/material'
+import Icon from '@mui/material/Icon'
 import clsx from 'clsx'
 import React from 'react'
 import CategoryModel from '../models/CategoryModel'
