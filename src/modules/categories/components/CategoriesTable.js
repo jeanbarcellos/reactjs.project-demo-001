@@ -23,6 +23,13 @@ const header = [
   { id: 'actions', label: '', sort: false }
 ]
 
+const sortMap = {
+  id: o => parseInt(o.id, 10),
+  names: o => o.name,
+  createdAt: o => o.createdAt,
+  updatedAt: o => o.updatedAt
+}
+
 const initialStateDeleteDialog = { open: false, data: null }
 
 const CategoriesTable = props => {
@@ -32,26 +39,6 @@ const CategoriesTable = props => {
     useTable(0, 5, 'name')
 
   const [deleteDialog, setDeleteDialog] = useState(initialStateDeleteDialog)
-
-  const orderIteratee = o => {
-    switch (order.id) {
-      case 'id': {
-        return parseInt(o.id, 10)
-      }
-      case 'name': {
-        return o.name
-      }
-      case 'createdAt': {
-        return o.createdAt
-      }
-      case 'updatedAt': {
-        return o.updatedAt
-      }
-      default: {
-        return o[order.id]
-      }
-    }
-  }
 
   const handleEdit = category => () => onEdit(category)
 
@@ -77,7 +64,7 @@ const CategoriesTable = props => {
                 </TableCell>
               </TableRow>
             )}
-            {getFilteredData(data, orderIteratee).map(row => (
+            {getFilteredData(data, sortMap).map(row => (
               <TableRow key={row.id}>
                 <TableCell align='left' className='w-48'>
                   {row.id}

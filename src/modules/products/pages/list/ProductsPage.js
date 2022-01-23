@@ -28,6 +28,18 @@ const header = [
   { id: 'actions', label: '', sort: false }
 ]
 
+const sortMap = {
+  id: o => parseInt(o.id, 10),
+  categoryId: o => o.categoryId,
+  name: o => o.name,
+  description: o => o.description,
+  active: o => o.active,
+  quantity: o => o.quantity,
+  value: o => o.value,
+  createdAt: o => o.createdAt,
+  updatedAt: o => o.updatedAt
+}
+
 const ProductsPage = () => {
   const dispatch = useDispatch()
 
@@ -40,41 +52,6 @@ const ProductsPage = () => {
     dispatch(getProducts())
   }, [dispatch])
 
-  const orderIteratee = o => {
-    switch (order.id) {
-      case 'id': {
-        return parseInt(o.id, 10)
-      }
-      case 'categoryId': {
-        return o.categoryId
-      }
-      case 'name': {
-        return o.name
-      }
-      case 'description': {
-        return o.description
-      }
-      case 'active': {
-        return o.active
-      }
-      case 'quantity': {
-        return o.quantity
-      }
-      case 'value': {
-        return o.value
-      }
-      case 'createdAt': {
-        return o.createdAt
-      }
-      case 'updatedAt': {
-        return o.updatedAt
-      }
-      default: {
-        return o[order.id]
-      }
-    }
-  }
-
   return (
     <div className='p-24 text-justify'>
       <PageTile>Products</PageTile>
@@ -84,7 +61,7 @@ const ProductsPage = () => {
           <Table size='medium'>
             <OrderedTableHead data={header} order={order} onRequestSort={handleRequestSort} />
             <TableBody>
-              {getFilteredData(products, orderIteratee).map(row => {
+              {getFilteredData(products, sortMap).map(row => {
                 return (
                   <TableRow hover key={row.id}>
                     <TableCell align='left'>{row.id}</TableCell>
@@ -108,4 +85,4 @@ const ProductsPage = () => {
   )
 }
 
-export default withReducer(config.reducerKey, reducers)(ProductsPage)
+export default withReducer(config.moduleKey, reducers)(ProductsPage)
