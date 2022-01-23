@@ -4,11 +4,18 @@ import * as Api from 'api/productsApi'
 import { closedLoadingDialog, openedLoadingDialog } from 'store/app/dialogSlice'
 import { showErrorMessage, showSuccessMessage } from 'store/app/messageSlice'
 
-const reducerName = `${config.reducerKey}/products`
+const reducerKey = `products`
+const reducerName = `${config.moduleKey}/${reducerKey}`
 
 const productsAdapter = createEntityAdapter()
 
+// #region Initial State
+
 const initialState = productsAdapter.getInitialState({})
+
+// #endregion
+
+// #region Thunk functions
 
 export const getProducts = createAsyncThunk(`${reducerName}/getProducts`, async (args, { dispatch }) => {
   try {
@@ -61,6 +68,10 @@ export const updateProduct = createAsyncThunk(`${reducerName}/updateProduct`, as
   }
 })
 
+// #endregion
+
+// #region Reducer
+
 const productsSlice = createSlice({
   name: reducerName,
   initialState,
@@ -76,8 +87,20 @@ const productsSlice = createSlice({
   }
 })
 
+// #endregion
+
+// #region Actions
+
 export const { resetProducts } = productsSlice.actions
 
-export const { selectAll: selectAllProducts } = productsAdapter.getSelectors(state => state[config.reducerKey].products)
+// #endregion
+
+// #region  Selectors
+
+export const { selectAll: selectAllProducts } = productsAdapter.getSelectors(
+  state => state[config.moduleKey][reducerKey]
+)
+
+// #endregion
 
 export default productsSlice.reducer
