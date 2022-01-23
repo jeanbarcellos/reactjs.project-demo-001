@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow'
 import Tooltip from '@mui/material/Tooltip'
 import DeleteDialog from 'components/dialog/DeleteDialog'
 import OrderedTableHead from 'components/table/OrderedTableHead'
+import TablePagination from 'components/table/TablePagination'
 import useTable from 'hooks/useTable'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
@@ -27,7 +28,8 @@ const initialStateDeleteDialog = { open: false, data: null }
 const CategoriesTable = props => {
   const { data, onDelete, onEdit } = props
 
-  const { order, handleRequestSort, getFilteredData } = useTable(0, 5, 'name')
+  const { order, handleRequestSort, getFilteredData, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } =
+    useTable(0, 5, 'name')
 
   const [deleteDialog, setDeleteDialog] = useState(initialStateDeleteDialog)
 
@@ -99,6 +101,13 @@ const CategoriesTable = props => {
             ))}
           </TableBody>
         </Table>
+        <TablePagination
+          count={data.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       </TableContainer>
 
       <DeleteDialog
