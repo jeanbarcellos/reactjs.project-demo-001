@@ -51,7 +51,6 @@ const CategoriesPage = () => {
       content={
         <div>
           <CategoryForm className='mb-24' form={form} handleChange={handleChange} onSave={onSave} onCancel={onCancel} />
-
           <CategoriesTable data={categories} onEdit={onEdit} onDelete={onDelete} />
         </div>
       }

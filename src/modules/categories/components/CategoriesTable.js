@@ -14,6 +14,7 @@ import useTable from 'hooks/useTable'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { toStringDateTime } from 'utils/date'
+import { createStateClosedDialog, createStateOpenedDialog } from 'utils/dialog'
 
 const header = [
   { id: 'id', label: 'ID' },
@@ -25,29 +26,27 @@ const header = [
 
 const sortMap = {
   id: o => parseInt(o.id, 10),
-  names: o => o.name,
+  name: o => o.name,
   createdAt: o => o.createdAt,
   updatedAt: o => o.updatedAt
 }
-
-const initialStateDeleteDialog = { open: false, data: null }
 
 const CategoriesTable = props => {
   const { data, onDelete, onEdit } = props
 
   const { order, handleRequestSort, getFilteredData, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } =
-    useTable(0, 5, 'name')
+    useTable(0, 5, 'id')
 
-  const [deleteDialog, setDeleteDialog] = useState(initialStateDeleteDialog)
+  const [deleteDialog, setDeleteDialog] = useState(createStateClosedDialog())
 
   const handleEdit = category => () => onEdit(category)
 
-  const handleDelete = category => () => setDeleteDialog({ open: true, data: category })
+  const handleDelete = category => () => setDeleteDialog(createStateOpenedDialog(category))
 
-  const handleCloseDleteDialog = () => setDeleteDialog(initialStateDeleteDialog)
+  const handleCloseDleteDialog = () => setDeleteDialog(createStateClosedDialog())
 
   const handleSubmitDeleteDialog = () => {
-    setDeleteDialog(initialStateDeleteDialog)
+    setDeleteDialog(createStateClosedDialog())
     onDelete(deleteDialog.data)
   }
 
