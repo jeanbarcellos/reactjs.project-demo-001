@@ -4,15 +4,18 @@ import { closedLoadingDialog, openedLoadingDialog } from 'store/app/dialogSlice'
 import { showErrorMessage, showSuccessMessage } from 'store/app/messageSlice'
 import * as Api from 'api/categoriesApi'
 
-const reducerName = `${config.reducerKey}/categories`
+const reducerKey = `categories`
+const reducerName = `${config.moduleKey}/${reducerKey}`
 
 const categoriesAdapter = createEntityAdapter()
 
-// Initial State
+// #region Initial State
 
 const initialState = categoriesAdapter.getInitialState({})
 
-// Thunk functions
+// #endregion
+
+// #region Thunk functions
 
 export const getCategories = createAsyncThunk(`${reducerName}/getCategories`, async (args, { dispatch }) => {
   try {
@@ -82,7 +85,9 @@ export const deleteCategory = createAsyncThunk(`${reducerName}/deleteCategory`, 
   }
 })
 
-// Reducer
+// #endregion
+
+// #region Reducer
 
 const categoriesSlice = createSlice({
   name: reducerName,
@@ -100,14 +105,20 @@ const categoriesSlice = createSlice({
   }
 })
 
-// Actions
+// #endregion
+
+// #region Actions
 
 export const { resetCategories } = categoriesSlice.actions
 
-// Selectors
+// #endregion
+
+// #region  Selectors
 
 export const { selectAll: selectAllCategories } = categoriesAdapter.getSelectors(
-  state => state[config.reducerKey].categories
+  state => state[config.moduleKey][reducerKey]
 )
+
+// #endregion
 
 export default categoriesSlice.reducer

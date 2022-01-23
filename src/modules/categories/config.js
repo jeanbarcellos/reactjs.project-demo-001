@@ -1,6 +1,10 @@
+import routes from './routes'
+
 const config = {
   // Chave padrão
-  reducerKey: 'categoriesModule'
+  moduleKey: 'categoriesModule',
+
+  routes: routes
 }
 
 export default config

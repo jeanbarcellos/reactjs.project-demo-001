@@ -59,4 +59,4 @@ const CategoriesPage = () => {
   )
 }
 
-export default withReducer(config.reducerKey, reducers)(CategoriesPage)
+export default withReducer(config.moduleKey, reducers)(CategoriesPage)
