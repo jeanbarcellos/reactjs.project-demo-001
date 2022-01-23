@@ -27,15 +27,29 @@ const useTable = (
     setPage(0)
   }
 
-  const getFilteredData = (rows, iteratee = null) => {
+  const getFilteredData = (rows, sortMap = null) => {
     const start = page * rowsPerPage
     const end = start + rowsPerPage
 
-    if (iteratee) {
-      return _.orderBy(rows, [iteratee], [order.direction]).slice(start, end)
+    if (sortMap) {
+      return _.orderBy(rows, [getIteratee(sortMap)], [order.direction]).slice(start, end)
     }
 
     return rows.slice(start, end)
+  }
+
+  const getIteratee = sortMap => {
+    if (typeof sortMap === 'function') {
+      return o => {
+        return sortMap[order.id] || o[order.id]
+      }
+    }
+
+    if (typeof sortMap === 'object') {
+      return sortMap[order.id] || (o => o[order.id])
+    }
+
+    return null
   }
 
   return {
