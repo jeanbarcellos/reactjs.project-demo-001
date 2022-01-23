@@ -17,19 +17,12 @@ import { toStringDateTime } from 'utils/date'
 import { createStateClosedDialog, createStateOpenedDialog } from 'utils/dialog'
 
 const header = [
-  { id: 'id', label: 'ID' },
+  { id: 'id', label: 'ID', sort: o => parseInt(o.id, 10) },
   { id: 'name', label: 'Name' },
   { id: 'createdAt', label: 'Created At' },
   { id: 'updatedAt', label: 'Updated At' },
   { id: 'actions', label: '', sort: false }
 ]
-
-const sortMap = {
-  id: o => parseInt(o.id, 10),
-  name: o => o.name,
-  createdAt: o => o.createdAt,
-  updatedAt: o => o.updatedAt
-}
 
 const CategoriesTable = props => {
   const { data, onDelete, onEdit } = props
@@ -63,7 +56,7 @@ const CategoriesTable = props => {
                 </TableCell>
               </TableRow>
             )}
-            {getFilteredData(data, sortMap).map(row => (
+            {getFilteredData(header, data).map(row => (
               <TableRow key={row.id}>
                 <TableCell align='left' className='w-48'>
                   {row.id}

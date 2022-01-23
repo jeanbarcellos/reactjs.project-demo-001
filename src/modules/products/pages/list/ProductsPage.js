@@ -16,8 +16,8 @@ import useTable from 'hooks/useTable'
 import { toStringDateTime } from 'utils/date'
 
 const header = [
-  { id: 'id', label: 'ID' },
-  { id: 'categoryId', label: 'Category' },
+  { id: 'id', label: 'ID', sort: o => parseInt(o.id, 10) },
+  { id: 'categoryId', label: 'Category', sort: o => o.categoryId },
   { id: 'name', label: 'Name' },
   { id: 'description', label: 'Description' },
   { id: 'active', label: 'active' },
@@ -27,18 +27,6 @@ const header = [
   { id: 'updatedAt', label: 'Updated At' },
   { id: 'actions', label: '', sort: false }
 ]
-
-const sortMap = {
-  id: o => parseInt(o.id, 10),
-  categoryId: o => o.categoryId,
-  name: o => o.name,
-  description: o => o.description,
-  active: o => o.active,
-  quantity: o => o.quantity,
-  value: o => o.value,
-  createdAt: o => o.createdAt,
-  updatedAt: o => o.updatedAt
-}
 
 const ProductsPage = () => {
   const dispatch = useDispatch()
@@ -61,7 +49,7 @@ const ProductsPage = () => {
           <Table size='medium'>
             <OrderedTableHead data={header} order={order} onRequestSort={handleRequestSort} />
             <TableBody>
-              {getFilteredData(products, sortMap).map(row => {
+              {getFilteredData(header, products).map(row => {
                 return (
                   <TableRow hover key={row.id}>
                     <TableCell align='left'>{row.id}</TableCell>

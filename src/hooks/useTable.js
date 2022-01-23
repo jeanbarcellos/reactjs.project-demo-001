@@ -27,7 +27,7 @@ const useTable = (
     setPage(0)
   }
 
-  const getFilteredData = (rows, sortMap = null) => {
+  const getFilteredDataOld = (rows, sortMap = null) => {
     const start = page * rowsPerPage
     const end = start + rowsPerPage
 
@@ -52,6 +52,29 @@ const useTable = (
     return null
   }
 
+  const getFilteredData = (header, rows) => {
+    const start = page * rowsPerPage
+    const end = start + rowsPerPage
+
+    const sortMap = extractSortMapFromHeader(header)
+
+    if (sortMap) {
+      return _.orderBy(rows, [getIteratee(sortMap)], [order.direction]).slice(start, end)
+    }
+
+    return rows.slice(start, end)
+  }
+
+  const extractSortMapFromHeader = header => {
+    let map = {}
+    header.forEach(element => {
+      if (element.sort !== false) {
+        map[element.id] = element.sort
+      }
+    })
+    return map
+  }
+
   return {
     order,
     page,
@@ -59,7 +82,8 @@ const useTable = (
     handleRequestSort,
     handleChangePage,
     handleChangeRowsPerPage,
-    getFilteredData
+    getFilteredData,
+    getFilteredDataOld
   }
 }
 
