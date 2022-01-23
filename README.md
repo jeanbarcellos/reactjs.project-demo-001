@@ -60,3 +60,17 @@ root/
   tailwind.config.js            # Configuração do Tailing
   yarn.lock                     #
 ```
+
+## Docker
+
+Geração da imagem
+
+```
+docker build -t project-101/frontend-reactjs .
+```
+
+Execução da imagem
+
+```
+docker run -d -p 3000:3000 --name project-101/frontend-reactjs project-101/frontend-reactjs
+```
