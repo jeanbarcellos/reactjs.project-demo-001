@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
 import layoutConfig from 'config/layoutConfig'
 import navigationConfig from 'config/navigationConfig'
-import * as React from 'react'
+import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 const Drawer = styled(MuiDrawer, {
@@ -73,4 +73,4 @@ const Navigation = props => {
   )
 }
 
-export default Navigation
+export default memo(Navigation)

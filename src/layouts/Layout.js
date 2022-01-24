@@ -1,9 +1,13 @@
 import { styled } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
+import layoutConfig from 'config/layoutConfig'
 import Main from 'layouts/Main'
-import * as React from 'react'
-import Header from './Header'
+import React, { memo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectNavbarOpen, toggledNavbar } from 'store/app/navbarSlice'
+import Footer from './Footer'
 import Navigation from './Navigation'
+import Toolbar from './Toolbar'
 
 const Root = styled('div')(({ theme, config }) => ({
   backgroundColor: theme => (theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900]),
@@ -12,19 +16,23 @@ const Root = styled('div')(({ theme, config }) => ({
 }))
 
 const Layout = () => {
-  const [open, setOpen] = React.useState(true)
-  const toggleDrawer = () => {
-    setOpen(!open)
-  }
+  const dispatch = useDispatch()
+
+  const open = useSelector(selectNavbarOpen)
+
+  const toggleDrawer = () => dispatch(toggledNavbar())
 
   return (
     <Root id='layout-root'>
       <CssBaseline />
-      <Header id='layout-header' open={open} toggleDrawer={toggleDrawer} />
-      <Navigation id='layout-navigation' open={open} toggleDrawer={toggleDrawer} />
+      {layoutConfig.toolbar.display && <Toolbar id='layout-toolbar' open={open} toggleDrawer={toggleDrawer} />}
+      {layoutConfig.navbar.display && <Navigation id='layout-navbar' open={open} toggleDrawer={toggleDrawer} />}
+
       <Main />
+
+      {layoutConfig.footer.display && <Footer id='layout-footer' />}
     </Root>
   )
 }
 
-export default Layout
+export default memo(Layout)

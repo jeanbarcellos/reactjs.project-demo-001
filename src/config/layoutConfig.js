@@ -4,11 +4,16 @@ const layoutConfig = {
   },
 
   toolbar: {
-    // keep right padding when drawer closed
-    paddingRight: 24
+    display: true,
+    paddingRight: 24 // keep right padding when drawer closed
+  },
+
+  navbar: {
+    display: true
   },
 
   footer: {
+    display: true,
     height: 29
   }
 }

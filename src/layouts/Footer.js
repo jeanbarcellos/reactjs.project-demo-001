@@ -5,7 +5,8 @@ import layoutConfig from 'config/layoutConfig'
 
 const Root = styled('div')(({ theme, config }) => ({
   position: 'fixed',
-  width: `calc(100% - ${layoutConfig.drawer.width}px)`,
+  // width: `calc(100% - ${layoutConfig.drawer.width}px)`,
+  width: `100%`,
   height: `${layoutConfig.footer.height}px`,
   background: '#FFFFFF',
   bottom: 0,

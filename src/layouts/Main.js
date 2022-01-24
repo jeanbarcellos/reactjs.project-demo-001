@@ -6,10 +6,9 @@ import Loading from 'components/loading/Loading'
 import AppMessage from 'components/message/AppMessage'
 import layoutConfig from 'config/layoutConfig'
 import routesConfig from 'config/routesConfig'
-import * as React from 'react'
+import React from 'react'
 import { Suspense } from 'react'
 import { useRoutes } from 'react-router'
-import Footer from './Footer'
 
 const Content = styled('main')(({ theme, config }) => ({
   display: 'flex',
@@ -21,21 +20,19 @@ const Content = styled('main')(({ theme, config }) => ({
   paddingBottom: `${layoutConfig.footer.height}px`
 }))
 
-const Toolbar = styled(MuiToolbar)(({ theme, config }) => ({
+const AppBarSpacer = styled(MuiToolbar)(({ theme, config }) => ({
   ...theme.mixins.toolbar
 }))
 
 const Main = () => {
   return (
     <Content id='layout-main'>
-      <Toolbar id='asdasd' />
+      {layoutConfig.toolbar.display && <AppBarSpacer id='layout-toolbar-space' />}
       <AppDialog />
       <AppLoadingDialog />
       <AppMessage />
 
       <Suspense fallback={<Loading />}>{useRoutes(routesConfig)}</Suspense>
-
-      <Footer id='layout-footer' />
     </Content>
   )
 }

@@ -4,10 +4,10 @@ import MuiAppBar from '@mui/material/AppBar'
 import Badge from '@mui/material/Badge'
 import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
-import Toolbar from '@mui/material/Toolbar'
+import MuiToolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import layoutConfig from 'config/layoutConfig'
-import * as React from 'react'
+import React, { memo } from 'react'
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: prop => prop !== 'open'
@@ -27,12 +27,12 @@ const AppBar = styled(MuiAppBar, {
   })
 }))
 
-const Header = props => {
+const Toolbar = props => {
   const { open, toggleDrawer } = props
 
   return (
     <AppBar position='absolute' open={open}>
-      <Toolbar
+      <MuiToolbar
         sx={{
           pr: '24px' // keep right padding when drawer closed
         }}
@@ -57,9 +57,9 @@ const Header = props => {
             <NotificationsIcon />
           </Badge>
         </IconButton>
-      </Toolbar>
+      </MuiToolbar>
     </AppBar>
   )
 }
 
-export default Header
+export default memo(Toolbar)
