@@ -8,7 +8,7 @@ import layoutConfig from 'config/layoutConfig'
 import routesConfig from 'config/routesConfig'
 import * as React from 'react'
 import { Suspense } from 'react'
-import { renderRoutes } from 'react-router-config'
+import { useRoutes } from 'react-router'
 import Footer from './Footer'
 
 const Content = styled('main')(({ theme, config }) => ({
@@ -33,7 +33,7 @@ const Main = () => {
       <AppLoadingDialog />
       <AppMessage />
 
-      <Suspense fallback={<Loading />}>{renderRoutes(routesConfig)}</Suspense>
+      <Suspense fallback={<Loading />}>{useRoutes(routesConfig)}</Suspense>
 
       <Footer id='layout-footer' />
     </Content>

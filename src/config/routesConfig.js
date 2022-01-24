@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { default as dashboardRoutes, indexRoute as dashboardIndexRoute } from 'modules/dashboard/routes'
 import { default as categoryRoutes } from 'modules/categories/routes'
@@ -14,8 +14,7 @@ import { default as errorsRoutes, error404Route } from 'modules/errors/routes'
 const routesConfig = [
   {
     path: '/',
-    component: () => <Redirect to={dashboardIndexRoute()} />,
-    exact: true
+    element: <Navigate to={dashboardIndexRoute()} />
   },
   ...dashboardRoutes,
   ...categoryRoutes,
@@ -27,7 +26,8 @@ const routesConfig = [
   ...counterRoutes,
   ...errorsRoutes,
   {
-    component: () => <Redirect to={error404Route()} />
+    path: '*',
+    element: <Navigate to={error404Route()} />
   }
 ]
 

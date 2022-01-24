@@ -1,15 +1,16 @@
-import React from 'react'
+import { lazy } from 'react'
 
 const ROUTE_URL = '/customers'
+
+export const indexRoute = () => ROUTE_URL
+
+const CustomersPage = lazy(() => import('./pages/list'))
 
 const routes = [
   {
     path: ROUTE_URL,
-    component: React.lazy(() => import('./pages/list')),
-    exact: true
+    element: <CustomersPage />
   }
 ]
-
-export const indexRoute = () => ROUTE_URL
 
 export default routes
