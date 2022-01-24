@@ -1,5 +1,5 @@
 {
-  "name": "reactjs.project-demo",
+  "name": "project-101.reactjs",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -36,12 +36,10 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
+},
   "browserslist": {
     "production": [
       ">0.2%",
