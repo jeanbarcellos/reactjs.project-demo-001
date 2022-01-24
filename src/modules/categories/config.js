@@ -4,6 +4,8 @@ const config = {
   // Chave padrão
   moduleKey: 'categoriesModule',
 
+  layout: {},
+
   routes: routes
 }
 
