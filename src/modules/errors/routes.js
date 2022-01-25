@@ -19,11 +19,11 @@ const routes = [
   },
   {
     path: `${ROUTE_URL}/404`,
-    element: Error404Page
+    element: <Error404Page />
   },
   {
     path: `${ROUTE_URL}/500`,
-    element: Error500Page
+    element: <Error500Page />
   }
 ]
 
