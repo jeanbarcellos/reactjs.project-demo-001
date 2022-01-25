@@ -4,11 +4,11 @@ import AppDialog from 'components/dialog/AppDialog'
 import AppLoadingDialog from 'components/dialog/AppLoadingDialog'
 import Loading from 'components/loading/Loading'
 import AppMessage from 'components/message/AppMessage'
-import layoutConfig from 'config/layoutConfig'
 import routesConfig from 'config/routesConfig'
-import React from 'react'
-import { Suspense } from 'react'
+import React, { Suspense } from 'react'
+import { useSelector } from 'react-redux'
 import { useRoutes } from 'react-router'
+import { selectLayoutConfig } from 'store/app/layoutSlice'
 
 const Content = styled('main')(({ theme, config }) => ({
   display: 'flex',
@@ -17,7 +17,7 @@ const Content = styled('main')(({ theme, config }) => ({
   flexGrow: 1,
   height: '100vh',
   overflow: 'auto',
-  paddingBottom: `${layoutConfig.footer.height}px`
+  paddingBottom: `${config.footer.height}px`
 }))
 
 const AppBarSpacer = styled(MuiToolbar)(({ theme, config }) => ({
@@ -25,8 +25,10 @@ const AppBarSpacer = styled(MuiToolbar)(({ theme, config }) => ({
 }))
 
 const Main = () => {
+  const layoutConfig = useSelector(selectLayoutConfig)
+
   return (
-    <Content id='layout-main'>
+    <Content id='layout-main' config={layoutConfig}>
       {layoutConfig.toolbar.display && <AppBarSpacer id='layout-toolbar-space' />}
       <AppDialog />
       <AppLoadingDialog />

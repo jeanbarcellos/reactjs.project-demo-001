@@ -6,20 +6,21 @@ import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
 import MuiToolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import layoutConfig from 'config/layoutConfig'
 import React, { memo } from 'react'
+import { useSelector } from 'react-redux'
+import { selectLayoutConfig } from 'store/app/layoutSlice'
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: prop => prop !== 'open'
-})(({ theme, open }) => ({
+})(({ theme, open, config }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
   }),
   ...(open && {
-    marginLeft: layoutConfig.drawer.width,
-    width: `calc(100% - ${layoutConfig.drawer.width}px)`,
+    marginLeft: config.drawer.width,
+    width: `calc(100% - ${config.drawer.width}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -30,8 +31,10 @@ const AppBar = styled(MuiAppBar, {
 const Toolbar = props => {
   const { open, toggleDrawer } = props
 
+  const layoutConfig = useSelector(selectLayoutConfig)
+
   return (
-    <AppBar position='absolute' open={open}>
+    <AppBar position='absolute' open={open} config={layoutConfig}>
       <MuiToolbar
         sx={{
           pr: '24px' // keep right padding when drawer closed

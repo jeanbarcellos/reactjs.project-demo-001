@@ -9,18 +9,19 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
-import layoutConfig from 'config/layoutConfig'
 import navigationConfig from 'config/navigationConfig'
 import React, { memo } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { selectLayoutConfig } from 'store/app/layoutSlice'
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: prop => prop !== 'open'
-})(({ theme, open }) => ({
+})(({ theme, open, config }) => ({
   '& .MuiDrawer-paper': {
     position: 'relative',
     whiteSpace: 'nowrap',
-    width: layoutConfig.drawer.width,
+    width: config.drawer.width,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -43,8 +44,10 @@ const Drawer = styled(MuiDrawer, {
 const Navigation = props => {
   const { open, toggleDrawer } = props
 
+  const layoutConfig = useSelector(selectLayoutConfig)
+
   return (
-    <Drawer variant='permanent' open={open}>
+    <Drawer variant='permanent' open={open} config={layoutConfig}>
       <Toolbar
         sx={{
           display: 'flex',

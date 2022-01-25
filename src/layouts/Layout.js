@@ -1,9 +1,9 @@
 import { styled } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
-import layoutConfig from 'config/layoutConfig'
 import Main from 'layouts/Main'
 import React, { memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { selectLayoutConfig } from 'store/app/layoutSlice'
 import { selectNavbarOpen, toggledNavbar } from 'store/app/navbarSlice'
 import Footer from './Footer'
 import Navigation from './Navigation'
@@ -18,6 +18,7 @@ const Root = styled('div')(({ theme, config }) => ({
 const Layout = () => {
   const dispatch = useDispatch()
 
+  const layoutConfig = useSelector(selectLayoutConfig)
   const open = useSelector(selectNavbarOpen)
 
   const toggleDrawer = () => dispatch(toggledNavbar())
