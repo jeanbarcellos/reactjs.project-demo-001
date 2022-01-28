@@ -1,22 +1,11 @@
+import { layoutPublic } from 'utils/layout'
 import routes from './routes'
 
 const config = {
   // Chave padrão
   moduleKey: 'authModule',
 
-  layout: {
-    toolbar: {
-      display: true
-    },
-
-    navbar: {
-      display: true
-    },
-
-    footer: {
-      display: true
-    }
-  },
+  layout: layoutPublic(),
 
   routes: routes
 }
