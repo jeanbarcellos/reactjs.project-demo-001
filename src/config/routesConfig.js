@@ -7,9 +7,6 @@ import modulesConfig from './modulesConfig'
 
 const modulesRoutes = generateRoutesFromModuleConfig(modulesConfig)
 
-console.log('modulesRoutes')
-console.table(modulesRoutes)
-
 const routesConfig = [
   {
     path: '/',
