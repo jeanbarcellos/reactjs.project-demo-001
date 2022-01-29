@@ -4,12 +4,30 @@ import config from '../config'
 const reducerKey = `login`
 const reducerName = `${config.moduleKey}/${reducerKey}`
 
-const initialState = {}
+export const submitLogin = formModel => async dispatch => {
+  console.log(formModel)
+
+  dispatch('formModwl', loginSuccess())
+}
+
+const initialState = {
+  success: false,
+  error: null
+}
 
 const loginSlice = createSlice({
   name: reducerName,
   initialState,
-  reducers: {},
+  reducers: {
+    loginSucess: (state, action) => {
+      state.success = true
+      state.error = null
+    },
+    loginError: (state, action) => {
+      state.success = false
+      state.error = action.payload
+    }
+  },
   extraReducers: {}
 })
 
