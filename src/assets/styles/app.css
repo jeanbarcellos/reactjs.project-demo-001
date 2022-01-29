@@ -1,6 +1,9 @@
 /* Normalize.css */
 @import-normalize;
 
+/* Material-UI */
+@material-ui/styles
+
 /* Tailwind CSS */
 @tailwind base;
 @tailwind components;
