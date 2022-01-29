@@ -19,3 +19,31 @@ export const errorObject = (code, message, errors, headers) => {
     errors: errors || []
   }
 }
+
+export const mock = (success, seconds) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (success) {
+        resolve()
+      } else {
+        reject({ message: 'Error' })
+      }
+    }, seconds * timeout)
+  })
+}
+
+export const mockResponseSuccess = (data, code = 200) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(successObject(code, data))
+    }, 5000)
+  })
+}
+
+export const mockResponseError = (code = 400, message = null, errors = []) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(errorObject(code, message, errors))
+    }, 5000)
+  })
+}
