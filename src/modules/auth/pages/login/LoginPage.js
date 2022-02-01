@@ -10,19 +10,6 @@ import LoginForm from '../../components/LoginForm'
 import config from '../../config'
 import reducers from '../../store'
 
-const Copyright = props => {
-  return (
-    <Typography variant='body2' color='text.secondary' align='center' {...props}>
-      {'Copyright © '}
-      <Link color='inherit' href='https://jeanbarcellos.com.br/'>
-        Jean Barcellos
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
-
 const LoginPage = () => {
   return (
     <Container component='main' maxWidth='xs'>
@@ -47,4 +34,18 @@ const LoginPage = () => {
     </Container>
   )
 }
+
+const Copyright = props => {
+  return (
+    <Typography variant='body2' color='text.secondary' align='center' {...props}>
+      {'Copyright © '}
+      <Link color='inherit' href='https://jeanbarcellos.com.br/'>
+        Jean Barcellos
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  )
+}
+
 export default withReducer(config.moduleKey, reducers)(LoginPage)

@@ -1,3 +1,4 @@
+import history from '@history'
 import { createSlice } from '@reduxjs/toolkit'
 import * as Api from 'api/authApi'
 import { setUser } from 'store/app/auth/userSlice'
@@ -17,6 +18,8 @@ export const submitLogin = formModel => async dispatch => {
     dispatch(setUser(response.data.user))
     dispatch(loginSuccess())
     dispatch(showSuccessMessage('Login realizado com sucesso! Redirecionando ...'))
+
+    history.push('/')
 
     return response.data
   } catch (error) {
