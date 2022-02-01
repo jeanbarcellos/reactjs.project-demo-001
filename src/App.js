@@ -1,11 +1,12 @@
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
+import history from '@history'
 import { ThemeProvider } from '@mui/material'
+import BrowserRouter from 'components/router/BrowserRouter'
 import themeConfig from 'config/themeConfig'
 import LayoutManager from 'layouts/LayoutManager'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
 import store from './store'
 
 export const muiCache = createCache({
@@ -18,9 +19,9 @@ const App = () => {
     <Provider store={store}>
       <CacheProvider value={muiCache}>
         <ThemeProvider theme={themeConfig}>
-          <Router>
+          <BrowserRouter history={history}>
             <LayoutManager />
-          </Router>
+          </BrowserRouter>
         </ThemeProvider>
       </CacheProvider>
     </Provider>
