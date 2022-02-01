@@ -36,7 +36,7 @@ export const mockResponseSuccess = (data, code = 200) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(successObject(code, data))
-    }, 5000)
+    }, 3000)
   })
 }
 
@@ -44,6 +44,6 @@ export const mockResponseError = (code = 400, message = null, errors = []) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       reject(errorObject(code, message, errors))
-    }, 5000)
+    }, 3000)
   })
 }
