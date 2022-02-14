@@ -14,13 +14,14 @@ import { resetProducts, getProducts, selectAllProducts } from '../../store/produ
 import OrderedTableHead from 'components/table/OrderedTableHead'
 import useTable from 'hooks/useTable'
 import { toStringDateTime } from 'utils/date'
+import { toStringCurrency } from 'utils/format'
 
 const header = [
-  { id: 'id', label: 'ID', sort: o => parseInt(o.id, 10) },
+  // { id: 'id', label: 'ID', sort: o => parseInt(o.id, 10) },
   { id: 'categoryId', label: 'Category', sort: o => o.categoryId },
   { id: 'name', label: 'Name' },
   { id: 'description', label: 'Description' },
-  { id: 'active', label: 'active' },
+  { id: 'active', label: 'Active' },
   { id: 'quantity', label: 'Quantity' },
   { id: 'value', label: 'Value' },
   { id: 'createdAt', label: 'Created At' },
@@ -52,13 +53,13 @@ const ProductsPage = () => {
               {getFilteredData(header, products).map(row => {
                 return (
                   <TableRow hover key={row.id}>
-                    <TableCell align='left'>{row.id}</TableCell>
+                    {/* <TableCell align='left'>{row.id}</TableCell> */}
                     <TableCell align='left'>{row.categoryId}</TableCell>
                     <TableCell align='left'>{row.name}</TableCell>
                     <TableCell align='left'>{row.description}</TableCell>
                     <TableCell align='left'>{row.active ? 'Active' : 'Inactive'}</TableCell>
-                    <TableCell align='left'>{row.quantity}</TableCell>
-                    <TableCell align='left'>{row.value}</TableCell>
+                    <TableCell align='right'>{row.quantity}</TableCell>
+                    <TableCell align='right'>{toStringCurrency(row.value)}</TableCell>
                     <TableCell align='left'>{toStringDateTime(row.createdAt)}</TableCell>
                     <TableCell align='left'>{toStringDateTime(row.updatedAt)}</TableCell>
                     <TableCell align='left'>-</TableCell>
