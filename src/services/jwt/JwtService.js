@@ -38,10 +38,15 @@ class JwtService {
           resolve(response.data)
         })
         .catch(error => {
-          this.logout()
+          console.log(error)
+          this._resetSession()
           reject(error)
         })
     })
+  }
+
+  logout = () => {
+    this._resetSession()
   }
 
   handleAuthentication = () => {
@@ -58,7 +63,7 @@ class JwtService {
       return
     }
 
-    this._setSession(null)
+    this._resetSession()
     eventEmitter.emit(JwtServiceEvents.AutoLogout, 'accessToken expired')
   }
 
