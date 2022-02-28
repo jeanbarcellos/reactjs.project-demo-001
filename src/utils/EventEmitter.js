@@ -29,3 +29,7 @@ class EventEmitter {
     )
   }
 }
+
+const instance = new EventEmitter()
+
+export default instance
