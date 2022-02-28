@@ -2,6 +2,8 @@ import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import history from '@history'
 import { ThemeProvider } from '@mui/material'
+import Authentication from 'components/auth/Authentication'
+import Authorization from 'components/auth/Authorization'
 import BrowserRouter from 'components/router/BrowserRouter'
 import themeConfig from 'config/themeConfig'
 import LayoutManager from 'layouts/LayoutManager'
@@ -20,7 +22,11 @@ const App = () => {
       <CacheProvider value={muiCache}>
         <ThemeProvider theme={themeConfig}>
           <BrowserRouter history={history}>
-            <LayoutManager />
+            <Authentication>
+              <Authorization>
+                <LayoutManager />
+              </Authorization>
+            </Authentication>
           </BrowserRouter>
         </ThemeProvider>
       </CacheProvider>
