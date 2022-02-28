@@ -3,9 +3,9 @@ import { mockResponseError, mockResponseSuccess } from 'services/http/utils'
 
 const ENDPOINT = '/auth'
 
-export const authLogin2 = model => client.post(`${ENDPOINT}/login`, model)
+export const authLogin = model => client.post(`${ENDPOINT}/login`, model)
 
-export const authLogin = model => {
+export const authLoginFake = model => {
   const response = {
     user: { id: 1, login: 'jeanbarcellos@teste.com.br' }
   }
