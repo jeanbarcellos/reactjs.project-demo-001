@@ -40,19 +40,21 @@ class Authentication extends Component {
         resolve()
       })
 
-      eventEmitter.on(JwtServiceEvents.AutoLogout, () => {
-        this.props.showMessage({ message: JwtServiceEvents.AutoLogout, severity: severity.INFO })
+      eventEmitter.on(JwtServiceEvents.AutoLogout, message => {
+        if (message) {
+          this.props.showMessage({ message })
+        }
+
+        this.props.logout()
+
         resolve()
       })
 
       eventEmitter.on(JwtServiceEvents.NoAccessToken, () => {
-        this.props.showMessage({ message: JwtServiceEvents.NoAccessToken, severity: severity.INFO })
         resolve()
       })
 
       jwtService.init()
-
-      console.log('eventEmitter', eventEmitter)
 
       return resolve()
     })
