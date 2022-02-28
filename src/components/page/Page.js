@@ -13,9 +13,6 @@ const Page = props => {
   // const classes = useStyles()
   const { classes } = props
 
-  console.log('props', props)
-  console.log('classes', classes)
-
   return (
     <div id='page-root' className={clsx(classes.root, props.className)}>
       {props.header && (
