@@ -4,6 +4,7 @@ import dialogSlice from './dialogSlice'
 import layoutSlice from './layoutSlice'
 import messageSlice from './messageSlice'
 import navbarSlice from './navbarSlice'
+import navigationSlice from './navigationSlice'
 
 // Aqui serão adicionados os reducers referentes ao sistema em geral
 const appReducers = combineReducers({
@@ -11,6 +12,7 @@ const appReducers = combineReducers({
   dialog: dialogSlice,
   message: messageSlice,
   layout: layoutSlice,
+  navigation: navigationSlice,
   auth
 })
 
