@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import { Component } from 'react'
 
-const Authorization = props => {
-  const [loaded] = useState(true)
+class Authorization extends Component {
+  state = {
+    loaded: true
+  }
 
-  return loaded ? <>{props.children}</> : <div></div>
+  render() {
+    return this.state.loaded ? <>{this.props.children}</> : <div></div>
+  }
 }
 
 export default Authorization
