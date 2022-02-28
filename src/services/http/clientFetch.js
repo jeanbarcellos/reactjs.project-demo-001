@@ -20,4 +20,12 @@ const clientFetch = async (endpoint, body = null, customConfig = {}) => {
   }
 }
 
+export const addDefaultHeader = (key, value) => {
+  conosle.log('Not implemented')
+}
+
+export const removeDefaultHeader = key => {
+  conosle.log('Not implemented')
+}
+
 export default clientFetch

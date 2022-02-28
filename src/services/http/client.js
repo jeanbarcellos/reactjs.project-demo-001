@@ -1,7 +1,7 @@
 // A tiny wrapper around fetch(), borrowed from
 // https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
 
-import clientAxios from './clientAxios'
+import clientAxios, { addDefaultHeader, removeDefaultHeader } from './clientAxios'
 import apiConfig from 'config/apiConfig'
 
 export async function client(endpoint, { body, ...customConfig } = {}) {
@@ -39,3 +39,7 @@ client.patch = function (endpoint, body, customConfig = {}) {
 client.delete = function (endpoint, body, customConfig = {}) {
   return client(endpoint, { ...customConfig, method: 'DELETE', body })
 }
+
+client.addDefaultHeader = (key, value) => addDefaultHeader(key, value)
+
+client.removeDefaultHeader = key => removeDefaultHeader(key)

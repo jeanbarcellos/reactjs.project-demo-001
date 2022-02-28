@@ -14,6 +14,14 @@ const clientAxios = async (endpoint, body = null, customConfig = {}) => {
     .catch(error => Promise.reject(resolveError(error)))
 }
 
+export const addDefaultHeader = (key, value) => {
+  axios.defaults.headers.common[key] = value
+}
+
+export const removeDefaultHeader = key => {
+  delete axios.defaults.headers.common[key]
+}
+
 const resolveResponse = response => successObject(response.status, response.data, response.headers)
 
 const resolveError = error => {
