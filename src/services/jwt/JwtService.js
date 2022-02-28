@@ -38,7 +38,6 @@ class JwtService {
           resolve(response.data)
         })
         .catch(error => {
-          console.log(error)
           this._resetSession()
           reject(error)
         })
