@@ -15,7 +15,8 @@ export const submitLogin = formModel => async dispatch => {
 
     const response = await Api.authLogin(formModel)
 
-    dispatch(setUser(response.data.user))
+    // dispatch(setUser(response.data.user))
+    dispatch(setUser(response.data))
     dispatch(loginSuccess())
     dispatch(showSuccessMessage('Login realizado com sucesso! Redirecionando ...'))
 
@@ -23,8 +24,9 @@ export const submitLogin = formModel => async dispatch => {
 
     return response.data
   } catch (error) {
-    dispatch(showErrorMessage(error.message || 'Erro ao realizar login'))
-    dispatch(loginError(error.message || 'Erro ao realizar login'))
+    const message = error.message || 'Erro ao realizar login'
+    dispatch(showErrorMessage(message))
+    dispatch(loginError(message))
   } finally {
     dispatch(closedLoadingDialog())
   }
