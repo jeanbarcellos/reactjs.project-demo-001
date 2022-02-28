@@ -1,6 +1,6 @@
 import history from '@history'
 import { createSlice } from '@reduxjs/toolkit'
-import * as Api from 'api/authApi'
+import jwtService from 'services/jwt/JwtService'
 import { setUser } from 'store/app/auth/userSlice'
 import { closedLoadingDialog, openedLoadingDialog } from 'store/app/dialogSlice'
 import { showErrorMessage, showSuccessMessage } from 'store/app/messageSlice'
@@ -13,16 +13,15 @@ export const submitLogin = formModel => async dispatch => {
   try {
     dispatch(openedLoadingDialog())
 
-    const response = await Api.authLogin(formModel)
+    const data = await jwtService.login(formModel.email, formModel.password)
 
-    // dispatch(setUser(response.data.user))
-    dispatch(setUser(response.data))
+    dispatch(setUser(data))
     dispatch(loginSuccess())
     dispatch(showSuccessMessage('Login realizado com sucesso! Redirecionando ...'))
 
     history.push('/')
 
-    return response.data
+    return data
   } catch (error) {
     const message = error.message || 'Erro ao realizar login'
     dispatch(showErrorMessage(message))
