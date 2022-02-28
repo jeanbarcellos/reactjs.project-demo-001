@@ -9,11 +9,11 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
-import navigationConfig from 'config/navigationConfig'
 import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { selectLayoutConfig } from 'store/app/layoutSlice'
+import { selectNavigation } from 'store/app/navigationSlice'
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: prop => prop !== 'open'
@@ -45,6 +45,7 @@ const Navigation = props => {
   const { open, toggleDrawer } = props
 
   const layoutConfig = useSelector(selectLayoutConfig)
+  const navigation = useSelector(selectNavigation)
 
   return (
     <Drawer variant='permanent' open={open} config={layoutConfig}>
@@ -63,7 +64,7 @@ const Navigation = props => {
 
       <Divider />
       <List>
-        {navigationConfig.map(item => (
+        {navigation.map(item => (
           <ListItem button key={item.id} component={Link} to={item.url}>
             <ListItemIcon>
               <Icon>{item.icon}</Icon>
