@@ -10,12 +10,16 @@ const modulesRoutes = generateRoutesFromModuleConfig(modulesConfig)
 const routesConfig = [
   {
     path: '/',
-    element: <Navigate to={dashboardIndexRoute()} />
+    element: <Navigate to={dashboardIndexRoute()} />,
+    auth: true,
+    role: []
   },
   ...modulesRoutes,
   {
     path: '*',
-    element: <Navigate to={error404Route()} />
+    element: <Navigate to={error404Route()} />,
+    auth: true,
+    role: []
   }
 ]
 
