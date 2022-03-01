@@ -10,9 +10,9 @@ const LoginPage = lazy(() => import('./pages/login'))
 
 const routes = [
   {
-    // path: ROUTE_URL,
-    path: `/login`,
-    element: <LoginPage />
+    path: loginRoute(),
+    element: <LoginPage />,
+    auth: false
   }
 ]
 

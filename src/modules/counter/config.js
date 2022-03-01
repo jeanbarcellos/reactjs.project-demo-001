@@ -7,7 +7,9 @@ const config = {
 
   layout: layoutPublic(),
 
-  routes: routes
+  routes: routes,
+
+  auth: false
 }
 
 export default config
