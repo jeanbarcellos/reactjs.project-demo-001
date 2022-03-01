@@ -16,8 +16,6 @@ const UserMenu = props => {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
 
-  console.log('UserMenu', user)
-
   const [userMenu, setUserMenu] = useState(null)
 
   const userMenuClick = event => {

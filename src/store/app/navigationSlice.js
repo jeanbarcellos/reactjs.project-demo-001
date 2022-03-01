@@ -42,12 +42,7 @@ export const { selectAll: selectNavigationAll } = navigationAdapter.getSelectors
 
 export const selectNavigation = createSelector(
   [selectNavigationAll, selectIsAuthenticated, selectUserRoles],
-  (navigation, auth, userRoles) => {
-    console.log('auth', auth)
-    console.log('userRoles', userRoles)
-
-    return getNavigation(navigation, auth, userRoles)
-  }
+  (navigation, auth, userRoles) => getNavigation(navigation, auth, userRoles)
 )
 
 // #endregion
