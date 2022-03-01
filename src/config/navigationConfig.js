@@ -15,6 +15,20 @@ const navigationConfig = [
     role: null
   },
   {
+    id: 'roles',
+    icon: 'label',
+    text: 'Roles',
+    url: dashboardIndexRoute(),
+    role: Roles.ROOT
+  },
+  {
+    id: 'users',
+    icon: 'group',
+    text: 'Usuários',
+    url: dashboardIndexRoute(),
+    role: Roles.ROOT
+  },
+  {
     id: 'categories',
     icon: 'turned_in',
     text: 'Categories',
@@ -33,7 +47,7 @@ const navigationConfig = [
     icon: 'layers',
     text: 'Examples & Tests',
     url: examplesIndexRoute(),
-    auth: true
+    auth: false
   },
   {
     id: 'counter',
