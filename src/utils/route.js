@@ -1,3 +1,17 @@
+import { isBoolean } from 'utils'
+import { createArrayRoles } from './security'
+
+const AUTH_DEFAULT = true
+
+export const createRoute = (path, element, auth = true, role = null) => {
+  return {
+    path: path,
+    element: element,
+    auth: auth,
+    role: role
+  }
+}
+
 export const generateRoutesFromModuleConfig = configs => {
   let routes = []
 
@@ -16,9 +30,25 @@ const generateRouteFromModuleConfig = config => {
 
     return {
       ...route,
-      layout
+      layout,
+      auth: generateRouteAuth(config, route),
+      role: generageRouteRoles(config, route)
     }
   })
 
   return routes
+}
+
+const generateRouteAuth = (config, route) => {
+  const moduleAuth = isBoolean(config.auth) ? config.auth : AUTH_DEFAULT
+  const routeAuth = isBoolean(route.auth) ? route.auth : moduleAuth
+
+  return routeAuth
+}
+
+const generageRouteRoles = (config, route) => {
+  const moduleRoles = createArrayRoles(config.role)
+  const routeRoles = createArrayRoles(route.role)
+
+  return routeRoles.length > 0 ? routeRoles : moduleRoles
 }
