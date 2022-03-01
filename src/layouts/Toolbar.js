@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography'
 import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 import { selectLayoutConfig } from 'store/app/layoutSlice'
+import UserMenu from './UserMenu'
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: prop => prop !== 'open'
@@ -52,14 +53,15 @@ const Toolbar = props => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography component='h1' variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
-          Dashboard
-        </Typography>
+        <Typography component='h1' variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}></Typography>
+
         <IconButton color='inherit'>
           <Badge badgeContent={4} color='secondary'>
             <NotificationsIcon />
           </Badge>
         </IconButton>
+
+        <UserMenu />
       </MuiToolbar>
     </AppBar>
   )
