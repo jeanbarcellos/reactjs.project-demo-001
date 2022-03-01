@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSelector, createSlice } from '@reduxjs/toolkit'
 
 const reducerName = `app/auth/user`
 
@@ -32,7 +32,13 @@ export const { resetUser, setUser } = userSlice.actions
 
 // Selectors
 
-export const selectUser = state => state.app.auth.user
+export const selectUser = state => state.app.auth.user.data
+
+export const selectUserRoles = state => state.app.auth.user.data?.roles || []
+
+export const selectUserToken = state => state.app.auth.user.data?.token
+
+export const selectIsAuthenticated = createSelector([selectUser], user => user !== null)
 
 // Reducer
 
