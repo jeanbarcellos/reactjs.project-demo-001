@@ -1,4 +1,6 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit'
+import jwtService, { JwtServiceEvents } from 'services/jwt/JwtService'
+import history from '@history'
 
 const reducerName = `app/auth/user`
 
@@ -29,6 +31,14 @@ const userSlice = createSlice({
 // Actions
 
 export const { resetUser, setUser } = userSlice.actions
+
+export const logoutUser = () => async (dispatch, getState) => {
+  jwtService.logout()
+
+  history.push('/')
+
+  return dispatch(resetUser())
+}
 
 // Selectors
 
