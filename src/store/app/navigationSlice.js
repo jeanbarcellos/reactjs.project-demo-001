@@ -1,7 +1,8 @@
 import { createEntityAdapter, createSelector, createSlice } from '@reduxjs/toolkit'
 import navigationConfig from 'config/navigationConfig'
-import _ from 'lodash'
-import { isArray, isBoolean, isString } from 'utils'
+import { isBoolean } from 'utils'
+import { createArrayRoles, hasPermission } from 'utils/security'
+import { selectIsAuthenticated, selectUserRoles } from './auth/userSlice'
 
 const reducerKey = `navigation`
 const reducerName = `app/${reducerKey}`
@@ -39,24 +40,24 @@ export const { setNavigation, resetNavigation } = navigationSlice.actions
 
 export const { selectAll: selectNavigationAll } = navigationAdapter.getSelectors(state => state.app[reducerKey])
 
-export const selectNavigation = createSelector([selectNavigationAll], navigation => {
-  return getNavigation(selectNavigationAll)
-})
+export const selectNavigation = createSelector(
+  [selectNavigationAll, selectIsAuthenticated, selectUserRoles],
+  (navigation, auth, userRoles) => {
+    console.log('auth', auth)
+    console.log('userRoles', userRoles)
+
+    return getNavigation(navigation, auth, userRoles)
+  }
+)
 
 // #endregion
 
 // #region functions
 
-const getNavigation = () => {
-  const navigation = []
-
-  for (let i = 0; i < navigationConfig.length; i += 1) {
-    const navItem = navigationConfig[i]
-    navigation.push(createNavItem(navItem))
-  }
-
-  return navigation
-}
+const getNavigation = (navItems = [], auth = false, userRoles = []) =>
+  navItems
+    .map(navItem => createNavItem(navItem))
+    .filter(navItemMap => showNavItemPermission(navItemMap, auth, userRoles))
 
 const createNavItem = navItem => {
   return {
@@ -65,19 +66,20 @@ const createNavItem = navItem => {
     icon: navItem.icon || null,
     url: navItem.url || null,
     auth: isBoolean(navItem.auth) ? navItem.auth : true,
-    role: createRolesNavItem(navItem.role)
+    role: createArrayRoles(navItem.role)
   }
 }
 
-const createRolesNavItem = role => {
-  let roles = []
-  if (isString(role)) {
-    roles.push(role)
+const showNavItemPermission = (navItem, auth = false, userRoles = []) => {
+  if (!navItem.auth) {
+    return true
   }
-  if (isArray(role)) {
-    _.merge(roles, role)
+
+  if (navItem.auth && !auth) {
+    return false
   }
-  return roles
+
+  return hasPermission(navItem.role, userRoles)
 }
 
 // #endregion
