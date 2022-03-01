@@ -36,7 +36,7 @@ const UserMenu = props => {
             <Typography component='span' className='font-semibold flex'>
               {user?.name || 'Anônimo'}
             </Typography>
-            <Typography className='text-11 font-medium' color='textSecondary'>
+            <Typography className='text-11 font-medium lowercase' color='textSecondary'>
               {user?.email || 'anonimo@hotmail.com'}
             </Typography>
           </div>
