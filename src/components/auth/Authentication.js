@@ -17,7 +17,7 @@ class Authentication extends Component {
     })
   }
 
-  authCheck = () => {
+  authCheck = () =>
     new Promise(resolve => {
       eventEmitter.on(JwtServiceEvents.AutoLogin, () => {
         this.props.showMessage({ message: 'Logging in with JWT', severity: severity.INFO })
@@ -27,17 +27,15 @@ class Authentication extends Component {
           .then(user => {
             this.props.setUser(user)
 
-            this.props.showMessage({ message: 'Logged in with JWT', severity: severity.SUCCESS })
-
             resolve()
+
+            this.props.showMessage({ message: 'Logged in with JWT', severity: severity.SUCCESS })
           })
           .catch(error => {
             this.props.showMessage({ message: error.message, severity: severity.ERROR })
 
             resolve()
           })
-
-        resolve()
       })
 
       eventEmitter.on(JwtServiceEvents.AutoLogout, message => {
@@ -56,12 +54,11 @@ class Authentication extends Component {
 
       jwtService.init()
 
-      return resolve()
+      return Promise.resolve()
     })
-  }
 
   render() {
-    return this.state.loaded ? <>{this.props.children}</> : <div></div>
+    return this.state.loaded ? <>{this.props.children}</> : <div>Carregando ...</div>
   }
 }
 
