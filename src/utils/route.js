@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router'
 import { isBoolean } from 'utils'
-import { createArrayRoles } from './security'
+import { createArrayRoles, hasPermission } from './security'
 
 const AUTH_DEFAULT = true
 
@@ -55,4 +55,20 @@ const generageRouteRoles = (config, route) => {
   const routeRoles = createArrayRoles(route.role)
 
   return routeRoles.length > 0 ? routeRoles : moduleRoles
+}
+
+export const checkHasPermissionRouter = (route, userAuthenticated, userRoles = []) => {
+  if (!route.auth) {
+    return true
+  }
+
+  if (route.auth && !userAuthenticated) {
+    return false
+  }
+
+  if (route.role.length === 0) {
+    return true
+  }
+
+  return hasPermission(route.role, userRoles)
 }
