@@ -57,18 +57,5 @@ const generageRouteRoles = (config, route) => {
   return routeRoles.length > 0 ? routeRoles : moduleRoles
 }
 
-export const checkHasPermissionRouter = (route, userAuthenticated, userRoles = []) => {
-  if (!route.auth) {
-    return true
-  }
-
-  if (route.auth && !userAuthenticated) {
-    return false
-  }
-
-  if (route.role.length === 0) {
-    return true
-  }
-
-  return hasPermission(route.role, userRoles)
-}
+export const checkHasPermissionRouter = (route, userAuthenticated, userRoles = []) =>
+  hasAuth(route.auth, route.role, userAuthenticated, userRoles)
