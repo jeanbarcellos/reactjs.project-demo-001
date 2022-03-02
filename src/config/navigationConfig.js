@@ -11,8 +11,7 @@ const navigationConfig = [
     id: 'dashboard',
     icon: 'dashboard',
     text: 'Dashboard',
-    url: dashboardIndexRoute(),
-    role: null
+    url: dashboardIndexRoute()
   },
   {
     id: 'roles',
@@ -39,8 +38,8 @@ const navigationConfig = [
     id: 'products',
     icon: 'photo_library',
     text: 'Products',
-    url: productsIndexRoute(),
-    role: [Roles.DEFAULT]
+    url: productsIndexRoute()
+    // role: [Roles.ROOT]
   },
   {
     id: 'integrations',
