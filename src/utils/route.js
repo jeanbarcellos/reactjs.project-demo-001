@@ -1,9 +1,10 @@
+import { Navigate } from 'react-router'
 import { isBoolean } from 'utils'
 import { createArrayRoles } from './security'
 
 const AUTH_DEFAULT = true
 
-export const createRoute = (path, element, auth = true, role = null) => {
+export const createRoute = (path, element, auth = true, role = []) => {
   return {
     path: path,
     element: element,
@@ -11,6 +12,9 @@ export const createRoute = (path, element, auth = true, role = null) => {
     role: role
   }
 }
+
+export const createRedirectRoute = (path, to, auth = true, role = []) =>
+  createRoute(path, <Navigate to={to} />, auth, role)
 
 export const generateRoutesFromModuleConfig = configs => {
   let routes = []
