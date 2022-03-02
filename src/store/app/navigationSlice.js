@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSelector, createSlice } from '@reduxjs/toolkit'
 import navigationConfig from 'config/navigationConfig'
 import { isBoolean } from 'utils'
-import { createArrayRoles, hasPermission } from 'utils/security'
+import { createArrayRoles, hasAuth } from 'utils/security'
 import { selectIsAuthenticated, selectUserRoles } from './auth/userSlice'
 
 const reducerKey = `navigation`
@@ -49,10 +49,10 @@ export const selectNavigation = createSelector(
 
 // #region functions
 
-const getNavigation = (navItems = [], auth = false, userRoles = []) =>
+const getNavigation = (navItems = [], userAuthenticated = false, userRoles = []) =>
   navItems
     .map(navItem => createNavItem(navItem))
-    .filter(navItemMap => showNavItemPermission(navItemMap, auth, userRoles))
+    .filter(navItemMap => showNavItemPermission(navItemMap, userAuthenticated, userRoles))
 
 const createNavItem = navItem => {
   return {
@@ -65,17 +65,8 @@ const createNavItem = navItem => {
   }
 }
 
-const showNavItemPermission = (navItem, auth = false, userRoles = []) => {
-  if (!navItem.auth) {
-    return true
-  }
-
-  if (navItem.auth && !auth) {
-    return false
-  }
-
-  return hasPermission(navItem.role, userRoles)
-}
+const showNavItemPermission = (navItem, userAuthenticated = false, userRoles = []) =>
+  hasAuth(navItem.auth, navItem.role, userAuthenticated, userRoles)
 
 // #endregion
 
