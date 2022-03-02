@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import Roles from 'services/auth/Roles'
 
 const ROUTE_URL = '/products'
 
@@ -9,7 +10,8 @@ const ProductsPage = lazy(() => import('./pages/list'))
 const routes = [
   {
     path: ROUTE_URL,
-    element: <ProductsPage />
+    element: <ProductsPage />,
+    role: Roles.ROOT
   }
 ]
 
