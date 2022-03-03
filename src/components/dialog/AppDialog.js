@@ -13,7 +13,7 @@ const AppDialog = () => {
     dispatch(closedDialog())
   }
 
-  return <Dialog open={open} onClose={handleClose} {...options} />
+  return <Dialog {...options} open={open} onClose={handleClose} classes={{ paper: 'rounded-8' }} />
 }
 
 export default AppDialog
