@@ -5,6 +5,7 @@ import { indexRoute as dashboardIndexRoute } from 'modules/dashboard/routes'
 import { indexRoute as examplesIndexRoute } from 'modules/examples/routes'
 import { indexRoute as productsIndexRoute } from 'modules/products/routes'
 import { indexRoute as roleIndexRoute } from 'modules/roles/routes'
+import { indexRoute as userIndexRoute } from 'modules/users/routes'
 import Roles from 'services/auth/Roles'
 
 const navigationConfig = [
@@ -25,7 +26,7 @@ const navigationConfig = [
     id: 'users',
     icon: 'group',
     text: 'Usuários',
-    url: dashboardIndexRoute(),
+    url: userIndexRoute(),
     role: Roles.ROOT
   },
   {
