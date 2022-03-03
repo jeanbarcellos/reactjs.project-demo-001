@@ -6,11 +6,7 @@ import _ from 'lodash'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-
-const defaultValues = {
-  name: '',
-  description: ''
-}
+import RoleModel from '../models/RoleModel'
 
 const schema = yup.object().shape({
   name: yup.string().required('You must enter a name'),
@@ -18,6 +14,8 @@ const schema = yup.object().shape({
 })
 
 const RoleForm = props => {
+  const defaultValues = _.merge({}, RoleModel(), props.data)
+
   const { control, formState, handleSubmit } = useForm({
     mode: 'onChange',
     defaultValues,
