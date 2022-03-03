@@ -10,7 +10,7 @@ const UserPage = () => {
   return (
     <Page
       classes={{
-        root: 'p-24 text-justify'
+        root: 'p-24'
       }}
       header={<PageTile>Users</PageTile>}
       content={<PageContentDemo />}

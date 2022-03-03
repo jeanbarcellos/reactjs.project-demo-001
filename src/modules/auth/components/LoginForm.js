@@ -26,7 +26,7 @@ const schema = yup.object().shape({
     .min(4, 'A senha é muito curta - deve ter no mínimo 4 caracteres.')
 })
 
-const LoginPage = () => {
+const LoginForm = () => {
   const dispatch = useDispatch()
 
   const { control, formState, handleSubmit } = useForm({
@@ -109,4 +109,4 @@ const LoginPage = () => {
     </Box>
   )
 }
-export default LoginPage
+export default LoginForm

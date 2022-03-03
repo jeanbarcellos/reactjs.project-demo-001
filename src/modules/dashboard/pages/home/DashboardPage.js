@@ -1,13 +1,17 @@
-import React from 'react'
-import PageTile from 'components/page/PageTile'
+import Page from 'components/page/Page'
 import PageContentDemo from 'components/page/PageContentDemo'
+import PageTile from 'components/page/PageTile'
+import React from 'react'
 
 const DashboardPage = () => {
   return (
-    <div className='p-24 text-justify'>
-      <PageTile>Dashboard</PageTile>
-      <PageContentDemo />
-    </div>
+    <Page
+      classes={{
+        root: 'p-24'
+      }}
+      header={<PageTile>Dashboard</PageTile>}
+      content={<PageContentDemo />}
+    />
   )
 }
 
