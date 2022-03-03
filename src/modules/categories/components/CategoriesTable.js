@@ -36,7 +36,7 @@ const CategoriesTable = props => {
 
   const handleDelete = category => () => setDeleteDialog(createStateOpenedDialog(category))
 
-  const handleCloseDleteDialog = () => setDeleteDialog(createStateClosedDialog())
+  const handleCloseDeleteDialog = () => setDeleteDialog(createStateClosedDialog())
 
   const handleSubmitDeleteDialog = () => {
     setDeleteDialog(createStateClosedDialog())
@@ -88,7 +88,7 @@ const CategoriesTable = props => {
 
       <DeleteDialog
         open={deleteDialog.open}
-        onClose={handleCloseDleteDialog}
+        onClose={handleCloseDeleteDialog}
         onSubmit={handleSubmitDeleteDialog}
         description={`Esta ação excluirá permanentemente a categoria ${
           deleteDialog.data ? '"' + deleteDialog.data.name + '"' : ''
