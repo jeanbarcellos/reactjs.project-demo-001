@@ -1,16 +1,8 @@
 import clsx from 'clsx'
 import * as PropTypes from 'prop-types'
 import React from 'react'
-// import { makeStyles } from 'tss-react/mui'
-
-// const useStyles = makeStyles()(theme => ({
-//   root: {},
-//   header: {},
-//   content: {}
-// }))
 
 const Page = props => {
-  // const classes = useStyles()
   const { classes } = props
 
   return (
@@ -34,6 +26,8 @@ Page.propTypes = {
   content: PropTypes.node
 }
 
-Page.defaultProps = {}
+Page.defaultProps = {
+  classes: {}
+}
 
 export default Page
