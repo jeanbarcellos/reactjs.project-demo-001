@@ -1,6 +1,8 @@
 import history from '@history'
 import withRouter from 'components/router/withRouter'
 import routes from 'config/routesConfig'
+import { loginRoute } from 'modules/auth/routes'
+import { error403Route } from 'modules/errors/routes'
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { matchRoutes } from 'react-router'
@@ -46,9 +48,9 @@ class Authorization extends Component {
     const { pathname } = location
 
     if (!userAuthenticated) {
-      history.push('/login')
+      history.push(loginRoute())
     } else {
-      history.push('/error/403')
+      history.push(error403Route())
     }
   }
 

@@ -5,6 +5,8 @@ const ROUTE_URL = '/error'
 
 export const indexRoute = () => ROUTE_URL
 
+export const error403Route = () => `${ROUTE_URL}/403`
+
 export const error404Route = () => `${ROUTE_URL}/404`
 
 export const error505Route = () => `${ROUTE_URL}/505`
