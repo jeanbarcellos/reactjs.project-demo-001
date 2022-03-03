@@ -4,6 +4,7 @@ import { indexRoute as counterIndexRoute } from 'modules/counter/routes'
 import { indexRoute as dashboardIndexRoute } from 'modules/dashboard/routes'
 import { indexRoute as examplesIndexRoute } from 'modules/examples/routes'
 import { indexRoute as productsIndexRoute } from 'modules/products/routes'
+import { indexRoute as roleIndexRoute } from 'modules/roles/routes'
 import Roles from 'services/auth/Roles'
 
 const navigationConfig = [
@@ -17,7 +18,7 @@ const navigationConfig = [
     id: 'roles',
     icon: 'label',
     text: 'Roles',
-    url: dashboardIndexRoute(),
+    url: roleIndexRoute(),
     role: Roles.ROOT
   },
   {
