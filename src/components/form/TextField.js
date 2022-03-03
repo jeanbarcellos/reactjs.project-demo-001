@@ -5,9 +5,7 @@ import { Controller } from 'react-hook-form'
 import withForm from './withForm'
 
 const TextField = props => {
-  console.log('TextField.props', props)
-
-  const importedProps = _.pick(props, [
+  const inputProps = _.pick(props, [
     'autoComplete',
     'autoFocus',
     'children',
@@ -28,6 +26,8 @@ const TextField = props => {
     'onFocus',
     'placeholder',
     'required',
+    'rows',
+    'rowsMax',
     'type',
     'variant'
   ])
@@ -39,7 +39,7 @@ const TextField = props => {
       render={({ field }) => (
         <MuiTextField
           {...field}
-          {...importedProps}
+          {...inputProps}
           className='mt-8 mb-16'
           id={props.id}
           label={props.label}

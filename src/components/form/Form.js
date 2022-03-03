@@ -1,7 +1,7 @@
-import React from 'react'
 import Box from '@mui/material/Box'
-import { FormProvider } from 'react-hook-form'
 import _ from 'lodash'
+import React from 'react'
+import { FormProvider } from 'react-hook-form'
 
 const Form = props => {
   const providerProps = _.pick(props, [
@@ -23,10 +23,6 @@ const Form = props => {
     'errors'
   ])
   const formProps = _.pick(props, ['noValidate', 'onSubmit', 'children'])
-
-  console.log('props', props)
-  console.log('providerProps', providerProps)
-  console.log('formProps', formProps)
 
   return (
     <FormProvider {...providerProps}>
