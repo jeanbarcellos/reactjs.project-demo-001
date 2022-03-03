@@ -10,11 +10,11 @@ const initialState = {}
 
 // #endregion
 
-// #region Thunk functions
+// #region Thunk Functions
 
 // #endregion
 
-// #region Reducer
+// #region Slice
 
 const usersSlice = createSlice({
   name: reducerName,
@@ -29,7 +29,7 @@ const usersSlice = createSlice({
 
 // #endregion
 
-// #region  Selectors
+// #region Selectors
 
 // #endregion
 

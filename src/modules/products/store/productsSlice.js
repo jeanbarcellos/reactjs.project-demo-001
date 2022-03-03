@@ -15,7 +15,7 @@ const initialState = productsAdapter.getInitialState({})
 
 // #endregion
 
-// #region Thunk functions
+// #region Thunk Functions
 
 export const getProducts = createAsyncThunk(`${reducerName}/getProducts`, async (args, { dispatch }) => {
   try {
@@ -70,7 +70,7 @@ export const updateProduct = createAsyncThunk(`${reducerName}/updateProduct`, as
 
 // #endregion
 
-// #region Reducer
+// #region Slice
 
 const productsSlice = createSlice({
   name: reducerName,
@@ -95,7 +95,7 @@ export const { resetProducts } = productsSlice.actions
 
 // #endregion
 
-// #region  Selectors
+// #region Selectors
 
 export const { selectAll: selectAllProducts } = productsAdapter.getSelectors(
   state => state[config.moduleKey][reducerKey]

@@ -11,11 +11,13 @@ const rolesAdapter = createEntityAdapter()
 
 // #region Initial State
 
-const initialState = rolesAdapter.getInitialState({})
+const initialState = rolesAdapter.getInitialState({
+  loaded: false
+})
 
 // #endregion
 
-// #region Thunk functions
+// #region Thunk Functions
 
 export const getRoles = createAsyncThunk(`${reducerName}/getRoles`, async (args, { dispatch }) => {
   try {
@@ -87,18 +89,26 @@ export const deleteRole = createAsyncThunk(`${reducerName}/deleteRole`, async (r
 
 // #endregion
 
-// #region Reducer
+// #region Slice
 
 const rolesSlice = createSlice({
   name: reducerName,
   initialState: initialState,
   reducers: {
     resetRoles(state, action) {
+      state.loaded = false
       rolesAdapter.removeAll(state)
     }
   },
   extraReducers: {
-    [getRoles.fulfilled]: rolesAdapter.setAll,
+    [getRoles.pending]: (state, action) => {
+      rolesAdapter.removeAll(state)
+      state.loaded = false
+    },
+    [getRoles.fulfilled]: (state, action) => {
+      rolesAdapter.setAll(state, action.payload)
+      state.loaded = true
+    },
     [insertRole.fulfilled]: rolesAdapter.addOne,
     [updateRole.fulfilled]: rolesAdapter.upsertOne,
     [deleteRole.fulfilled]: rolesAdapter.removeOne
@@ -113,9 +123,11 @@ export const { resetRoles } = rolesSlice.actions
 
 // #endregion
 
-// #region  Selectors
+// #region Selectors
 
 export const { selectAll: selectAllRoles } = rolesAdapter.getSelectors(state => state[config.moduleKey][reducerKey])
+
+export const selectLoaded = state => state[config.moduleKey][reducerKey].loaded
 
 // #endregion
 

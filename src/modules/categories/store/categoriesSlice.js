@@ -87,7 +87,7 @@ export const deleteCategory = createAsyncThunk(`${reducerName}/deleteCategory`, 
 
 // #endregion
 
-// #region Reducer
+// #region Slice
 
 const categoriesSlice = createSlice({
   name: reducerName,
@@ -113,7 +113,7 @@ export const { resetCategories } = categoriesSlice.actions
 
 // #endregion
 
-// #region  Selectors
+// #region Selectors
 
 export const { selectAll: selectAllCategories } = categoriesAdapter.getSelectors(
   state => state[config.moduleKey][reducerKey]

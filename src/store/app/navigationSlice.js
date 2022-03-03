@@ -30,7 +30,7 @@ const navigationSlice = createSlice({
 
 // #endregion
 
-// #region actions
+// #region Actions
 
 export const { setNavigation, resetNavigation } = navigationSlice.actions
 
@@ -47,7 +47,7 @@ export const selectNavigation = createSelector(
 
 // #endregion
 
-// #region functions
+// #region Functions
 
 const getNavigation = (navItems = [], userAuthenticated = false, userRoles = []) =>
   navItems
