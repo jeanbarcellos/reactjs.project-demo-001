@@ -19,10 +19,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import withReducer from 'store/withReducer'
 import { toStringDateTime } from 'utils/date'
 import { createStateClosedDialog, createStateOpenedDialog } from 'utils/dialog'
+import RoleDialog from '../../components/RoleDialog'
 import config from '../../config'
 import reducers from '../../store'
-import { deleteRole, getRoles, resetRoles, selectAllRoles } from '../../store/rolesSlice'
-import RoleDialog from '../../components/RoleDialog'
+import { deleteRole, getRoles, resetRoles, selectAllRoles, upsertRole } from '../../store/rolesSlice'
 
 const header = [
   { id: 'name', label: 'Name' },
@@ -65,6 +65,19 @@ const RolesPage = () => {
     setDeleteDialog(createStateOpenedDialog(role))
   }
 
+  /// *************
+
+  const handleCloseRoleDialog = () => {
+    console.log('handleCloseRoleDialog')
+    setRoleDialog(createStateClosedDialog())
+  }
+
+  const handleSubmitRoleDialog = role => {
+    console.log('handleSubmitRoleDialog', role)
+    setRoleDialog(createStateClosedDialog())
+    dispatch(upsertRole(role))
+  }
+
   const handleCloseDeleteDialog = () => {
     console.log('handleCloseDeleteDialog')
     setDeleteDialog(createStateClosedDialog())
@@ -73,7 +86,7 @@ const RolesPage = () => {
   const handleSubmitDeleteDialog = () => {
     console.log('handleSubmitDeleteDialog', deleteDialog.data)
     setDeleteDialog(createStateClosedDialog())
-    // dispatch(deleteRole(deleteDialog.data))
+    dispatch(deleteRole(deleteDialog.data))
   }
 
   return (
@@ -138,17 +151,7 @@ const RolesPage = () => {
             }" do sistema!`}
           />
 
-          <RoleDialog
-            {...roleDialog}
-            onClose={() => {
-              console.log('RoleDialog.onClose')
-              setRoleDialog(createStateClosedDialog())
-            }}
-            onSubmit={role => {
-              console.log('RoleDialog.onSubmit', role)
-              setRoleDialog(createStateClosedDialog())
-            }}
-          />
+          <RoleDialog {...roleDialog} onClose={handleCloseRoleDialog} onSubmit={handleSubmitRoleDialog} />
         </>
       }
     />

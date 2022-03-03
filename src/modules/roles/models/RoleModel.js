@@ -7,6 +7,7 @@ const RoleModel = data => {
     id: item.id || null,
     name: item.name || '',
     description: item.description || '',
+    childRoles: item.childRoles ? item.childRoles.map(role => role.id) : [],
     createdAt: item.createdAt || null,
     updatedAt: item.updatedAt || null
   })

@@ -70,6 +70,23 @@ export const updateRole = createAsyncThunk(`${reducerName}/updateRole`, async (r
   }
 })
 
+export const upsertRole = createAsyncThunk(`${reducerName}/upsertRole`, async (role, { dispatch }) => {
+  try {
+    dispatch(openedLoadingDialog())
+
+    const response = await (role.id === null ? Api.insertRole(role) : Api.updateRole(role))
+
+    dispatch(showSuccessMessage('Role save successfully!'))
+
+    return response.data
+  } catch (error) {
+    dispatch(showErrorMessage(error.message || 'Error editing role!'))
+    throw error
+  } finally {
+    dispatch(closedLoadingDialog())
+  }
+})
+
 export const deleteRole = createAsyncThunk(`${reducerName}/deleteRole`, async (role, { dispatch }) => {
   try {
     dispatch(openedLoadingDialog())
@@ -111,6 +128,7 @@ const rolesSlice = createSlice({
     },
     [insertRole.fulfilled]: rolesAdapter.addOne,
     [updateRole.fulfilled]: rolesAdapter.upsertOne,
+    [upsertRole.fulfilled]: rolesAdapter.upsertOne,
     [deleteRole.fulfilled]: rolesAdapter.removeOne
   }
 })

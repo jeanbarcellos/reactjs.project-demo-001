@@ -14,7 +14,9 @@ const schema = yup.object().shape({
 })
 
 const RoleForm = props => {
-  const defaultValues = _.merge({}, RoleModel(), props.data)
+  const { data, onSubmit } = props
+
+  const defaultValues = _.merge({}, RoleModel(), data)
 
   const { control, formState, handleSubmit } = useForm({
     mode: 'onChange',
@@ -25,10 +27,6 @@ const RoleForm = props => {
   const { isValid, dirtyFields, errors } = formState
 
   const canBeSubmitted = () => _.isEmpty(dirtyFields) || !isValid
-
-  const onSubmit = model => {
-    props.onSubmit(model)
-  }
 
   return (
     <Form name='loginForm' noValidate onSubmit={handleSubmit(onSubmit)} control={control} errors={errors}>
