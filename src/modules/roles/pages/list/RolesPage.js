@@ -22,6 +22,7 @@ import { createStateClosedDialog, createStateOpenedDialog } from 'utils/dialog'
 import config from '../../config'
 import reducers from '../../store'
 import { deleteRole, getRoles, resetRoles, selectAllRoles } from '../../store/rolesSlice'
+import RoleDialog from '../../components/RoleDialog'
 
 const header = [
   { id: 'name', label: 'Name' },
@@ -36,7 +37,10 @@ const RolesPage = () => {
 
   const roles = useSelector(selectAllRoles)
 
+  const [roleDialog, setRoleDialog] = useState(createStateClosedDialog())
   const [deleteDialog, setDeleteDialog] = useState(createStateClosedDialog())
+
+  console.log('roleDialog', roleDialog)
 
   const { order, handleRequestSort, getFilteredData, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } =
     useTable(0, 5, 'name')
@@ -47,11 +51,13 @@ const RolesPage = () => {
   }, [dispatch])
 
   const handleCreate = () => {
-    console.log('handleCreate - Not implemented')
+    console.log('handleCreate')
+    setRoleDialog(createStateOpenedDialog())
   }
 
   const handleEdit = role => () => {
-    console.log('handleEdit - Not implemented')
+    console.log('handleEdit')
+    setRoleDialog(createStateOpenedDialog(role))
   }
 
   const handleDelete = role => () => {
@@ -130,6 +136,18 @@ const RolesPage = () => {
             description={`Esta ação excluirá permanentemente o perfil "${
               deleteDialog.data ? deleteDialog.data.name : ''
             }" do sistema!`}
+          />
+
+          <RoleDialog
+            {...roleDialog}
+            onClose={() => {
+              console.log('RoleDialog.onClose')
+              setRoleDialog(createStateClosedDialog())
+            }}
+            onSubmit={role => {
+              console.log('RoleDialog.onSubmit', role)
+              setRoleDialog(createStateClosedDialog())
+            }}
           />
         </>
       }
