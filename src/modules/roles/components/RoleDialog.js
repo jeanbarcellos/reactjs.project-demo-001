@@ -2,24 +2,29 @@ import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogAppBar from 'components/dialog/DialogAppBar'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeDialog, selectDialog, upsertRole } from '../store/rolesSlice'
 import RoleForm from './RoleForm'
 
 const RoleDialog = props => {
-  const { open, data, onClose, onSubmit } = props
+  const dispatch = useDispatch()
 
-  const handleSubmit = model => {
-    onSubmit(model)
+  const dialog = useSelector(selectDialog)
+
+  const onClose = () => {
+    dispatch(closeDialog())
   }
 
-  const handleClose = () => {
-    onClose()
+  const onSubmit = model => {
+    dispatch(closeDialog())
+    dispatch(upsertRole(model))
   }
 
   return (
-    <Dialog open={open} classes={{ paper: 'rounded-8' }} fullWidth maxWidth='sm'>
-      <DialogAppBar title={data ? 'Alterar perfil' : 'Cadastrar perfil'} onClose={handleClose} />
+    <Dialog open={dialog.open} classes={{ paper: 'rounded-8' }} fullWidth maxWidth='sm'>
+      <DialogAppBar title={dialog.data ? 'Alterar perfil' : 'Cadastrar perfil'} onClose={onClose} />
       <DialogContent>
-        <RoleForm data={data} onSubmit={handleSubmit} />
+        <RoleForm data={dialog.data} onSubmit={onSubmit} />
       </DialogContent>
     </Dialog>
   )

@@ -22,7 +22,7 @@ import { createStateClosedDialog, createStateOpenedDialog } from 'utils/dialog'
 import RoleDialog from '../../components/RoleDialog'
 import config from '../../config'
 import reducers from '../../store'
-import { deleteRole, getRoles, resetRoles, selectAllRoles, upsertRole } from '../../store/rolesSlice'
+import { deleteRole, getRoles, openDialog, resetRoles, selectAllRoles } from '../../store/rolesSlice'
 
 const header = [
   { id: 'name', label: 'Name' },
@@ -37,10 +37,7 @@ const RolesPage = () => {
 
   const roles = useSelector(selectAllRoles)
 
-  const [roleDialog, setRoleDialog] = useState(createStateClosedDialog())
   const [deleteDialog, setDeleteDialog] = useState(createStateClosedDialog())
-
-  console.log('roleDialog', roleDialog)
 
   const { order, handleRequestSort, getFilteredData, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage } =
     useTable(0, 5, 'name')
@@ -51,40 +48,22 @@ const RolesPage = () => {
   }, [dispatch])
 
   const handleCreate = () => {
-    console.log('handleCreate')
-    setRoleDialog(createStateOpenedDialog())
+    dispatch(openDialog())
   }
 
   const handleEdit = role => () => {
-    console.log('handleEdit')
-    setRoleDialog(createStateOpenedDialog(role))
+    dispatch(openDialog(role))
   }
 
   const handleDelete = role => () => {
-    console.log('handleDelete')
     setDeleteDialog(createStateOpenedDialog(role))
   }
 
-  /// *************
-
-  const handleCloseRoleDialog = () => {
-    console.log('handleCloseRoleDialog')
-    setRoleDialog(createStateClosedDialog())
-  }
-
-  const handleSubmitRoleDialog = role => {
-    console.log('handleSubmitRoleDialog', role)
-    setRoleDialog(createStateClosedDialog())
-    dispatch(upsertRole(role))
-  }
-
   const handleCloseDeleteDialog = () => {
-    console.log('handleCloseDeleteDialog')
     setDeleteDialog(createStateClosedDialog())
   }
 
   const handleSubmitDeleteDialog = () => {
-    console.log('handleSubmitDeleteDialog', deleteDialog.data)
     setDeleteDialog(createStateClosedDialog())
     dispatch(deleteRole(deleteDialog.data))
   }
@@ -151,7 +130,7 @@ const RolesPage = () => {
             }" do sistema!`}
           />
 
-          <RoleDialog {...roleDialog} onClose={handleCloseRoleDialog} onSubmit={handleSubmitRoleDialog} />
+          <RoleDialog />
         </>
       }
     />

@@ -2,6 +2,7 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import * as Api from 'api/rolesApi'
 import { closedLoadingDialog, openedLoadingDialog } from 'store/app/dialogSlice'
 import { showErrorMessage, showSuccessMessage } from 'store/app/messageSlice'
+import { createStateClosedDialog, createStateOpenedDialog } from 'utils/dialog'
 import config from '../config'
 
 const reducerKey = `roles`
@@ -12,7 +13,8 @@ const rolesAdapter = createEntityAdapter()
 // #region Initial State
 
 const initialState = rolesAdapter.getInitialState({
-  loaded: false
+  loaded: false,
+  dialog: createStateClosedDialog()
 })
 
 // #endregion
@@ -115,6 +117,12 @@ const rolesSlice = createSlice({
     resetRoles(state, action) {
       state.loaded = false
       rolesAdapter.removeAll(state)
+    },
+    openDialog(state, action) {
+      state.dialog = createStateOpenedDialog(action.payload)
+    },
+    closeDialog(state, action) {
+      state.dialog = createStateClosedDialog()
     }
   },
   extraReducers: {
@@ -137,7 +145,7 @@ const rolesSlice = createSlice({
 
 // #region Actions
 
-export const { resetRoles } = rolesSlice.actions
+export const { resetRoles, openDialog, closeDialog } = rolesSlice.actions
 
 // #endregion
 
@@ -146,6 +154,8 @@ export const { resetRoles } = rolesSlice.actions
 export const { selectAll: selectAllRoles } = rolesAdapter.getSelectors(state => state[config.moduleKey][reducerKey])
 
 export const selectLoaded = state => state[config.moduleKey][reducerKey].loaded
+
+export const selectDialog = state => state[config.moduleKey][reducerKey].dialog
 
 // #endregion
 
