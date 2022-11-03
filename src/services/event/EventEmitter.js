@@ -12,25 +12,28 @@ class EventEmitter {
     return this.events[eventName]
   }
 
-  on(eventName, fn) {
-    console.info(`EventEmitter.on() ${eventName}`)
+  // subscribe
+  subscribe(eventName, callback) {
+    console.info(`EventEmitter.subscribe() ${eventName}`)
 
-    this._getEventsByName(eventName).add(fn)
+    this._getEventsByName(eventName).add(callback)
   }
 
-  removeListener(eventName, fn) {
-    console.info(`EventEmitter.removeListener() ${eventName}`)
+  // unsubscribe
+  unsubscribe(eventName, callback) {
+    console.info(`EventEmitter.unsubscribe() ${eventName}`)
 
-    this._getEventsByName(eventName).delete(fn)
+    this._getEventsByName(eventName).delete(callback)
   }
 
+  // dispatch
   emit(eventName, ...args) {
     console.info(`EventEmitter.emit() ${eventName}`)
 
     this._getEventsByName(eventName).forEach(
       // eslint-disable-next-line func-names
-      function (fn) {
-        fn.apply(this, args)
+      function (callback) {
+        callback.apply(this, args)
       }.bind(this)
     )
   }
