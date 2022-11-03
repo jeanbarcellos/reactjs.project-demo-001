@@ -13,14 +13,20 @@ class EventEmitter {
   }
 
   on(eventName, fn) {
+    console.info(`EventEmitter.on() ${eventName}`)
+
     this._getEventsByName(eventName).add(fn)
   }
 
   removeListener(eventName, fn) {
+    console.info(`EventEmitter.removeListener() ${eventName}`)
+
     this._getEventsByName(eventName).delete(fn)
   }
 
   emit(eventName, ...args) {
+    console.info(`EventEmitter.emit() ${eventName}`)
+
     this._getEventsByName(eventName).forEach(
       // eslint-disable-next-line func-names
       function (fn) {

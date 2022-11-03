@@ -3,7 +3,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { setUser, resetUser } from 'store/app/auth/userSlice'
 import { severity, showMessage } from 'store/app/messageSlice'
-import eventEmitter from 'utils/EventEmitter'
+import eventEmitter from 'services/event/EventEmitter'
 import jwtService, { JwtServiceEvents } from 'services/jwt/JwtService'
 
 class Authentication extends Component {
