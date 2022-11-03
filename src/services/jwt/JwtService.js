@@ -7,9 +7,9 @@ const ACCESS_TOKEN = 'jwt_access_token'
 const HTTP_HEADER_AUTHORIZATION = 'Authorization'
 
 export const JwtServiceEvents = {
-  AutoLogin: 'onAutoLogin',
-  AutoLogout: 'onAutoLogout',
-  NoAccessToken: 'onNoAccessToken'
+  UserLoggedInAutoEvent: 'UserLoggedInAutoEvent',
+  UserLoggedOutAutoEvent: 'UserLoggedOutAutoEvent',
+  NoAccessTokenEvent: 'NoAccessTokenEvent'
 }
 
 class JwtService {
@@ -52,18 +52,18 @@ class JwtService {
     const accessToken = this._getAccessToken()
 
     if (!accessToken) {
-      eventEmitter.emit(JwtServiceEvents.NoAccessToken)
+      eventEmitter.emit(JwtServiceEvents.NoAccessTokenEvent)
       return
     }
 
     if (this._isValidAccessToken(accessToken)) {
       this._setSession(accessToken)
-      eventEmitter.emit(JwtServiceEvents.AutoLogin)
+      eventEmitter.emit(JwtServiceEvents.UserLoggedInAutoEvent)
       return
     }
 
     this._resetSession()
-    eventEmitter.emit(JwtServiceEvents.AutoLogout, 'accessToken expired')
+    eventEmitter.emit(JwtServiceEvents.UserLoggedOutAutoEvent, 'accessToken expired')
   }
 
   _setSession = accessToken => {

@@ -19,7 +19,7 @@ class Authentication extends Component {
 
   authCheck = () =>
     new Promise(resolve => {
-      eventEmitter.subscribe(JwtServiceEvents.AutoLogin, () => {
+      eventEmitter.subscribe(JwtServiceEvents.UserLoggedInAutoEvent, () => {
         this.props.showMessage({ message: 'Logging in with JWT', severity: severity.INFO })
 
         jwtService
@@ -38,7 +38,7 @@ class Authentication extends Component {
           })
       })
 
-      eventEmitter.subscribe(JwtServiceEvents.AutoLogout, message => {
+      eventEmitter.subscribe(JwtServiceEvents.UserLoggedOutAutoEvent, message => {
         if (message) {
           this.props.showMessage({ message })
         }
@@ -48,7 +48,7 @@ class Authentication extends Component {
         resolve()
       })
 
-      eventEmitter.subscribe(JwtServiceEvents.NoAccessToken, () => {
+      eventEmitter.subscribe(JwtServiceEvents.NoAccessTokenEvent, () => {
         resolve()
       })
 
