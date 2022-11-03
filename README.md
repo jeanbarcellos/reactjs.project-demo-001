@@ -63,14 +63,34 @@ root/
 
 ## Docker
 
+### **Developement**
+
+```bash
+docker run --rm --volume "<PROJECT-PATH-ABS>:/srv/react-docker" --workdir "/srv/react-docker" --publish 3000:3000 -it node bash
+```
+
+- Em `<PROJECT-PATH-ABS>` informar o path absoluto deste projeto+
+
+Exemplo
+
+```bash
+docker run --rm --volume "/home/jean.barcellos/www/project-101/front.reactjs:/srv/react-docker" --workdir "/srv/react-docker" --publish 3000:3000 -it node bash
+
+docker run --rm -v "/home/jean.barcellos/www/project-101/front.reactjs:/srv/react-docker" -w "/srv/react-docker" -p 3000:3000 -it node bash
+```
+
+<br>
+
+### **Production**
+
 Geração da imagem
 
 ```
-docker build -t project-101/frontend-reactjs .
+docker build -t project101/frontend-reactjs .
 ```
 
 Execução da imagem
 
-```
-docker run -d -p 3000:3000 --name project-101/frontend-reactjs project-101/frontend-reactjs
+```bash
+docker run -i --rm -p 3000:3000 --name p101_frontend-reactjs project101/frontend-reactjs
 ```
