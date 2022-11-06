@@ -1,7 +1,7 @@
 import * as Api from 'api/authApi'
 import jwtDecode from 'jwt-decode'
-import { client } from 'services/http/client'
 import eventEmitter from 'services/event/EventEmitter'
+import { client } from 'services/http/client'
 
 const ACCESS_TOKEN = 'jwt_access_token'
 const HTTP_HEADER_AUTHORIZATION = 'Authorization'

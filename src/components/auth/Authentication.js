@@ -11,14 +11,15 @@ class Authentication extends Component {
     loaded: false
   }
 
-  componentDidMount() {
-    return Promise.all([this.authCheck()]).then(() => {
-      this.setState({ loaded: true })
-    })
+  async componentDidMount() {
+    await Promise.all([this.authCheck()])
+    this.setState({ loaded: true })
   }
 
   authCheck = () =>
     new Promise(resolve => {
+      //  Registrar ouvintes de eventos de autenticação
+
       eventEmitter.subscribe(JwtServiceEvents.UserLoggedInAutoEvent, () => {
         this.props.showMessage({ message: 'Logging in with JWT', severity: severity.INFO })
 
@@ -52,6 +53,7 @@ class Authentication extends Component {
         resolve()
       })
 
+      // Inicializar serviço JWT
       jwtService.init()
 
       return Promise.resolve()
