@@ -31,10 +31,14 @@ export const submitLogin = formModel => async dispatch => {
   }
 }
 
+// Initial State
+
 const initialState = {
   success: false,
   error: null
 }
+
+// Slice
 
 const loginSlice = createSlice({
   name: reducerName,
@@ -52,6 +56,10 @@ const loginSlice = createSlice({
   extraReducers: {}
 })
 
+// Actions
+
 export const { loginSuccess, loginError } = loginSlice.actions
+
+// Reducer
 
 export default loginSlice.reducer

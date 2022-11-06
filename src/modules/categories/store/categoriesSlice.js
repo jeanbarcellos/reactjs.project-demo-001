@@ -15,7 +15,7 @@ const initialState = categoriesAdapter.getInitialState({})
 
 // #endregion
 
-// #region Thunk functions
+// #region Thunk Functions
 
 export const getCategories = createAsyncThunk(`${reducerName}/getCategories`, async (args, { dispatch }) => {
   try {

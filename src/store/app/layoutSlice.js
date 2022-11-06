@@ -29,7 +29,7 @@ const layoutSlice = createSlice({
   extraReducers: {}
 })
 
-// actions
+// Actions
 
 export const { setLayout } = layoutSlice.actions
 
@@ -39,10 +39,12 @@ export const selectLayoutDefaultConfig = state => state.app[reducerKey].default
 
 export const selectLayoutConfig = state => state.app[reducerKey].current
 
-// functions
+// Functions
 
 export const generateLayout = newLayout => {
   return _.merge({}, layoutConfig, newLayout)
 }
+
+// Reducer
 
 export default layoutSlice.reducer

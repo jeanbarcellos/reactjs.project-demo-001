@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const reducerName = 'app/message'
+const reducerKey = `message`
+const reducerName = `app/${reducerKey}`
 
 export const severity = {
   SUCCESS: 'success',
@@ -8,6 +9,8 @@ export const severity = {
   INFO: 'info',
   WARN: 'warning'
 }
+
+// Initial state
 
 const initialState = {
   open: false,
@@ -31,6 +34,8 @@ const createDataBySeverity = (action, severity) => {
     message: action.payload
   }
 }
+
+// Slice
 
 const messageSlice = createSlice({
   name: reducerName,
@@ -66,10 +71,17 @@ const messageSlice = createSlice({
   }
 })
 
-export const selectOpenMessage = state => state.app.message.open
-export const selectDataMessage = state => state.app.message.data
+// Selectors
+
+export const selectOpenMessage = state => state.app[reducerKey].open
+
+export const selectDataMessage = state => state.app[reducerKey].data
+
+// Actions
 
 export const { showMessage, hideMessage, showSuccessMessage, showErrorMessage, showInfoMessage, showWarningMessage } =
   messageSlice.actions
+
+// Reducer
 
 export default messageSlice.reducer

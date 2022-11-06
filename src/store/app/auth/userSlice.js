@@ -1,8 +1,9 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit'
-import jwtService, { JwtServiceEvents } from 'services/jwt/JwtService'
 import history from '@history'
+import { createSelector, createSlice } from '@reduxjs/toolkit'
+import jwtService from 'services/jwt/JwtService'
 
-const reducerName = `app/auth/user`
+const reducerKey = `user`
+const reducerName = `app/auth/${reducerKey}`
 
 // Initial State
 

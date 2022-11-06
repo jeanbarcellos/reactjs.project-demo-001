@@ -1,10 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const reducerName = 'app/navbar'
+const reducerKey = `navbar`
+const reducerName = `app/${reducerKey}`
+
+// Initial state
 
 const initialState = {
   open: true
 }
+
+// Slice
 
 const navbarSlice = createSlice({
   name: reducerName,
@@ -22,8 +27,14 @@ const navbarSlice = createSlice({
   }
 })
 
-export const selectNavbarOpen = state => state.app.navbar.open
+// Selectors
+
+export const selectNavbarOpen = state => state.app[reducerKey].open
+
+// Actions
 
 export const { openedNavbar, closedNavbar, toggledNavbar } = navbarSlice.actions
+
+// Redicer
 
 export default navbarSlice.reducer

@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const reducerName = 'app/dialog'
+const reducerKey = `dialog`
+const reducerName = `app/${reducerKey}`
+
+// Initial state
 
 const initialState = {
   generic: {
@@ -13,6 +16,8 @@ const initialState = {
     open: false
   }
 }
+
+// Slice
 
 const dialogSlice = createSlice({
   name: reducerName,
@@ -34,10 +39,18 @@ const dialogSlice = createSlice({
   }
 })
 
-export const selectOpenDialog = state => state.app.dialog.generic.open
-export const selectOptionsDialog = state => state.app.dialog.generic.open
-export const selectOpenLoadingDialog = state => state.app.dialog.loading.open
+// Selectors
+
+export const selectOpenDialog = state => state.app[reducerKey].generic.open
+
+export const selectOptionsDialog = state => state.app[reducerKey].generic.open
+
+export const selectOpenLoadingDialog = state => state.app[reducerKey].loading.open
+
+// Actions
 
 export const { openedDialog, closedDialog, openedLoadingDialog, closedLoadingDialog } = dialogSlice.actions
+
+// Reducer
 
 export default dialogSlice.reducer
