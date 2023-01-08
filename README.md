@@ -65,13 +65,15 @@ root/
 
 ### **Developement**
 
+Rodar um container com volume `Bind mounts`
+
 ```bash
 docker run --rm --volume "<PROJECT-PATH-ABS>:/srv/react-docker" --workdir "/srv/react-docker" --publish 3000:3000 -it node bash
 ```
 
 - Em `<PROJECT-PATH-ABS>` informar o path absoluto deste projeto+
 
-Exemplo
+Exemplo:
 
 ```bash
 docker run --rm --volume "/home/jean.barcellos/www/project-101/frontend-reactjs:/srv/react-docker" --workdir "/srv/react-docker" --publish 3000:3000 -it node bash
@@ -83,7 +85,7 @@ docker run --rm -v "/home/jean.barcellos/www/project-101/frontend-reactjs:/srv/r
 
 ### **Production**
 
-Geração da imagem
+Gerar a imagem
 
 ```
 docker build -t jeanbarcellos/project101_frontend-reactjs .
@@ -91,6 +93,13 @@ docker build -t jeanbarcellos/project101_frontend-reactjs .
 
 Execução da imagem
 
+Desenvolvimento
+
 ```bash
-docker run -i --rm -p 3000:3000 --name project101_frontend-reactjs jeanbarcellos/project101_frontend-reactjs
+docker run -i --rm -p 8082:80 --name project101_frontend-reactjs jeanbarcellos/project101_frontend-reactjs
 ```
+
+## Referências
+
+- https://www.knowledgehut.com/blog/web-development/how-to-dockerize-react-app
+- https://levelup.gitconnected.com/dockerizing-a-react-application-using-nginx-and-react-router-43154cc8e58c

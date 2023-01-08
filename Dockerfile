@@ -1,13 +1,15 @@
-FROM node
-WORKDIR /src
+FROM nginx
 
-COPY package*.json .
-COPY yarn.lock .
+WORKDIR /usr/share/nginx/html
 
-RUN yarn install --frozen-lockfile
+# Copia o build
+RUN rm -rf ./*
+COPY build .
 
-COPY . .
+# Arruma o rewrite
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d
 
-EXPOSE 3000
+EXPOSE 80
 
-CMD ["yarn", "start"]
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
