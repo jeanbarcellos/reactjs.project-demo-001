@@ -74,9 +74,9 @@ docker run --rm --volume "<PROJECT-PATH-ABS>:/srv/react-docker" --workdir "/srv/
 Exemplo
 
 ```bash
-docker run --rm --volume "/home/jean.barcellos/www/project-101/front.reactjs:/srv/react-docker" --workdir "/srv/react-docker" --publish 3000:3000 -it node bash
+docker run --rm --volume "/home/jean.barcellos/www/project-101/frontend-reactjs:/srv/react-docker" --workdir "/srv/react-docker" --publish 3000:3000 -it node bash
 
-docker run --rm -v "/home/jean.barcellos/www/project-101/front.reactjs:/srv/react-docker" -w "/srv/react-docker" -p 3000:3000 -it node bash
+docker run --rm -v "/home/jean.barcellos/www/project-101/frontend-reactjs:/srv/react-docker" -w "/srv/react-docker" -p 3000:3000 -it node bash
 ```
 
 <br>
@@ -86,11 +86,11 @@ docker run --rm -v "/home/jean.barcellos/www/project-101/front.reactjs:/srv/reac
 Geração da imagem
 
 ```
-docker build -t project101/frontend-reactjs .
+docker build -t jeanbarcellos/project101_frontend-reactjs .
 ```
 
 Execução da imagem
 
 ```bash
-docker run -i --rm -p 3000:3000 --name p101_frontend-reactjs project101/frontend-reactjs
+docker run -i --rm -p 3000:3000 --name project101_frontend-reactjs jeanbarcellos/project101_frontend-reactjs
 ```
