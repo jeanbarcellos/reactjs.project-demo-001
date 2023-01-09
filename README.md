@@ -63,11 +63,43 @@ root/
 
 ## Docker
 
+### **Build da imagem**
+
+Acessar diretorio
+
+```bash
+cd frontend-reactjs
+```
+
+Fazer o build do projeto
+
+```bash
+yarn build
+```
+
+Gerar imagem Docker
+
+```bash
+docker image build -t jeanbarcellos/project101_backend-java .
+```
+
 ### **Developement**
+
+Criar diretório do projeto e dar permissão:
+
+```bash
+# Se o projeto ainda não existir
+mkdir /home/project-dir
+
+sudo chown -R <USERNAME> /home/project-dir
+```
 
 Rodar um container com volume `Bind mounts`
 
 ```bash
+docker run --rm --volume "$(pwd):/srv/react-docker" --workdir "/srv/react-docker" --publish 3000:3000 -it node bash
+
+# ou
 docker run --rm --volume "<PROJECT-PATH-ABS>:/srv/react-docker" --workdir "/srv/react-docker" --publish 3000:3000 -it node bash
 ```
 
