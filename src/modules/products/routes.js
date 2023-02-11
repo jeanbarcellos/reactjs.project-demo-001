@@ -1,18 +1,16 @@
 import { lazy } from 'react'
 import Roles from 'services/auth/Roles'
 
-const ROUTE_URL = '/products'
+const BASE_PATH = '/products'
 
-export const indexRoute = () => ROUTE_URL
+export const indexRoute = () => BASE_PATH
 
 const ProductsPage = lazy(() => import('./pages/list'))
 
-const routes = [
+export default [
   {
-    path: ROUTE_URL,
+    path: BASE_PATH,
     element: <ProductsPage />,
     role: Roles.ROOT
   }
 ]
-
-export default routes

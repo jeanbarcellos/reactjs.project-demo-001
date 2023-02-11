@@ -1,18 +1,15 @@
 import { lazy } from 'react'
 
-const ROUTE_URL = '/categories'
+const BASE_PATH = '/categories'
 
-export const indexRoute = () => ROUTE_URL
-
-export const showRoute = id => `${ROUTE_URL}/${id}`
+export const indexRoute = () => BASE_PATH
+export const showRoute = id => `${BASE_PATH}/${id}`
 
 const CategoriesPage = lazy(() => import('./pages/list'))
 
-const routes = [
+export default [
   {
-    path: ROUTE_URL,
+    path: BASE_PATH,
     element: <CategoriesPage />
   }
 ]
-
-export default routes

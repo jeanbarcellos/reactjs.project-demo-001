@@ -1,14 +1,13 @@
 import { lazy } from 'react'
 import { createRoute } from 'utils/route'
 
-const ROUTE_URL = '/roles'
+const BASE_PATH = '/roles'
 
-export const indexRoute = () => ROUTE_URL
-
-export const showRoute = id => `${ROUTE_URL}/${id}`
+export const indexRoute = () => BASE_PATH
+export const showRoute = id => `${BASE_PATH}/${id}`
 
 const RolesPage = lazy(() => import('./pages/list'))
 
-const routes = [createRoute(ROUTE_URL, <RolesPage />)]
-
-export default routes
+export default [
+  createRoute(BASE_PATH, <RolesPage />)
+]

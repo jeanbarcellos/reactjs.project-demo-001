@@ -1,16 +1,14 @@
 import { lazy } from 'react'
 
-const ROUTE_URL = '/counter'
+const BASE_PATH = '/counter'
 
-export const indexRoute = () => ROUTE_URL
+export const indexRoute = () => BASE_PATH
 
 const CounterPage = lazy(() => import('./pages/home'))
 
-const routes = [
+export default [
   {
-    path: ROUTE_URL,
+    path: BASE_PATH,
     element: <CounterPage />
   }
 ]
-
-export default routes

@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router'
 import { isBoolean } from 'utils'
-import { createArrayRoles, hasPermission } from './security'
+import { createArrayRoles } from './security'
 
 const AUTH_DEFAULT = true
 
@@ -12,6 +12,10 @@ export const createRoute = (path, element, auth = true, role = []) => {
     role: role
   }
 }
+
+export const createPublicRoute = (path, element) => createRoute(path, element, false)
+
+export const createAuthRoute = (path, element, role = []) => createRoute(path, element, true, role)
 
 export const createRedirectRoute = (path, to, auth = true, role = []) =>
   createRoute(path, <Navigate to={to} />, auth, role)

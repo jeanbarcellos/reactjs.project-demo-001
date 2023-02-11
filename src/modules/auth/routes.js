@@ -1,19 +1,17 @@
 import { lazy } from 'react'
+import { createPublicRoute } from 'utils/route'
 
-const ROUTE_URL = '/auth'
+const BASE_PATH = '/auth'
 
-export const indexRoute = () => ROUTE_URL
-
+// Paths
+export const indexRoute = () => BASE_PATH
 export const loginRoute = () => `/login`
 
+// Paginas
 const LoginPage = lazy(() => import('./pages/login'))
 
-const routes = [
-  {
-    path: loginRoute(),
-    element: <LoginPage />,
-    auth: false
-  }
+// Rotas
+export default [
+  createPublicRoute(loginRoute(), <LoginPage />)
 ]
 
-export default routes

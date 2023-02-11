@@ -1,37 +1,35 @@
 import { lazy } from 'react'
 import { Navigate } from 'react-router'
 
-const ROUTE_URL = '/error'
+const BASE_PATH = '/error'
 
-export const indexRoute = () => ROUTE_URL
+// Paths
+export const indexRoute = () => BASE_PATH
+export const error403Route = () => `${BASE_PATH}/403`
+export const error404Route = () => `${BASE_PATH}/404`
+export const error500Route = () => `${BASE_PATH}/500`
 
-export const error403Route = () => `${ROUTE_URL}/403`
-
-export const error404Route = () => `${ROUTE_URL}/404`
-
-export const error505Route = () => `${ROUTE_URL}/505`
-
+// Páginas
 const Error404Page = lazy(() => import('./pages/404'))
 const Error403Page = lazy(() => import('./pages/403'))
 const Error500Page = lazy(() => import('./pages/500'))
 
-const routes = [
+// Rotas
+export default [
   {
-    path: ROUTE_URL,
+    path: BASE_PATH,
     element: <Navigate to={error404Route()} />
   },
   {
-    path: `${ROUTE_URL}/404`,
+    path: error404Route(),
     element: <Error404Page />
   },
   {
-    path: `${ROUTE_URL}/403`,
+    path: error403Route(),
     element: <Error403Page />
   },
   {
-    path: `${ROUTE_URL}/500`,
+    path: error500Route(),
     element: <Error500Page />
   }
 ]
-
-export default routes

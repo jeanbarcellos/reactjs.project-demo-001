@@ -1,16 +1,14 @@
 import { lazy } from 'react'
 
-const ROUTE_URL = '/dashboard'
+const BASE_PATH = '/dashboard'
 
-export const indexRoute = () => ROUTE_URL
+export const indexRoute = () => BASE_PATH
 
 const HomePage = lazy(() => import('./pages/home'))
 
-const routes = [
+export default [
   {
-    path: ROUTE_URL,
+    path: BASE_PATH,
     element: <HomePage />
   }
 ]
-
-export default routes
