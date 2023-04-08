@@ -5,7 +5,7 @@ const ENDPOINT = '/auth'
 
 export const authLogin = model => client.post(`${ENDPOINT}/login`, model)
 
-export const authLoginWithToken = token => client.post(`${ENDPOINT}/loginWithToken`, { token })
+export const authLoginWithToken = token => client.post(`${ENDPOINT}/login-with-token`, { token })
 
 export const authLoginFake = model => {
   const response = {
