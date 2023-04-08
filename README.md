@@ -80,7 +80,7 @@ yarn build
 Gerar imagem Docker
 
 ```bash
-docker image build -t jeanbarcellos/project101_backend-java .
+docker image build -t jeanbarcellos/cd frontend-reactjs .
 ```
 
 ### **Developement**
