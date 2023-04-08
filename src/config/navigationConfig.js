@@ -50,9 +50,9 @@ const navigationConfig = [
     auth: false
   },
   {
-    id: 'login',
-    icon: 'login',
-    text: 'Login',
+    id: 'logout',
+    icon: 'logout',
+    text: 'Logout',
     url: loginRoute(),
     auth: false
   }
