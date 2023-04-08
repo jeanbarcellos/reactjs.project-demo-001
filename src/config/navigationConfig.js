@@ -1,6 +1,5 @@
 import { loginRoute } from 'modules/auth/routes'
 import { indexRoute as categoryIndexRoute } from 'modules/categories/routes'
-import { indexRoute as counterIndexRoute } from 'modules/counter/routes'
 import { indexRoute as dashboardIndexRoute } from 'modules/dashboard/routes'
 import { indexRoute as examplesIndexRoute } from 'modules/examples/routes'
 import { indexRoute as productsIndexRoute } from 'modules/products/routes'
@@ -48,13 +47,6 @@ const navigationConfig = [
     icon: 'layers',
     text: 'Examples & Tests',
     url: examplesIndexRoute(),
-    auth: false
-  },
-  {
-    id: 'counter',
-    icon: 'hourglass_empty',
-    text: 'Counter App',
-    url: counterIndexRoute(),
     auth: false
   },
   {
