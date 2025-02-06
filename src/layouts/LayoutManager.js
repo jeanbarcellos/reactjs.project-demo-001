@@ -1,11 +1,12 @@
 import routes from 'config/routesConfig'
 import useDeepCompareEffect from 'hooks/useDeepCompareEffect'
 import _ from 'lodash'
-import React, { memo, useCallback, useRef } from 'react'
+import React, { memo, useCallback, useMemo, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { matchRoutes, useLocation } from 'react-router'
 import { generateLayout, selectLayoutConfig, selectLayoutDefaultConfig, setLayout } from 'store/app/layoutSlice'
-import Layout from './Layout'
+import layouts from './layouts'
+import settingsConfig from 'config/settingsConfig'
 
 const LayoutManager = props => {
   const dispatch = useDispatch()
@@ -46,7 +47,11 @@ const LayoutManager = props => {
     }
   }, [dispatch, newLayout.current, layoutConfig])
 
+  // console.warn('::LayoutManager:: rendered');
+
   const showContent = () => _.isEqual(newLayout.current, layoutConfig)
+
+  const Layout = useMemo(() => layouts[settingsConfig.layout.style], [settingsConfig.layout.style])
 
   return showContent() ? <Layout {...props} /> : null
 }

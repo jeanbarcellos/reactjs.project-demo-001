@@ -1,7 +1,7 @@
 import { styled } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
-import Main from 'layouts/Main'
-import React, { memo } from 'react'
+import Main from 'layouts/layout001/Main'
+import { memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectLayoutConfig } from 'store/app/layoutSlice'
 import { selectNavbarOpen, toggledNavbar } from 'store/app/navbarSlice'
@@ -15,7 +15,7 @@ const Root = styled('div')(({ theme, config }) => ({
   width: '100%'
 }))
 
-const Layout = () => {
+const Layout001 = () => {
   const dispatch = useDispatch()
 
   const layoutConfig = useSelector(selectLayoutConfig)
@@ -36,4 +36,4 @@ const Layout = () => {
   )
 }
 
-export default memo(Layout)
+export default memo(Layout001)
